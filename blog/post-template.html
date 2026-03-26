@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+  ============================================================
+  QUICKPLAY — BLOG POST TEMPLATE
+  ============================================================
+  HOW TO USE:
+  1. Duplicate into /blog/your-post-slug.html
+  2. Replace all [PLACEHOLDERS] with real content
+  3. Update JSON-LD structured data
+  4. Add your article body inside <div class="post-content">
+  ============================================================
+  -->
+
+  <!-- ① SEO: Update per post -->
+  <title>[POST TITLE] — QuickPlay Blog</title>
+  <meta name="description" content="[150–160 character meta description for SEO. Include primary keyword near the start.]" />
+  <meta name="keywords" content="[keyword 1], [keyword 2], [keyword 3], browser games" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://quickplay.games/blog/[post-slug].html" />
+
+  <!-- ② Open Graph — for social sharing -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:title"       content="[POST TITLE] — QuickPlay" />
+  <meta property="og:description" content="[Short engaging description for social cards]" />
+  <meta property="og:url"         content="https://quickplay.games/blog/[post-slug].html" />
+  <meta property="og:image"       content="https://quickplay.games/img/blog/[post-slug]-og.jpg" />
+  <meta property="og:site_name"   content="QuickPlay" />
+  <meta property="article:published_time" content="[YYYY-MM-DD]" />
+  <meta property="article:modified_time"  content="[YYYY-MM-DD]" />
+  <meta property="article:author"         content="[AUTHOR NAME]" />
+  <meta property="article:section"        content="[CATEGORY e.g. Tips, Lists, Reviews]" />
+
+  <!-- ③ Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="[POST TITLE]" />
+  <meta name="twitter:description" content="[Short tweet-style summary]" />
+  <meta name="twitter:image"       content="https://quickplay.games/img/blog/[post-slug]-og.jpg" />
+
+  <!-- ④ Structured Data: BlogPosting -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[POST TITLE — max 110 characters]",
+    "description": "[Same as meta description]",
+    "url": "https://quickplay.games/blog/[post-slug].html",
+    "datePublished": "[YYYY-MM-DD]",
+    "dateModified": "[YYYY-MM-DD]",
+    "author": {
+      "@type": "Person",
+      "name": "[AUTHOR NAME]",
+      "url": "https://quickplay.games/authors/[author-slug]"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "QuickPlay",
+      "url": "https://quickplay.games/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://quickplay.games/img/logo.png"
+      }
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://quickplay.games/img/blog/[post-slug]-og.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    "mainEntityOfPage": "https://quickplay.games/blog/[post-slug].html",
+    "keywords": ["[keyword 1]", "[keyword 2]", "[keyword 3]"],
+    "articleSection": "[SECTION e.g. Tips, Strategy, Lists]",
+    "wordCount": [APPROXIMATE WORD COUNT],
+    "inLanguage": "en-US"
+  }
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="../index.html" class="nav-brand" aria-label="QuickPlay Home">
+          <div class="brand-icon" aria-hidden="true">🎮</div>
+          Quick<span>Play</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../games.html">Games</a></li>
+          <li><a href="../blog.html" class="active">Blog</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="theme-toggle" aria-label="Toggle dark/light mode">☀️</button>
+          <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article itemscope itemtype="https://schema.org/BlogPosting">
+
+      <!-- ===== POST HERO ===== -->
+      <section class="post-hero">
+        <div class="container">
+
+          <!-- Breadcrumb -->
+          <nav class="breadcrumb" aria-label="Breadcrumb navigation">
+            <a href="../index.html">Home</a>
+            <span aria-hidden="true">›</span>
+            <a href="../blog.html">Blog</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">[SHORT BREADCRUMB TITLE]</span>
+          </nav>
+
+          <!-- Post Metadata -->
+          <div class="post-meta-top">
+            <!-- ⑤ Choose tag type: tag-list | tag-guide | tag-tips | tag-review -->
+            <span class="tag tag-guide">[CATEGORY]</span>
+            <time datetime="[YYYY-MM-DD]" style="font-size:0.8rem;color:var(--text-muted);"
+              itemprop="datePublished">[Month DD, YYYY]</time>
+            <span style="font-size:0.8rem;color:var(--text-muted);">⏱ [X] min read</span>
+          </div>
+
+          <!-- H1 — Primary Keyword in Title -->
+          <h1 class="post-title" itemprop="headline">[POST TITLE]</h1>
+
+          <!-- Author Bar -->
+          <div class="post-author-bar">
+            <!-- ⑥ Use initials in author avatar -->
+            <div class="author-avatar" style="width:44px;height:44px;font-size:1rem;" aria-hidden="true">[XX]</div>
+            <div>
+              <div class="author-name" itemprop="author">[AUTHOR NAME]</div>
+              <div style="font-size:0.78rem;color:var(--text-muted);">[AUTHOR TITLE], QuickPlay</div>
+            </div>
+            <!-- Share Button -->
+            <button class="btn btn-ghost btn-sm" style="margin-left:auto;"
+              onclick="navigator.share?.({title:document.title,url:location.href})||Toast.show('📋 Link copied!')">
+              📤 Share
+            </button>
+          </div>
+
+          <!-- Featured Image / Hero Visual -->
+          <!-- ⑦ Replace emoji with <img> tag when you have a real image -->
+          <div class="post-featured-img" role="img" aria-label="[Image alt text]">
+            <span style="filter:drop-shadow(0 0 24px rgba(255,60,110,0.4));">[EMOJI]</span>
+          </div>
+          <!-- Real image version:
+          <div class="post-featured-img" style="padding:0;">
+            <img src="../img/blog/[post-slug]-hero.jpg"
+                 alt="[Descriptive alt text for SEO]"
+                 width="1200" height="514"
+                 itemprop="image" />
+          </div>
+          -->
+
+        </div>
+      </section>
+
+      <!-- ===== POST BODY ===== -->
+      <div class="container">
+        <div class="post-content" itemprop="articleBody">
+
+          <!--
+          ⑧ WRITE YOUR ARTICLE HERE.
+          Follow this structure for SEO:
+
+          INTRO (2–3 paragraphs):
+          - Hook the reader immediately
+          - State what the article covers
+          - Include primary keyword naturally in first 100 words
+
+          H2 sections (3–6 sections):
+          - One H2 per major topic
+          - Use H3 for subsections
+          - Include secondary keywords in headings
+
+          GAME MENTION BOXES:
+          Use the .game-mention-box component to link to games:
+          <div class="game-mention-box">
+            <div class="game-mention-icon">🐍</div>
+            <div class="game-mention-info">
+              <h4>Game Name</h4>
+              <p>Category · ★ Rating — <a href="../games/game.html">Play Now →</a></p>
+            </div>
+          </div>
+
+          CLOSING:
+          - Summarize key points
+          - Clear CTA (link to games page or related post)
+          - 600–2000 words is the sweet spot for this content type
+          -->
+
+          <p>
+            [Opening paragraph — hook the reader. Include primary keyword within first 100 words.]
+          </p>
+
+          <h2>[First Major Section Heading — include secondary keyword]</h2>
+          <p>[Section content...]</p>
+
+          <h2>[Second Major Section Heading]</h2>
+          <p>[Section content...]</p>
+
+          <!-- Game recommendation box example -->
+          <div class="game-mention-box">
+            <div class="game-mention-icon">[EMOJI]</div>
+            <div class="game-mention-info">
+              <h4>[Game Name]</h4>
+              <p>[Category] · ★ [Rating] — <a href="../games/[game-slug].html">Play Now →</a></p>
+            </div>
+          </div>
+
+          <h2>[Third Major Section Heading]</h2>
+          <p>[Section content...]</p>
+
+          <h2>Conclusion</h2>
+          <p>[Wrap up the article. CTA to games or related articles.]</p>
+          <p><a href="../games.html">Browse all free games →</a></p>
+
+          <hr class="divider" />
+
+          <!-- Author Bio Box -->
+          <div class="highlight-box" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+            <div class="author-avatar" style="width:56px;height:56px;font-size:1.2rem;flex-shrink:0;" aria-hidden="true">[XX]</div>
+            <div>
+              <div style="font-size:1rem;font-weight:700;margin-bottom:4px;">[AUTHOR NAME]</div>
+              <div style="font-size:0.82rem;color:var(--text-secondary);line-height:1.6;">
+                [2–3 sentence author bio. Mention role, expertise, and a fun personal detail.]
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.post-content -->
+
+        <!-- ===== RELATED POSTS ===== -->
+        <!-- ⑨ Add 2 relevant related posts -->
+        <section style="max-width:720px;margin:48px auto 0;" aria-labelledby="related-posts-heading">
+          <h2 id="related-posts-heading" style="margin-bottom:24px;">Related Articles</h2>
+          <div class="grid-2">
+
+            <article class="blog-card">
+              <a href="[related-post-1].html">
+                <div class="blog-thumb">
+                  <div class="blog-thumb-placeholder" style="background:linear-gradient(135deg,#1a1a26,#2a1a3e);">[EMOJI]</div>
+                </div>
+              </a>
+              <div class="blog-content">
+                <div class="blog-tags"><span class="tag tag-list">[TAG]</span></div>
+                <h3 class="blog-title"><a href="[related-post-1].html">[Related Post 1 Title]</a></h3>
+                <div class="blog-meta">
+                  <div class="author-avatar">[XX]</div>
+                  <div class="author-info">
+                    <span class="author-name">[Author]</span>
+                    <time class="post-date">[Date]</time>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="blog-card">
+              <a href="[related-post-2].html">
+                <div class="blog-thumb">
+                  <div class="blog-thumb-placeholder" style="background:linear-gradient(135deg,#0a1a2e,#1a2a3e);">[EMOJI]</div>
+                </div>
+              </a>
+              <div class="blog-content">
+                <div class="blog-tags"><span class="tag tag-guide">[TAG]</span></div>
+                <h3 class="blog-title"><a href="[related-post-2].html">[Related Post 2 Title]</a></h3>
+                <div class="blog-meta">
+                  <div class="author-avatar">[XX]</div>
+                  <div class="author-info">
+                    <span class="author-name">[Author]</span>
+                    <time class="post-date">[Date]</time>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </div><!-- /.container -->
+    </article>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="footer-brand-logo">
+            <div class="brand-icon" aria-hidden="true">🎮</div>QuickPlay
+          </a>
+          <p class="footer-desc">Free browser games and gaming guides.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Popular Games</h4>
+          <nav class="footer-links">
+            <a href="../games/snake.html">Snake Classic</a>
+            <a href="../games/2048.html">2048</a>
+            <a href="../games/memory-match.html">Memory Match</a>
+            <a href="../games/tic-tac-toe.html">Tic-Tac-Toe</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Blog</h4>
+          <nav class="footer-links">
+            <a href="top-10-games-when-bored.html">Top 10 Games</a>
+            <a href="best-browser-games-2026.html">Best Games 2026</a>
+            <a href="puzzle-games-brain-training.html">Brain Training</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Site</h4>
+          <nav class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../games.html">All Games</a>
+            <a href="../blog.html">Blog</a>
+            <a href="#">About</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 QuickPlay. All rights reserved.</p>
+        <nav class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# QuickPlay — robots.txt
+# https://quickplay.games/robots.txt
+
+# Allow all well-behaved crawlers
+User-agent: *
+Allow: /
+
+# Block template files from being indexed
+Disallow: /games/game-template.html
+Disallow: /blog/post-template.html
+
+# Block any future admin or draft directories
+Disallow: /admin/
+Disallow: /drafts/
+Disallow: /staging/
+
+# Sitemap location
+Sitemap: https://quickplay.games/sitemap.xml
+
+# Crawl-delay for polite bots (optional — remove if not needed)
+Crawl-delay: 1

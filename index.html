@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickPlay — Free Browser Games, No Download Required</title>
+    <meta
+      name="description"
+      content="Play free browser games instantly — no download, no login. Puzzles, arcade, brain teasers and more. QuickPlay is the fastest way to cure boredom."
+    />
+    <meta
+      name="keywords"
+      content="free browser games, online games, play games online, casual games, puzzle games, arcade games, no download games"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://quickplay.games/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="QuickPlay — Free Browser Games, No Download Required"
+    />
+    <meta
+      property="og:description"
+      content="Play 50+ free browser games instantly. No download, no login. Puzzles, arcade, brain games and more."
+    />
+    <meta property="og:url" content="https://quickplay.games/" />
+    <meta
+      property="og:image"
+      content="https://quickplay.games/img/og-home.jpg"
+    />
+    <meta property="og:site_name" content="QuickPlay" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="QuickPlay — Free Browser Games" />
+    <meta
+      name="twitter:description"
+      content="Play 50+ free browser games instantly. No download, no login required."
+    />
+    <meta
+      name="twitter:image"
+      content="https://quickplay.games/img/og-home.jpg"
+    />
+
+    <!-- Structured Data: WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "QuickPlay",
+        "url": "https://quickplay.games/",
+        "description": "Free casual browser games — play instantly without downloads.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://quickplay.games/games.html?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <!-- Structured Data: ItemList (Games) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Popular Browser Games",
+        "url": "https://quickplay.games/games.html",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Tic-Tac-Toe",
+            "url": "https://quickplay.games/games/tic-tac-toe.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Memory Match",
+            "url": "https://quickplay.games/games/memory-match.html"
+          },
+
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Snake",
+            "url": "https://quickplay.games/games/snake.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "2048",
+            "url": "https://quickplay.games/games/2048.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Space Shooter",
+            "url": "https://quickplay.games/games/space-shooter.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Word Scramble",
+            "url": "https://quickplay.games/games/word-scramble.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Reaction Time Test",
+            "url": "https://quickplay.games/games/reaction-time.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "name": "Solitaire",
+            "url": "https://quickplay.games/games/solitaire.html"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="index.html" class="nav-brand" aria-label="QuickPlay Home">
+            <div class="brand-icon" aria-hidden="true">🎮</div>
+            Quick<span>Play</span>
+          </a>
+
+          <ul class="nav-links" role="list">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <div class="nav-search" role="search">
+              <span class="search-icon" aria-hidden="true">🔍</span>
+              <input
+                type="search"
+                placeholder="Search games..."
+                aria-label="Search games"
+                class="game-search-input"
+                onkeydown="
+                  if (event.key === 'Enter')
+                    window.location.href = 'games.html?q=' + this.value;
+                "
+              />
+            </div>
+            <button
+              class="theme-toggle"
+              aria-label="Toggle dark/light mode"
+              title="Toggle theme"
+            >
+              ☀️
+            </button>
+            <button
+              class="menu-toggle"
+              aria-label="Open menu"
+              aria-expanded="false"
+            >
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ===== HERO ===== -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-eyebrow fade-up">
+              <span class="dot" aria-hidden="true"></span>
+              8 Games Live Now
+            </div>
+            <h1 id="hero-heading" class="fade-up fade-up-1">
+              Play <em>Instantly.</em><br />No Download.<br />No Login.
+            </h1>
+            <p class="fade-up fade-up-2">
+              Jump into free browser games anytime, anywhere. Puzzles, arcade
+              classics, brain teasers — all running right in your browser.
+            </p>
+            <div class="hero-actions fade-up fade-up-3">
+              <a href="games.html" class="btn btn-primary btn-lg"
+                >🕹️ Browse All Games</a
+              >
+              <a href="games/snake.html" class="btn btn-secondary btn-lg"
+                >▶ Play Snake Now</a
+              >
+            </div>
+            <div
+              class="hero-stats fade-up fade-up-4"
+              aria-label="Platform statistics"
+            >
+              <div class="stat-item">
+                <span class="stat-num">8</span>
+                <span class="stat-label">Free Games</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">No Download</span>
+                <span class="stat-label">Required</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">100%</span>
+                <span class="stat-label">Free Forever</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">New</span>
+                <span class="stat-label">Platform</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TRENDING TICKER ===== -->
+      <div class="trending-strip" aria-label="Trending games">
+        <div class="trending-scroll" aria-hidden="true">
+          <!-- First set -->
+          <a href="games/snake.html" class="trending-item">🔥 Snake</a
+          ><span class="trending-sep">·</span>
+          <a href="games/2048.html" class="trending-item">⭐ 2048</a
+          ><span class="trending-sep">·</span>
+          <a href="games/memory-match.html" class="trending-item"
+            >🧩 Memory Match</a
+          ><span class="trending-sep">·</span>
+          <a href="games/tic-tac-toe.html" class="trending-item"
+            >✖️ Tic-Tac-Toe</a
+          ><span class="trending-sep">·</span>
+          <a href="games/word-scramble.html" class="trending-item"
+            >🧠 Word Scramble</a
+          ><span class="trending-sep">·</span>
+          <a href="games/space-shooter.html" class="trending-item"
+            >👾 Space Shooter</a
+          ><span class="trending-sep">·</span>
+          <a href="games/reaction-time.html" class="trending-item"
+            >🎯 Reaction Time</a
+          ><span class="trending-sep">·</span>
+          <a href="games/solitaire.html" class="trending-item">🃏 Solitaire</a
+          ><span class="trending-sep">·</span>
+          <!-- Duplicate for seamless loop -->
+          <a href="games/snake.html" class="trending-item">🔥 Snake</a
+          ><span class="trending-sep">·</span>
+          <a href="games/2048.html" class="trending-item">⭐ 2048</a
+          ><span class="trending-sep">·</span>
+          <a href="games/memory-match.html" class="trending-item"
+            >🧩 Memory Match</a
+          ><span class="trending-sep">·</span>
+          <a href="games/tic-tac-toe.html" class="trending-item"
+            >✖️ Tic-Tac-Toe</a
+          ><span class="trending-sep">·</span>
+          <a href="games/word-scramble.html" class="trending-item"
+            >🧠 Word Scramble</a
+          ><span class="trending-sep">·</span>
+          <a href="games/space-shooter.html" class="trending-item"
+            >👾 Space Shooter</a
+          ><span class="trending-sep">·</span>
+          <a href="games/reaction-time.html" class="trending-item"
+            >🎯 Reaction Time</a
+          ><span class="trending-sep">·</span>
+          <a href="games/solitaire.html" class="trending-item">🃏 Solitaire</a
+          ><span class="trending-sep">·</span>
+        </div>
+      </div>
+
+      <!-- ===== FEATURED GAME ===== -->
+      <section class="section-pad" aria-labelledby="featured-heading">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-tag">⚡ Editor's Pick</span>
+              <h2 id="featured-heading">Featured Game</h2>
+            </div>
+          </div>
+          <article
+            class="featured-game"
+            itemscope
+            itemtype="https://schema.org/VideoGame"
+          >
+            <div class="featured-game-img" aria-hidden="true">🐍</div>
+            <div class="featured-game-content">
+              <span class="featured-label">⭐ Featured This Week</span>
+              <h3 class="featured-game-title" itemprop="name">Snake Classic</h3>
+              <p class="featured-game-desc" itemprop="description">
+                The timeless classic, rebuilt for modern browsers. Control your
+                hungry snake, eat the glowing dots, and grow as long as you can
+                without crashing. Compete for the high score!
+              </p>
+              <div class="featured-game-actions">
+                <a href="games/snake.html" class="btn btn-primary"
+                  >▶ Play Now</a
+                >
+                <a href="games.html" class="btn btn-ghost">View All Games</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== TRENDING GAMES ===== -->
+      <section
+        class="section-pad"
+        style="padding-top: 0"
+        aria-labelledby="trending-heading"
+      >
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-tag">🔥 Trending</span>
+              <h2 id="trending-heading">Trending Games</h2>
+            </div>
+            <a href="games.html" class="btn btn-ghost btn-sm">All Games →</a>
+          </div>
+
+          <!-- Category Filters -->
+          <div
+            class="category-filters"
+            role="group"
+            aria-label="Filter by category"
+          >
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="puzzle">🧩 Puzzle</button>
+            <button class="filter-btn" data-category="arcade">🕹️ Arcade</button>
+            <button class="filter-btn" data-category="brain">🧠 Brain</button>
+            <button class="filter-btn" data-category="card">🃏 Card</button>
+          </div>
+
+          <div class="games-grid" id="home-games-grid">
+            <!-- Game Card: Snake -->
+            <a href="games/snake.html"
+              class="game-card animate-on-scroll"
+              data-category="arcade"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div
+                  class="game-thumb-placeholder"
+                  role="img"
+                  aria-label="Snake game"
+                >
+                  🐍
+                </div>
+                <span class="game-badge badge-trending">🔥 Trending</span>
+                <div class="play-overlay" aria-hidden="true">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Arcade</span>
+                </div>
+                <h3 class="game-title-text" itemprop="name">Snake Classic</h3>
+                <p class="game-desc" itemprop="description">
+                  Eat dots, grow longer, don't crash. A timeless arcade reflex
+                  game.
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/snake.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <!-- Game Card: 2048 -->
+            <a href="games/2048.html"
+              class="game-card animate-on-scroll"
+              data-category="puzzle"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div
+                  class="game-thumb-placeholder"
+                  role="img"
+                  aria-label="2048 game"
+                >
+                  🔢
+                </div>
+                <span class="game-badge badge-hot">⚡ Hot</span>
+                <div class="play-overlay" aria-hidden="true">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Puzzle</span>
+                
+                </div>
+                <h3 class="game-title-text" itemprop="name">2048</h3>
+                <p class="game-desc" itemprop="description">
+                  Slide tiles to combine numbers and reach the elusive 2048
+                  tile!
+                </p>
+                <div class="game-footer">
+                  
+                  <span
+                    href="games/2048.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Game Card: Memory Match -->
+            <a href="games/memory-match.html"
+              class="game-card animate-on-scroll"
+              data-category="brain"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div
+                  class="game-thumb-placeholder"
+                  role="img"
+                  aria-label="Memory Match game"
+                >
+                  🃏
+                </div>
+                <span class="game-badge badge-new">✨ New</span>
+                <div class="play-overlay" aria-hidden="true">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Brain</span>
+             
+                </div>
+                <h3 class="game-title-text" itemprop="name">Memory Match</h3>
+                <p class="game-desc" itemprop="description">
+                  Flip cards and find matching pairs. Train your memory and beat
+                  your best score.
+                </p>
+                <div class="game-footer">
+                  
+                  <span
+                    href="games/memory-match.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <!-- Game Card: Tic-Tac-Toe -->
+            <a href="games/tic-tac-toe.html"
+              class="game-card animate-on-scroll"
+              data-category="puzzle"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div
+                  class="game-thumb-placeholder"
+                  role="img"
+                  aria-label="Tic-Tac-Toe game"
+                >
+                  ✖️
+                </div>
+                <div class="play-overlay" aria-hidden="true">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Puzzle</span>
+                
+                </div>
+                <h3 class="game-title-text" itemprop="name">Tic-Tac-Toe</h3>
+                <p class="game-desc" itemprop="description">
+                  Classic two-player strategy game. Get three in a row before
+                  your opponent does.
+                </p>
+                <div class="game-footer">
+                 
+                  <span
+                    href="games/tic-tac-toe.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="games-empty-state empty-state" style="display: none">
+            <div class="empty-icon">🔍</div>
+            <h3>No games found</h3>
+            <p>Try a different category or clear your search.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== WHY QUICKPLAY ===== -->
+      <section
+        class="section-pad"
+        style="
+          background: var(--bg-secondary);
+          border-top: 1px solid var(--border-color);
+          border-bottom: 1px solid var(--border-color);
+        "
+        aria-labelledby="why-heading"
+      >
+        <div class="container">
+          <div class="page-header" style="padding: 0 0 48px">
+            <p class="section-tag">🌟 Why QuickPlay?</p>
+            <h2 id="why-heading">Built for Quick Fun</h2>
+          </div>
+          <div class="grid-3">
+            <div class="highlight-box animate-on-scroll">
+              <div style="font-size: 2.4rem; margin-bottom: 16px">⚡</div>
+              <h3>Instant Play</h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  margin-top: 8px;
+                  line-height: 1.7;
+                "
+              >
+                No downloads, no installs, no accounts. Click and play — every
+                game loads in under 3 seconds.
+              </p>
+            </div>
+            <div class="highlight-box animate-on-scroll">
+              <div style="font-size: 2.4rem; margin-bottom: 16px">📱</div>
+              <h3>Works Everywhere</h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  margin-top: 8px;
+                  line-height: 1.7;
+                "
+              >
+                Mobile, tablet, or desktop — all games are fully responsive and
+                touch-friendly.
+              </p>
+            </div>
+            <div class="highlight-box animate-on-scroll">
+              <div style="font-size: 2.4rem; margin-bottom: 16px">🎯</div>
+              <h3>Curated Quality</h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  margin-top: 8px;
+                  line-height: 1.7;
+                "
+              >
+                Every game is handpicked and tested. No ads in the play area, no
+                distractions — just pure fun.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== LATEST BLOG POSTS ===== -->
+      <section class="section-pad" aria-labelledby="blog-heading">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-tag">📝 From the Blog</span>
+              <h2 id="blog-heading">Gaming Tips & Lists</h2>
+            </div>
+            <a href="blog.html" class="btn btn-ghost btn-sm">All Posts →</a>
+          </div>
+          <div class="grid-3">
+            <article class="blog-card animate-on-scroll">
+              <a
+                href="blog/top-10-games-when-bored.html"
+                aria-label="Read: Top 10 Games to Play When Bored"
+              >
+                <div class="blog-thumb">
+                  <div
+                    class="blog-thumb-placeholder"
+                    style="
+                      background: linear-gradient(135deg, #1a1a26, #2a1a3e);
+                    "
+                  >
+                    🎮
+                  </div>
+                </div>
+              </a>
+              <div class="blog-content">
+                <div class="blog-tags">
+                  <span class="tag tag-list">List</span>
+                </div>
+                <h3 class="blog-title">
+                  <a href="blog/top-10-games-when-bored.html"
+                    >Top 10 Games to Play When Bored</a
+                  >
+                </h3>
+                <p class="blog-excerpt">
+                  Stuck waiting or just need a quick escape? These 10 browser
+                  games will cure your boredom in seconds.
+                </p>
+                <div class="blog-meta">
+                  <div class="author-avatar" aria-hidden="true">QP</div>
+                  <div class="author-info">
+                  
+                    <time class="post-date" datetime="2026-03-10"
+                      >Mar 26, 2026</time
+                    >
+                  </div>
+                  <span class="read-time">⏱ 5 min</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="blog-card animate-on-scroll">
+              <a
+                href="blog/best-browser-games-2026.html"
+                aria-label="Read: Best Browser Games in 2026"
+              >
+                <div class="blog-thumb">
+                  <div
+                    class="blog-thumb-placeholder"
+                    style="
+                      background: linear-gradient(135deg, #0a1a2e, #1a2a3e);
+                    "
+                  >
+                    🏆
+                  </div>
+                </div>
+              </a>
+              <div class="blog-content">
+                <div class="blog-tags">
+                  <span class="tag tag-guide">Guide</span>
+                </div>
+                <h3 class="blog-title">
+                  <a href="blog/best-browser-games-2026.html"
+                    >Best Browser Games in 2026</a
+                  >
+                </h3>
+                <p class="blog-excerpt">
+                  The browser gaming scene has exploded. Here are the must-play
+                  titles dominating the web this year.
+                </p>
+                <div class="blog-meta">
+                  <div class="author-avatar" aria-hidden="true">QP</div>
+                  <div class="author-info">
+            
+                    <time class="post-date" datetime="2026-02-28"
+                      >Mar 26, 2026</time
+                    >
+                  </div>
+                  <span class="read-time">⏱ 7 min</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="blog-card animate-on-scroll">
+              <a
+                href="blog/puzzle-games-brain-training.html"
+                aria-label="Read: How Puzzle Games Train Your Brain"
+              >
+                <div class="blog-thumb">
+                  <div
+                    class="blog-thumb-placeholder"
+                    style="
+                      background: linear-gradient(135deg, #0a1a0a, #1a2a1a);
+                    "
+                  >
+                    🧠
+                  </div>
+                </div>
+              </a>
+              <div class="blog-content">
+                <div class="blog-tags">
+                  <span class="tag tag-tips">Tips</span>
+                </div>
+                <h3 class="blog-title">
+                  <a href="blog/puzzle-games-brain-training.html"
+                    >How Puzzle Games Train Your Brain</a
+                  >
+                </h3>
+                <p class="blog-excerpt">
+                  Science-backed reasons why playing puzzle games regularly can
+                  sharpen your memory and focus.
+                </p>
+                <div class="blog-meta">
+                  <div class="author-avatar" aria-hidden="true">QP</div>
+                  <div class="author-info">
+               
+                    <time class="post-date" datetime="2026-02-14"
+                      >Mar 26, 2026</time
+                    >
+                  </div>
+                  <span class="read-time">⏱ 6 min</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a
+              href="index.html"
+              class="footer-brand-logo"
+              aria-label="QuickPlay Home"
+            >
+              <div class="brand-icon" aria-hidden="true">🎮</div>
+              QuickPlay
+            </a>
+            <p class="footer-desc">
+              Free browser games you can play instantly — no downloads, no
+              sign-ups. Just pure, fast fun.
+            </p>
+            <div class="footer-social" aria-label="Social media links">
+              <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+              <a href="#" class="social-link" aria-label="Discord">💬</a>
+              <a href="#" class="social-link" aria-label="YouTube">▶</a>
+              <a href="#" class="social-link" aria-label="Reddit">🔴</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>Games</h4>
+            <nav class="footer-links" aria-label="Game categories">
+              <a href="games.html?category=arcade">Arcade Games</a>
+              <a href="games.html?category=puzzle">Puzzle Games</a>
+              <a href="games.html?category=brain">Brain Games</a>
+              <a href="games.html?category=card">Card Games</a>
+              <a href="games.html">All Games</a>
+            </nav>
+          </div>
+
+          <div class="footer-col">
+            <h4>Popular</h4>
+            <nav class="footer-links" aria-label="Popular games">
+              <a href="games/snake.html">Snake Classic</a>
+              <a href="games/2048.html">2048</a>
+              <a href="games/memory-match.html">Memory Match</a>
+              <a href="games/tic-tac-toe.html">Tic-Tac-Toe</a>
+            </nav>
+          </div>
+
+          <div class="footer-col">
+            <h4>Info</h4>
+            <nav class="footer-links" aria-label="Site information">
+              <a href="games.html">Games</a>
+              <a href="blog.html">Blog</a>
+              <a href="about.html">About Us</a>
+              <a href="contact.html">Contact</a>
+           
+            </nav>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            © 2026 QuickPlay. All rights reserved. Made with ❤️ for bored humans
+            everywhere.
+          </p>
+         
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

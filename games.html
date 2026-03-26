@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Free Browser Games — QuickPlay</title>
+    <meta
+      name="description"
+      content="Browse 50+ free browser games — puzzle, arcade, brain teasers and card games. Play instantly, no download required. New games added weekly."
+    />
+    <meta
+      name="keywords"
+      content="free browser games, online puzzle games, arcade games online, brain games, casual games browser"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://quickplay.games/games.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="All Free Browser Games — QuickPlay" />
+    <meta
+      property="og:description"
+      content="Browse 50+ free browser games. Play puzzle, arcade, and brain games instantly."
+    />
+    <meta property="og:url" content="https://quickplay.games/games.html" />
+    <meta
+      property="og:image"
+      content="https://quickplay.games/img/og-games.jpg"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "All Browser Games — QuickPlay",
+        "url": "https://quickplay.games/games.html",
+        "description": "Browse all free browser games on QuickPlay.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://quickplay.games/",
+          "name": "QuickPlay"
+        }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="index.html" class="nav-brand">
+            <div class="brand-icon">🎮</div>
+            Quick<span>Play</span>
+          </a>
+          <ul class="nav-links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html" class="active">Games</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <div class="nav-search" role="search">
+              <span class="search-icon">🔍</span>
+              <input
+                type="search"
+                placeholder="Search games..."
+                aria-label="Search games"
+                class="game-search-input"
+                id="nav-search-input"
+              />
+            </div>
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ===== PAGE HEADER ===== -->
+      <section class="page-header" aria-labelledby="games-page-heading">
+        <div class="container">
+          <p class="section-tag">🕹️ Game Library</p>
+          <h1 id="games-page-heading">All Free Games</h1>
+          <p
+            style="
+              color: var(--text-secondary);
+              margin-top: 12px;
+              max-width: 480px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            8 browser games, playable instantly. No download, no login.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== SEARCH BAR ===== -->
+      <section style="padding: 0 0 40px" aria-label="Search games">
+        <div class="container">
+          <div class="search-bar-large">
+            <input
+              type="search"
+              placeholder="Search by game name or genre..."
+              aria-label="Search games"
+              class="game-search-input"
+              id="main-search-input"
+            />
+            <button aria-label="Submit search">🔍</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== GAMES GRID ===== -->
+      <section class="section-pad-sm" aria-labelledby="games-list-heading">
+        <div class="container">
+          <h2 id="games-list-heading" class="visually-hidden">Game Listings</h2>
+
+          <!-- Category Filters -->
+          <div
+            class="category-filters"
+            role="group"
+            aria-label="Filter games by category"
+          >
+            <button class="filter-btn active" data-category="all">
+              🎮 All Games
+            </button>
+            <button class="filter-btn" data-category="puzzle">🧩 Puzzle</button>
+            <button class="filter-btn" data-category="arcade">🕹️ Arcade</button>
+            <button class="filter-btn" data-category="brain">🧠 Brain</button>
+            <button class="filter-btn" data-category="card">🃏 Card</button>
+          </div>
+
+          <!-- Games Grid -->
+          <div class="games-grid" id="all-games-grid" role="list">
+            <!-- Snake -->
+            <a
+              href="games/snake.html"
+              class="game-card"
+              data-category="arcade"
+              role="listitem"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">🐍</div>
+                <span class="game-badge badge-trending">🔥 Trending</span>
+                <div class="play-overlay">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Arcade</span>
+                </div>
+                <h2 class="game-title-text" itemprop="name">Snake Classic</h2>
+                <p class="game-desc" itemprop="description">
+                  Eat dots, grow longer, avoid walls and your own tail. A
+                  timeless reflex arcade game.
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/snake.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- 2048 -->
+            <a
+              href="games/2048.html"
+              class="game-card"
+              data-category="puzzle"
+              role="listitem"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">🔢</div>
+                <span class="game-badge badge-hot">⚡ Hot</span>
+                <div class="play-overlay">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Puzzle</span>
+                </div>
+                <h2 class="game-title-text" itemprop="name">2048</h2>
+                <p class="game-desc" itemprop="description">
+                  Slide and merge numbered tiles. Can you reach the legendary
+                  2048 tile?
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/2048.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Memory Match -->
+            <a
+              href="games/memory-match.html"
+              class="game-card"
+              data-category="brain"
+              role="listitem"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">🃏</div>
+                <span class="game-badge badge-new">✨ New</span>
+                <div class="play-overlay">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Brain</span>
+                </div>
+                <h2 class="game-title-text" itemprop="name">Memory Match</h2>
+                <p class="game-desc" itemprop="description">
+                  Flip cards and match pairs from memory. Train your brain with
+                  this classic concentration game.
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/memory-match.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Tic-Tac-Toe -->
+            <a
+              href="games/tic-tac-toe.html"
+              class="game-card"
+              data-category="puzzle"
+              role="listitem"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">✖️</div>
+                <div class="play-overlay">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Puzzle</span>
+                </div>
+                <h2 class="game-title-text" itemprop="name">Tic-Tac-Toe</h2>
+                <p class="game-desc" itemprop="description">
+                  Classic 2-player X and O game. Get three in a row on the 3×3
+                  grid to win.
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/tic-tac-toe.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Word Scramble -->
+            <a
+              href="games/word-scramble.html"
+              class="game-card"
+              data-category="brain"
+              role="listitem"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">🔤</div>
+                <div class="play-overlay">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Brain</span>
+                </div>
+                <h2 class="game-title-text" itemprop="name">Word Scramble</h2>
+                <p class="game-desc" itemprop="description">
+                  Unscramble jumbled letters to form real words before the timer
+                  runs out!
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/tic-tac-toe.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Space Shooter -->
+            <a
+              href="games/space-shooter.html"
+              class="game-card"
+              data-category="arcade"
+              role="listitem"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">👾</div>
+                <span class="game-badge badge-new">✨ New</span>
+                <div class="play-overlay">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Arcade</span>
+                </div>
+                <h2 class="game-title-text" itemprop="name">Space Shooter</h2>
+                <p class="game-desc" itemprop="description">
+                  Defend Earth from waves of alien invaders in this retro-style
+                  space shooter.
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/snake.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Reaction Time -->
+            <a
+              href="games/reaction-time.html"
+              class="game-card"
+              data-category="arcade"
+              role="listitem"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">⚡</div>
+                <div class="play-overlay">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Arcade</span>
+                </div>
+                <h2 class="game-title-text" itemprop="name">Reaction Time</h2>
+                <p class="game-desc" itemprop="description">
+                  How fast are your reflexes? Click the moment the screen
+                  flashes green and find out.
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/snake.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+
+            <!-- Solitaire -->
+            <a
+              href="games/solitaire.html"
+              class="game-card"
+              data-category="card"
+              role="listitem"
+              itemscope
+              itemtype="https://schema.org/VideoGame"
+            >
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">🎴</div>
+                <span class="game-badge badge-trending">🔥 Trending</span>
+                <div class="play-overlay">
+                  <div class="play-btn-circle">▶</div>
+                </div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">Card</span>
+                </div>
+                <h2 class="game-title-text" itemprop="name">
+                  Klondike Solitaire
+                </h2>
+                <p class="game-desc" itemprop="description">
+                  The classic card game. Sort all cards to the foundation piles
+                  to win.
+                </p>
+                <div class="game-footer">
+                  <span
+                    href="games/tic-tac-toe.html"
+                    class="btn btn-primary btn-sm"
+                    itemprop="url"
+                    >Play Now</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Empty State -->
+          <div class="games-empty-state empty-state" style="display: none">
+            <div class="empty-icon">🔍</div>
+            <h3>No games found</h3>
+            <p>Try a different search term or category filter.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-brand-logo">
+              <div class="brand-icon">🎮</div>
+              QuickPlay
+            </a>
+            <p class="footer-desc">
+              Free browser games you can play instantly — no downloads, no
+              sign-ups.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+              <a href="#" class="social-link" aria-label="Discord">💬</a>
+              <a href="#" class="social-link" aria-label="YouTube">▶</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Categories</h4>
+            <nav class="footer-links">
+              <a href="games.html?category=arcade">Arcade Games</a>
+              <a href="games.html?category=puzzle">Puzzle Games</a>
+              <a href="games.html?category=brain">Brain Games</a>
+              <a href="games.html?category=card">Card Games</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Popular</h4>
+            <nav class="footer-links">
+              <a href="games/snake.html">Snake Classic</a>
+              <a href="games/2048.html">2048</a>
+              <a href="games/memory-match.html">Memory Match</a>
+              <a href="games/tic-tac-toe.html">Tic-Tac-Toe</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Site</h4>
+            <nav class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="blog.html">Blog</a>
+              <a href="about.html">About</a>
+              <a href="contact.html">Contact</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 QuickPlay. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+    <script>
+      // Pre-fill search from URL param
+      document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get("q") || "";
+        const cat = params.get("category") || "all";
+        if (q) {
+          document
+            .querySelectorAll(".game-search-input")
+            .forEach((inp) => (inp.value = q));
+          GameFilter.searchQuery = q.toLowerCase();
+          GameFilter.applyFilters();
+        }
+        if (cat !== "all") {
+          const btn = document.querySelector(
+            `.filter-btn[data-category="${cat}"]`,
+          );
+          if (btn) btn.click();
+        }
+      });
+    </script>
+  </body>
+</html>

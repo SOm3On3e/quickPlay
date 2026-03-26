@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Tic-Tac-Toe Online Free — QuickPlay</title>
+    <meta
+      name="description"
+      content="Play Tic-Tac-Toe free in your browser — classic 2-player X and O strategy game. No download required. Play with a friend on the same device!"
+    />
+    <meta
+      name="keywords"
+      content="tic tac toe online, play tic tac toe browser, free tic tac toe game, noughts and crosses"
+    />
+    <link
+      rel="canonical"
+      href="https://quickplay.games/games/tic-tac-toe.html"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Tic-Tac-Toe",
+        "description": "Classic 2-player X and O strategy game on a 3x3 grid.",
+        "url": "https://quickplay.games/games/tic-tac-toe.html",
+        "genre": ["Puzzle", "Strategy", "Casual"],
+        "gamePlatform": "Web Browser",
+        "numberOfPlayers": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 2
+        },
+        "isAccessibleForFree": true,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.6",
+          "reviewCount": "8920"
+        },
+        "publisher": { "@type": "Organization", "name": "QuickPlay" }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="../index.html" class="nav-brand">
+            <div class="brand-icon">🎮</div>
+            Quick<span>Play</span>
+          </a>
+          <ul class="nav-links" role="list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../games.html" class="active">Games</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="game-page">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a><span>›</span>
+            <a href="../games.html">Games</a><span>›</span>
+            <span aria-current="page">Tic-Tac-Toe</span>
+          </nav>
+
+          <div class="game-page-header">
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 16px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span
+                    style="
+                      font-family: var(--font-display);
+                      font-size: 0.7rem;
+                      color: var(--text-muted);
+                      text-transform: uppercase;
+                      letter-spacing: 0.08em;
+                    "
+                    >Puzzle · Strategy</span
+                  >
+                </div>
+                <h1 style="margin-bottom: 8px">Tic-Tac-Toe</h1>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <span
+                    style="color: var(--accent-yellow); font-size: 0.9rem"
+                    aria-label="4.6 stars"
+                    >★★★★☆ 4.6</span
+                  >
+                  <span style="color: var(--text-muted); font-size: 0.82rem"
+                    >🎮 218,000 plays</span
+                  >
+                  <span style="color: var(--text-muted); font-size: 0.82rem"
+                    >👥 2 Players</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-container">
+            <div class="game-toolbar">
+              <span class="game-toolbar-title">✖️ Tic-Tac-Toe</span>
+              <div class="game-toolbar-actions">
+                <button class="btn btn-ghost btn-sm play-again-btn">
+                  ↺ Restart
+                </button>
+              </div>
+            </div>
+            <div
+              class="game-area"
+              style="background: var(--bg-primary); min-height: auto"
+            >
+              <div id="ttt-container" style="width: 100%"></div>
+            </div>
+            <div class="game-actions-bar">
+              <button class="btn btn-primary play-again-btn">↺ New Game</button>
+              <a href="memory-match.html" class="btn btn-secondary"
+                >Next: Memory Match →</a
+              >
+              <a href="../games.html" class="btn btn-ghost">All Games</a>
+            </div>
+          </div>
+
+          <section style="margin-top: 48px" aria-labelledby="howto-ttt">
+            <h2 id="howto-ttt">How to Play Tic-Tac-Toe</h2>
+            <div class="grid-3" style="margin-top: 24px">
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🖱️</div>
+                <h3>Click to Place</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Players take turns clicking empty squares to place their X or
+                  O mark.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">3️⃣</div>
+                <h3>Three in a Row</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Get three of your marks in a row — horizontally, vertically,
+                  or diagonally to win!
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🏆</div>
+                <h3>Score Tracking</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Scores are tracked across rounds. The game auto-restarts after
+                  each round ends.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section style="margin-top: 48px" aria-labelledby="next-ttt">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-tag">🎯 Up Next</span>
+                <h2 id="next-ttt">More Games</h2>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🐍</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Arcade</span
+                    ><span class="game-rating">★ 4.8</span>
+                  </div>
+                  <h3 class="game-title-text">Snake Classic</h3>
+                  <p class="game-desc">Eat, grow, survive.</p>
+                  <div class="game-footer">
+                    <a href="snake.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🔢</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Puzzle</span
+                    ><span class="game-rating">★ 4.9</span>
+                  </div>
+                  <h3 class="game-title-text">2048</h3>
+                  <p class="game-desc">Merge tiles, reach 2048.</p>
+                  <div class="game-footer">
+                    <a href="2048.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🃏</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Brain</span
+                    ><span class="game-rating">★ 4.7</span>
+                  </div>
+                  <h3 class="game-title-text">Memory Match</h3>
+                  <p class="game-desc">Match emoji pairs from memory.</p>
+                  <div class="game-footer">
+                    <a href="memory-match.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0">
+          <p>
+            © 2026 QuickPlay. <a href="../index.html">Home</a> ·
+            <a href="../games.html">Games</a> · <a href="../blog.html">Blog</a>
+          </p>
+          <nav class="footer-legal">
+            <a href="#">Privacy</a><a href="#">Terms</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js" defer></script>
+  </body>
+</html>

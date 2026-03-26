@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — QuickPlay | Free Browser Gaming Platform</title>
+  <meta name="description" content="Learn about QuickPlay — the free browser gaming platform built for bored humans everywhere. Our mission, our team, and why we built it." />
+  <meta name="keywords" content="about quickplay, free browser games platform, casual gaming site, who made quickplay" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://quickplay.games/about.html" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="About Us — QuickPlay" />
+  <meta property="og:description" content="The free browser gaming platform built for bored humans everywhere." />
+  <meta property="og:url"         content="https://quickplay.games/about.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About QuickPlay",
+    "url": "https://quickplay.games/about.html",
+    "description": "Learn about QuickPlay, the free browser gaming platform.",
+    "isPartOf": { "@type": "WebSite", "url": "https://quickplay.games/", "name": "QuickPlay" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "QuickPlay",
+      "url": "https://quickplay.games/",
+      "foundingDate": "2024",
+      "description": "Free casual browser gaming platform"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---- About Page Specific ---- */
+    .about-hero {
+      padding: 80px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(0,229,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .about-hero-content h1 {
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .about-hero-content p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* Mission block */
+    .mission-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-secondary);
+      border-radius: var(--radius-md);
+      padding: 32px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-block::before {
+      content: '"';
+      position: absolute;
+      top: -10px; left: 20px;
+      font-size: 8rem;
+      color: var(--accent-secondary);
+      opacity: 0.08;
+      font-family: Georgia, serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .mission-block p {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      line-height: 1.8;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+    }
+
+    .mission-block .attribution {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: normal;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mission-block .attribution::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--accent-secondary);
+    }
+
+    /* Team cards */
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      text-align: center;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .team-card:hover { border-color: var(--accent-secondary); transform: translateY(-4px); box-shadow: 0 0 20px rgba(0,229,255,0.15), var(--shadow-card); }
+    .team-card:hover::before { opacity: 1; }
+
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin: 0 auto 16px;
+      color: #fff;
+      position: relative;
+    }
+
+    .team-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      z-index: -1;
+    }
+
+    .team-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .team-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .team-role { font-size: 0.78rem; color: var(--accent-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; font-family: var(--font-display); }
+    .team-bio { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Value cards */
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: all var(--transition);
+    }
+
+    .value-card:hover { border-color: var(--accent-primary); transform: translateY(-2px); }
+
+    .value-icon {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .value-card h3 { margin-bottom: 10px; }
+    .value-card p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; margin: 0; }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 36px;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -38px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      border: 3px solid var(--bg-primary);
+      box-shadow: 0 0 10px rgba(255,60,110,0.5);
+    }
+
+    .timeline-date {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent-secondary);
+      margin-bottom: 6px;
+    }
+
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 48px 0;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 0;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .stat-big {
+      text-align: center;
+      padding: 0 32px;
+    }
+
+    .stat-big-num {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-big-label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* CTA section */
+    .about-cta {
+      background: linear-gradient(135deg, rgba(255,60,110,0.08), rgba(0,229,255,0.06));
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 56px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .about-cta { padding: 36px 24px; }
+      .stat-big { padding: 16px; }
+      .mission-block { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-brand" aria-label="QuickPlay Home">
+          <div class="brand-icon" aria-hidden="true">🎮</div>
+          Quick<span>Play</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="theme-toggle" aria-label="Toggle dark/light mode">☀️</button>
+          <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="about-hero" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-hero-content">
+          <div class="hero-eyebrow fade-up" style="justify-content:center;">
+            <span class="dot" aria-hidden="true"></span>
+            Our Story
+          </div>
+          <h1 id="about-heading" class="fade-up fade-up-1">Built for Bored<br>Humans Everywhere</h1>
+          <p class="fade-up fade-up-2">
+            QuickPlay started with a simple frustration: every time you searched "free games to play," you landed on sites loaded with ads, paywalls, and downloads. We built the antidote — a clean, fast, genuinely free gaming platform that respects your time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STATS STRIP ===== -->
+    <div class="stats-strip" aria-label="Platform statistics">
+      <div class="container">
+        <div class="stats-row">
+          <div class="stat-big">
+            <div class="stat-big-num">50+</div>
+            <div class="stat-big-label">Free Games</div>
+          </div>
+          <div class="stat-big">
+            <div class="stat-big-num">2M+</div>
+            <div class="stat-big-label">Monthly Players</div>
+          </div>
+          <div class="stat-big">
+            <div class="stat-big-num">0</div>
+            <div class="stat-big-label">Downloads Required</div>
+          </div>
+          <div class="stat-big">
+            <div class="stat-big-num">100%</div>
+            <div class="stat-big-label">Free Forever</div>
+          </div>
+          <div class="stat-big">
+            <div class="stat-big-num">&lt;3s</div>
+            <div class="stat-big-label">Avg Load Time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MISSION ===== -->
+    <section class="section-pad" aria-labelledby="mission-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-tag">🎯 Our Mission</span>
+            <h2 id="mission-heading">Why We Exist</h2>
+          </div>
+        </div>
+
+        <div class="mission-block fade-up">
+          <p>
+            We believe a good game should be as easy to start as turning on a light switch. No app stores. No accounts. No credit cards. No "install to continue." Just click and play — the way browser gaming was always meant to be.
+          </p>
+          <div class="attribution">— The QuickPlay Team, 2024</div>
+        </div>
+
+        <div class="grid-3" style="margin-top:40px;">
+          <div class="value-card animate-on-scroll">
+            <span class="value-icon">⚡</span>
+            <h3>Speed First</h3>
+            <p>Every game on QuickPlay is built or vetted to load in under 3 seconds on a standard connection. No bloated engines, no unnecessary assets. Fast is a feature.</p>
+          </div>
+          <div class="value-card animate-on-scroll">
+            <span class="value-icon">🚫</span>
+            <h3>No Nonsense</h3>
+            <p>No ads in the play area. No forced sign-ups. No "watch a video to continue." We monetize through optional donations and sponsored blog content — never through disrupting your game.</p>
+          </div>
+          <div class="value-card animate-on-scroll">
+            <span class="value-icon">📱</span>
+            <h3>Works Everywhere</h3>
+            <p>Every game is tested on mobile, tablet, and desktop before going live. Touch controls, responsive layouts, and keyboard support — no player left behind.</p>
+          </div>
+          <div class="value-card animate-on-scroll">
+            <span class="value-icon">🌍</span>
+            <h3>Open Platform</h3>
+            <p>Developers can <a href="submit-game.html">submit their games</a> for free. We believe indie game creators deserve a platform where they can reach real players without paying for discovery.</p>
+          </div>
+          <div class="value-card animate-on-scroll">
+            <span class="value-icon">♿</span>
+            <h3>Accessible</h3>
+            <p>We follow WCAG accessibility guidelines — proper ARIA labels, keyboard navigation, sufficient color contrast, and screen reader compatibility across all pages.</p>
+          </div>
+          <div class="value-card animate-on-scroll">
+            <span class="value-icon">🔒</span>
+            <h3>Privacy Respecting</h3>
+            <p>We don't sell your data. We don't track you across the web. The only data we store locally is your game scores — and only in your own browser's storage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEAM ===== -->
+    <section class="section-pad" style="background:var(--bg-secondary);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);" aria-labelledby="team-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-tag">👥 The Team</span>
+            <h2 id="team-heading">The Humans Behind It</h2>
+          </div>
+        </div>
+
+        <div class="grid-4">
+          <div class="team-card animate-on-scroll">
+            <div class="team-avatar">
+              <div class="team-avatar-inner" style="background:linear-gradient(135deg,#ff3c6e,#c02050);">AK</div>
+            </div>
+            <div class="team-name">Alex Kim</div>
+            <div class="team-role">Co-Founder & CEO</div>
+            <p class="team-bio">Former game dev at two studios. Rage-quit when he couldn't find a clean browser game to play during a layover. Built QuickPlay instead.</p>
+          </div>
+
+          <div class="team-card animate-on-scroll">
+            <div class="team-avatar">
+              <div class="team-avatar-inner" style="background:linear-gradient(135deg,#00e5ff,#007aaa);">SP</div>
+            </div>
+            <div class="team-name">Sara Park</div>
+            <div class="team-role">Head of Content</div>
+            <p class="team-bio">Gaming journalist turned content strategist. Writes our blog, curates new games, and maintains a suspicious Snake high score that nobody can beat.</p>
+          </div>
+
+          <div class="team-card animate-on-scroll">
+            <div class="team-avatar">
+              <div class="team-avatar-inner" style="background:linear-gradient(135deg,#39ff8a,#009950);">JD</div>
+            </div>
+            <div class="team-name">Jake Dorsey</div>
+            <div class="team-role">Lead Developer</div>
+            <p class="team-bio">Full-stack developer obsessed with performance. If a page loads in more than 2 seconds, it's Jake's personal emergency. He writes vanilla JS for fun.</p>
+          </div>
+
+          <div class="team-card animate-on-scroll">
+            <div class="team-avatar">
+              <div class="team-avatar-inner" style="background:linear-gradient(135deg,#ffe23c,#cc9900);">ML</div>
+            </div>
+            <div class="team-name">Maya Lee</div>
+            <div class="team-role">UX & Research</div>
+            <p class="team-bio">Cognitive science graduate who applies brain research to game design. She's the reason our interfaces feel intuitive and our blog posts are actually useful.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TIMELINE ===== -->
+    <section class="section-pad" aria-labelledby="story-heading">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+          <div>
+            <div class="section-title" style="margin-bottom:36px;">
+              <span class="section-tag">📅 Timeline</span>
+              <h2 id="story-heading">How We Got Here</h2>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">January 2024</div>
+                <div class="timeline-title">The Idea</div>
+                <p class="timeline-desc">Alex and Jake sketch out the concept during a 6-hour flight. Goal: a gaming site that loads faster than the snack trolley arrives.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot" style="background:var(--accent-secondary);box-shadow:0 0 10px rgba(0,229,255,0.5);"></div>
+                <div class="timeline-date">March 2024</div>
+                <div class="timeline-title">First 10 Games Launch</div>
+                <p class="timeline-desc">QuickPlay goes live with 10 games and zero marketing. Word of mouth drives 12,000 visitors in the first week.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot" style="background:var(--accent-yellow);box-shadow:0 0 10px rgba(255,226,60,0.5);"></div>
+                <div class="timeline-date">July 2024</div>
+                <div class="timeline-title">Sara & Maya Join</div>
+                <p class="timeline-desc">The blog launches. The first post — "Top 10 Games to Play When Bored" — hits 80K readers in a month.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot" style="background:var(--accent-green);box-shadow:0 0 10px rgba(57,255,138,0.5);"></div>
+                <div class="timeline-date">December 2024</div>
+                <div class="timeline-title">1 Million Players</div>
+                <p class="timeline-desc">QuickPlay crosses 1 million monthly active players. We celebrate by adding 10 more games and finally sleeping.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2026 — Now</div>
+                <div class="timeline-title">50+ Games & Growing</div>
+                <p class="timeline-desc">2 million monthly players, 50+ games, a thriving blog, and an open submission platform for indie developers. Just getting started.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:20px;padding-top:80px;">
+            <div class="highlight-box">
+              <div style="font-size:2rem;margin-bottom:12px;">🎮</div>
+              <h3>For Players</h3>
+              <p style="color:var(--text-secondary);font-size:0.88rem;margin-top:8px;line-height:1.7;">QuickPlay will always be 100% free for players. No subscriptions, no premium tiers, no pay-to-play mechanics. Ever.</p>
+            </div>
+            <div class="highlight-box">
+              <div style="font-size:2rem;margin-bottom:12px;">🛠️</div>
+              <h3>For Developers</h3>
+              <p style="color:var(--text-secondary);font-size:0.88rem;margin-top:8px;line-height:1.7;">Built a browser game? <a href="submit-game.html">Submit it</a> and we'll review it within 5 business days. We feature the best submissions on our homepage.</p>
+            </div>
+            <div class="highlight-box">
+              <div style="font-size:2rem;margin-bottom:12px;">✍️</div>
+              <h3>For Writers</h3>
+              <p style="color:var(--text-secondary);font-size:0.88rem;margin-top:8px;line-height:1.7;">Passionate about gaming? We accept guest blog posts from gaming writers. <a href="contact.html">Get in touch</a> with a topic pitch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BOTTOM CTA ===== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="about-cta animate-on-scroll">
+          <div style="font-size:3rem;margin-bottom:16px;">🚀</div>
+          <h2 style="margin-bottom:16px;">Ready to Play?</h2>
+          <p style="color:var(--text-secondary);font-size:1rem;max-width:480px;margin:0 auto 32px;line-height:1.7;">
+            50+ free games are waiting. No account, no download, no catch. Just click and play.
+          </p>
+          <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+            <a href="games.html" class="btn btn-primary btn-lg">🕹️ Browse All Games</a>
+            <a href="contact.html" class="btn btn-secondary btn-lg">💬 Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-logo"><div class="brand-icon">🎮</div>QuickPlay</a>
+          <p class="footer-desc">Free browser games you can play instantly — no downloads, no sign-ups.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-link" aria-label="Discord">💬</a>
+            <a href="#" class="social-link" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Games</h4>
+          <nav class="footer-links">
+            <a href="games/snake.html">Snake</a>
+            <a href="games/2048.html">2048</a>
+            <a href="games/memory-match.html">Memory Match</a>
+            <a href="games.html">All Games</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <nav class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="submit-game.html">Submit a Game</a>
+            <a href="blog.html">Blog</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <nav class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 QuickPlay. All rights reserved. Made with ❤️ for bored humans everywhere.</p>
+        <nav class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

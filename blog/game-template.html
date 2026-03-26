@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+  ============================================================
+  QUICKPLAY — GAME PAGE TEMPLATE
+  ============================================================
+  HOW TO USE THIS TEMPLATE:
+  1. Duplicate this file into /games/your-game-name.html
+  2. Replace all [PLACEHOLDERS] with real content
+  3. Update JSON-LD structured data
+  4. Add your game logic to the <div id="game-root"> area
+     — for iframe games: replace the <div> with <iframe src="...">
+     — for JS games: call your init function on DOMContentLoaded
+  ============================================================
+  -->
+
+  <!-- ① SEO: Update title, description, keywords, canonical per game -->
+  <title>Play [GAME NAME] Online Free — QuickPlay</title>
+  <meta name="description" content="Play [GAME NAME] free in your browser. [ONE SENTENCE DESCRIPTION]. No download required." />
+  <meta name="keywords" content="[game name] online, play [game name] browser, free [game name] game" />
+  <link rel="canonical" href="https://quickplay.games/games/[game-slug].html" />
+
+  <!-- ② Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Play [GAME NAME] Online Free — QuickPlay" />
+  <meta property="og:description" content="Play [GAME NAME] free in your browser. No download." />
+  <meta property="og:url"         content="https://quickplay.games/games/[game-slug].html" />
+  <meta property="og:image"       content="https://quickplay.games/img/games/[game-slug]-og.jpg" />
+
+  <!-- ③ Structured Data: VideoGame -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "[GAME NAME]",
+    "description": "[FULL DESCRIPTION]",
+    "url": "https://quickplay.games/games/[game-slug].html",
+    "genre": ["[GENRE 1]", "[GENRE 2]"],
+    "gamePlatform": "Web Browser",
+    "applicationCategory": "Game",
+    "isAccessibleForFree": true,
+    "operatingSystem": "Any",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "[RATING]",
+      "reviewCount": "[REVIEW COUNT]"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "QuickPlay",
+      "url": "https://quickplay.games/"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- ④ Add any game-specific CSS here -->
+  <style>
+    /* Game-specific overrides */
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="../index.html" class="nav-brand" aria-label="QuickPlay Home">
+          <div class="brand-icon" aria-hidden="true">🎮</div>
+          Quick<span>Play</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../games.html" class="active">Games</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="theme-toggle" aria-label="Toggle dark/light mode">☀️</button>
+          <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="game-page">
+      <div class="container">
+
+        <!-- ===== BREADCRUMB ===== -->
+        <nav class="breadcrumb" aria-label="Breadcrumb navigation">
+          <a href="../index.html">Home</a>
+          <span aria-hidden="true">›</span>
+          <a href="../games.html">Games</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">[GAME NAME]</span>
+        </nav>
+
+        <!-- ===== PAGE HEADER ===== -->
+        <header class="game-page-header">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+            <div>
+              <!-- ⑤ Update badge type: badge-trending | badge-new | badge-hot -->
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+                <span class="game-badge badge-new" style="position:static;">✨ New</span>
+                <span style="font-family:var(--font-display);font-size:0.7rem;color:var(--text-muted);
+                             text-transform:uppercase;letter-spacing:.08em;">[CATEGORY]</span>
+              </div>
+              <h1 style="margin-bottom:8px;">[GAME NAME]</h1>
+              <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+                <!-- ⑥ Update rating, play count, session length -->
+                <span style="color:var(--accent-yellow);font-size:0.9rem;" aria-label="[X] out of 5 stars">★★★★☆ [RATING]</span>
+                <span style="color:var(--text-muted);font-size:0.82rem;">🎮 [PLAY COUNT] plays</span>
+                <span style="color:var(--text-muted);font-size:0.82rem;">⏱ [SESSION TIME] session</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="btn btn-ghost btn-sm"
+                onclick="navigator.share?.({title:'[GAME NAME]',url:location.href})||Toast.show('📋 Link copied!')">
+                📤 Share
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <!-- ===== GAME CONTAINER ===== -->
+        <div class="game-container" role="main" aria-label="Game play area">
+
+          <!-- Toolbar -->
+          <div class="game-toolbar">
+            <span class="game-toolbar-title">[EMOJI] [GAME NAME]</span>
+            <div class="game-toolbar-actions">
+              <button class="btn btn-ghost btn-sm play-again-btn" aria-label="Restart game">↺ Restart</button>
+              <button class="btn btn-ghost btn-sm fullscreen-btn" aria-label="Toggle fullscreen" title="Fullscreen">⛶</button>
+            </div>
+          </div>
+
+          <!-- Play Area — choose ONE of the options below -->
+          <div class="game-area">
+
+            <!-- OPTION A: Embedded JS game (div container that JS fills) -->
+            <div id="game-root" style="width:100%;min-height:480px;display:flex;align-items:center;justify-content:center;">
+              <!-- JS game mounts here. Example: MyGame.init('game-root') -->
+              <p style="color:var(--text-muted);font-family:var(--font-display);font-size:0.85rem;">
+                Loading game...
+              </p>
+            </div>
+
+            <!-- OPTION B: iFrame game (replace OPTION A with this)
+            <iframe
+              src="[YOUR_GAME_URL_OR_PATH]"
+              title="[GAME NAME] — Play Online"
+              width="100%"
+              height="520"
+              style="border:none;display:block;"
+              loading="lazy"
+              allow="fullscreen"
+              sandbox="allow-scripts allow-same-origin allow-pointer-lock">
+            </iframe>
+            -->
+
+          </div>
+
+          <!-- Action Bar -->
+          <div class="game-actions-bar">
+            <button class="btn btn-primary play-again-btn">↺ Play Again</button>
+            <!-- ⑦ Update "Next Game" link -->
+            <a href="[NEXT_GAME].html" class="btn btn-secondary">Next Game: [NEXT GAME NAME] →</a>
+            <a href="../games.html" class="btn btn-ghost">All Games</a>
+          </div>
+        </div>
+
+        <!-- ===== HOW TO PLAY ===== -->
+        <section style="margin-top:48px;" aria-labelledby="howto-heading">
+          <h2 id="howto-heading">How to Play [GAME NAME]</h2>
+          <div class="grid-3" style="margin-top:24px;">
+
+            <!-- ⑧ Replace with actual controls -->
+            <div class="highlight-box">
+              <div style="font-size:1.8rem;margin-bottom:12px;">[CONTROLS ICON]</div>
+              <h3>Controls</h3>
+              <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:8px;">
+                [Describe how to control the game — keyboard, mouse, touch]
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <div style="font-size:1.8rem;margin-bottom:12px;">[GOAL ICON]</div>
+              <h3>Objective</h3>
+              <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:8px;">
+                [Describe the win condition or main goal of the game]
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <div style="font-size:1.8rem;margin-bottom:12px;">💡</div>
+              <h3>Pro Tip</h3>
+              <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:8px;">
+                [One actionable strategy tip for new players]
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== NEXT GAMES (Recommendations) ===== -->
+        <!-- ⑨ Update with 3 relevant related games -->
+        <section style="margin-top:48px;" aria-labelledby="next-games-heading">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-tag">🎯 Up Next</span>
+              <h2 id="next-games-heading">More Games You'll Love</h2>
+            </div>
+            <a href="../games.html" class="btn btn-ghost btn-sm">All Games →</a>
+          </div>
+
+          <div class="grid-3">
+            <!-- Related Game 1 -->
+            <article class="game-card" itemscope itemtype="https://schema.org/VideoGame">
+              <div class="game-thumb">
+                <div class="game-thumb-placeholder">[EMOJI]</div>
+                <div class="play-overlay" aria-hidden="true"><div class="play-btn-circle">▶</div></div>
+              </div>
+              <div class="game-info">
+                <div class="game-meta">
+                  <span class="game-category" itemprop="genre">[CATEGORY]</span>
+                  <span class="game-rating">★ [RATING]</span>
+                </div>
+                <h3 class="game-title-text" itemprop="name">[GAME NAME]</h3>
+                <p class="game-desc">[SHORT DESCRIPTION]</p>
+                <div class="game-footer">
+                  <span class="game-plays">🎮 [PLAY COUNT]</span>
+                  <a href="[game-slug].html" class="btn btn-primary btn-sm" itemprop="url">Play Now</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Related Game 2 — copy the card above and update -->
+            <!-- Related Game 3 — copy the card above and update -->
+          </div>
+        </section>
+
+      </div><!-- /.container -->
+    </div><!-- /.game-page -->
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0;">
+        <p>
+          © 2026 QuickPlay.
+          <a href="../index.html">Home</a> ·
+          <a href="../games.html">Games</a> ·
+          <a href="../blog.html">Blog</a>
+        </p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="../js/main.js" defer></script>
+
+  <!--
+  ⑩ Add your game init script here, after main.js loads.
+  Example for a JS game defined in main.js:
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      MyGame.init('game-root');
+    });
+  </script>
+
+  Example for an external game script:
+  <script src="../js/games/my-game.js" defer></script>
+  -->
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Snake Classic Online Free — QuickPlay</title>
+    <meta
+      name="description"
+      content="Play Snake Classic free in your browser — no download needed. Control the snake, eat dots, and grow longer without crashing. How high can you score?"
+    />
+    <meta
+      name="keywords"
+      content="snake game online, play snake browser, free snake game, classic snake game"
+    />
+    <link rel="canonical" href="https://quickplay.games/games/snake.html" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Play Snake Classic Online Free — QuickPlay"
+    />
+    <meta
+      property="og:description"
+      content="Play the classic snake game free in your browser. No download, no login."
+    />
+    <meta
+      property="og:url"
+      content="https://quickplay.games/games/snake.html"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Snake Classic",
+        "description": "Control a growing snake, eat dots, avoid walls and yourself.",
+        "url": "https://quickplay.games/games/snake.html",
+        "genre": ["Arcade", "Casual"],
+        "gamePlatform": "Web Browser",
+        "applicationCategory": "Game",
+        "isAccessibleForFree": true,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "12840"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "QuickPlay",
+          "url": "https://quickplay.games/"
+        }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="../index.html" class="nav-brand">
+            <div class="brand-icon">🎮</div>
+            Quick<span>Play</span>
+          </a>
+          <ul class="nav-links" role="list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../games.html" class="active">Games</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="game-page">
+        <div class="container">
+          <!-- Breadcrumb -->
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span aria-hidden="true">›</span>
+            <a href="../games.html">Games</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Snake Classic</span>
+          </nav>
+
+          <!-- Page Header -->
+          <div class="game-page-header">
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 16px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span
+                    class="game-badge badge-trending"
+                    style="position: static"
+                    >🔥 Trending</span
+                  >
+                  <span
+                    style="
+                      font-family: var(--font-display);
+                      font-size: 0.7rem;
+                      color: var(--text-muted);
+                      text-transform: uppercase;
+                      letter-spacing: 0.08em;
+                    "
+                    >Arcade</span
+                  >
+                </div>
+                <h1 style="margin-bottom: 8px">Snake Classic</h1>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <span
+                    style="color: var(--accent-yellow); font-size: 0.9rem"
+                    aria-label="4.8 stars"
+                    >★★★★★ 4.8</span
+                  >
+                  <span style="color: var(--text-muted); font-size: 0.82rem"
+                    >🎮 485,000 plays</span
+                  >
+                  <span style="color: var(--text-muted); font-size: 0.82rem"
+                    >⏱ 2-10 min session</span
+                  >
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center">
+                <button
+                  class="btn btn-ghost btn-sm"
+                  onclick="
+                    navigator.share?.({
+                      title: 'Snake Classic',
+                      url: location.href,
+                    }) || Toast.show('Link copied!')
+                  "
+                >
+                  📤 Share
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Game Container -->
+          <div class="game-container" role="main" aria-label="Game area">
+            <div class="game-toolbar">
+              <span class="game-toolbar-title">🐍 Snake Classic</span>
+              <div class="game-toolbar-actions">
+                <button
+                  class="btn btn-ghost btn-sm play-again-btn"
+                  aria-label="Restart game"
+                >
+                  ↺ Restart
+                </button>
+                <button
+                  class="btn btn-ghost btn-sm fullscreen-btn"
+                  aria-label="Fullscreen"
+                  title="Toggle fullscreen"
+                >
+                  ⛶
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="game-area"
+              style="background: var(--bg-primary); min-height: auto"
+            >
+              <div id="snake-container" style="width: 100%"></div>
+            </div>
+
+            <div class="game-actions-bar">
+              <button class="btn btn-primary play-again-btn">
+                ↺ Play Again
+              </button>
+              <a href="2048.html" class="btn btn-secondary"
+                >Next Game: 2048 →</a
+              >
+              <a href="../games.html" class="btn btn-ghost">All Games</a>
+            </div>
+          </div>
+
+          <!-- How to Play -->
+          <section style="margin-top: 48px" aria-labelledby="howto-heading">
+            <h2 id="howto-heading">How to Play Snake</h2>
+            <div class="grid-3" style="margin-top: 24px">
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">⬆⬇⬅➡</div>
+                <h3>Controls</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Use arrow keys or WASD on desktop. Use the D-pad below the
+                  game on mobile.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🍎</div>
+                <h3>Objective</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Eat the glowing red dots to grow your snake and increase your
+                  score. Don't run into walls or yourself!
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">⚡</div>
+                <h3>Tips</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  The snake speeds up every 5 points. Plan your path ahead —
+                  don't get trapped in a corner.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Next Games -->
+          <section
+            style="margin-top: 48px"
+            aria-labelledby="next-games-heading"
+          >
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-tag">🎯 Up Next</span>
+                <h2 id="next-games-heading">More Games You'll Love</h2>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article
+                class="game-card"
+                itemscope
+                itemtype="https://schema.org/VideoGame"
+              >
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🔢</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Puzzle</span
+                    ><span class="game-rating">★ 4.9</span>
+                  </div>
+                  <h3 class="game-title-text" itemprop="name">2048</h3>
+                  <p class="game-desc">Slide and merge tiles to reach 2048.</p>
+                  <div class="game-footer">
+                    <span class="game-plays">🎮 621K plays</span>
+                    <a href="2048.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article
+                class="game-card"
+                itemscope
+                itemtype="https://schema.org/VideoGame"
+              >
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🃏</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Brain</span
+                    ><span class="game-rating">★ 4.7</span>
+                  </div>
+                  <h3 class="game-title-text" itemprop="name">Memory Match</h3>
+                  <p class="game-desc">Flip cards and match emoji pairs.</p>
+                  <div class="game-footer">
+                    <span class="game-plays">🎮 302K plays</span>
+                    <a href="memory-match.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article
+                class="game-card"
+                itemscope
+                itemtype="https://schema.org/VideoGame"
+              >
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">✖️</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Puzzle</span
+                    ><span class="game-rating">★ 4.6</span>
+                  </div>
+                  <h3 class="game-title-text" itemprop="name">Tic-Tac-Toe</h3>
+                  <p class="game-desc">Classic two-player X and O strategy.</p>
+                  <div class="game-footer">
+                    <span class="game-plays">🎮 218K plays</span>
+                    <a href="tic-tac-toe.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0">
+          <p>
+            © 2026 QuickPlay. <a href="../index.html">Home</a> ·
+            <a href="../games.html">Games</a> · <a href="../blog.html">Blog</a>
+          </p>
+          <nav class="footer-legal">
+            <a href="#">Privacy</a><a href="#">Terms</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js" defer></script>
+  </body>
+</html>

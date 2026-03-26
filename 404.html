@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found | QuickPlay</title>
+  <meta name="description" content="Oops! This page doesn't exist. Head back to QuickPlay to find free browser games." />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    .error-page {
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.2;
+    }
+
+    .error-content {
+      position: relative;
+      z-index: 1;
+      max-width: 540px;
+    }
+
+    .error-code {
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 20vw, 12rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      text-shadow: none;
+    }
+
+    .error-glitch {
+      animation: glitch 3s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 90%, 100% { transform: translate(0); }
+      92% { transform: translate(-3px, 1px); filter: hue-rotate(90deg); }
+      94% { transform: translate(3px, -1px); filter: hue-rotate(-90deg); }
+      96% { transform: translate(-1px, 2px); }
+      98% { transform: translate(1px, -2px); }
+    }
+
+    .error-emoji {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="/index.html" class="nav-brand">
+          <div class="brand-icon">🎮</div>Quick<span>Play</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/games.html">Games</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+          <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="error-page" role="main">
+      <div class="error-content">
+
+        <span class="error-emoji" aria-hidden="true">👾</span>
+
+        <div class="error-code error-glitch" aria-label="Error 404">404</div>
+
+        <h1 style="margin-bottom:16px;font-size:clamp(1.4rem,3vw,2rem);">
+          Level Not Found
+        </h1>
+
+        <p style="color:var(--text-secondary);margin-bottom:36px;line-height:1.7;font-size:1rem;">
+          Looks like this page got eaten by the snake. The URL you followed doesn't exist, was moved, or never spawned in the first place.
+        </p>
+
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;">
+          <a href="/index.html" class="btn btn-primary btn-lg">🏠 Go Home</a>
+          <a href="/games.html" class="btn btn-secondary btn-lg">🕹️ Browse Games</a>
+        </div>
+
+        <!-- Quick game suggestions -->
+        <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:24px;">
+          <p style="font-family:var(--font-display);font-size:0.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">
+            While you're here — try a quick game:
+          </p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+            <a href="/games/snake.html" class="btn btn-ghost btn-sm">🐍 Snake</a>
+            <a href="/games/2048.html" class="btn btn-ghost btn-sm">🔢 2048</a>
+            <a href="/games/memory-match.html" class="btn btn-ghost btn-sm">🃏 Memory</a>
+            <a href="/games/tic-tac-toe.html" class="btn btn-ghost btn-sm">✖️ Tic-Tac-Toe</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0;">
+        <p>© 2026 QuickPlay. <a href="/index.html">Home</a> · <a href="/games.html">Games</a> · <a href="/blog.html">Blog</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

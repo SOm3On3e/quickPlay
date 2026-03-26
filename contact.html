@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us — QuickPlay | Get in Touch</title>
+    <meta
+      name="description"
+      content="Contact the QuickPlay team — report a bug, suggest a game, pitch a blog post, or just say hello. We read every message."
+    />
+    <meta
+      name="keywords"
+      content="contact quickplay, quickplay support, report game bug, suggest browser game"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://quickplay.games/contact.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact Us — QuickPlay" />
+    <meta
+      property="og:description"
+      content="Get in touch with the QuickPlay team. We read every message."
+    />
+    <meta property="og:url" content="https://quickplay.games/contact.html" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact QuickPlay",
+        "url": "https://quickplay.games/contact.html",
+        "description": "Contact the QuickPlay team for support, game suggestions, and press inquiries.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://quickplay.games/",
+          "name": "QuickPlay"
+        }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ---- Contact Page Specific ---- */
+      .contact-hero {
+        padding: 80px 0 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--border-color) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+        background-size: 48px 48px;
+        opacity: 0.2;
+      }
+
+      .contact-hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 400px;
+        background: radial-gradient(
+          ellipse,
+          rgba(255, 60, 110, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .contact-hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Layout */
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 48px;
+        align-items: start;
+      }
+
+      /* Form styles */
+      .contact-form-wrap {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 40px;
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+      }
+
+      .form-label {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+      }
+
+      .form-label .required {
+        color: var(--accent-primary);
+        margin-left: 3px;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        background: var(--bg-secondary);
+        border: 1.5px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        color: var(--text-primary);
+        font-family: var(--font-body);
+        font-size: 0.93rem;
+        padding: 12px 16px;
+        transition: all var(--transition);
+        outline: none;
+        appearance: none;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        border-color: var(--accent-secondary);
+        box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.12);
+        background: var(--bg-card);
+      }
+
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: var(--text-muted);
+      }
+
+      .form-input.error,
+      .form-select.error,
+      .form-textarea.error {
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(255, 60, 110, 0.12);
+      }
+
+      .form-error-msg {
+        display: none;
+        font-size: 0.75rem;
+        color: var(--accent-primary);
+        margin-top: 5px;
+      }
+
+      .form-group.has-error .form-error-msg {
+        display: block;
+      }
+
+      .form-select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239090b8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 40px;
+        cursor: pointer;
+      }
+
+      .form-select option {
+        background: var(--bg-card);
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 140px;
+        line-height: 1.6;
+      }
+
+      /* Character counter */
+      .char-counter {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        text-align: right;
+        margin-top: 4px;
+        transition: color var(--transition);
+      }
+
+      .char-counter.warn {
+        color: var(--accent-yellow);
+      }
+      .char-counter.limit {
+        color: var(--accent-primary);
+      }
+
+      /* Form row */
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      /* Submit button */
+      .form-submit {
+        width: 100%;
+        padding: 15px;
+        font-size: 0.9rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Success state */
+      .form-success {
+        display: none;
+        text-align: center;
+        padding: 48px 20px;
+      }
+
+      .form-success.show {
+        display: block;
+      }
+      .form-success-icon {
+        font-size: 4rem;
+        margin-bottom: 16px;
+      }
+      .form-success h3 {
+        margin-bottom: 10px;
+        color: var(--accent-green);
+      }
+      .form-success p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      /* Sidebar info cards */
+      .contact-info-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 24px;
+        margin-bottom: 16px;
+        transition: all var(--transition);
+      }
+
+      .contact-info-card:hover {
+        border-color: var(--accent-secondary);
+      }
+
+      .contact-info-card:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact-info-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .contact-info-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--bg-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .contact-info-title {
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .contact-info-sub {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .contact-info-body {
+        font-size: 0.83rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .contact-info-body a {
+        color: var(--accent-secondary);
+      }
+
+      /* Response time badge */
+      .response-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(57, 255, 138, 0.1);
+        border: 1px solid rgba(57, 255, 138, 0.2);
+        color: var(--accent-green);
+        font-family: var(--font-display);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 100px;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 900px) {
+        .contact-layout {
+          grid-template-columns: 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .contact-form-wrap {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="index.html" class="nav-brand"
+            ><div class="brand-icon">🎮</div>
+            Quick<span>Play</span></a
+          >
+          <ul class="nav-links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Toggle menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ===== HERO ===== -->
+      <section class="contact-hero" aria-labelledby="contact-heading">
+        <div class="contact-hero-content">
+          <div class="hero-eyebrow fade-up" style="justify-content: center">
+            <span class="dot"></span>
+            We're Real Humans
+          </div>
+          <h1 id="contact-heading" class="fade-up fade-up-1">Get in Touch</h1>
+          <p
+            class="fade-up fade-up-2"
+            style="
+              color: var(--text-secondary);
+              max-width: 480px;
+              margin: 12px auto 0;
+              font-size: 1.05rem;
+              line-height: 1.7;
+            "
+          >
+            Bug report, game suggestion, press inquiry, or just want to say hi —
+            we read every single message.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== MAIN CONTENT ===== -->
+      <section class="section-pad-sm">
+        <div class="container">
+          <div class="contact-layout">
+            <!-- ===== FORM ===== -->
+            <div>
+              <div class="contact-form-wrap">
+                <!-- Form -->
+                <form id="contact-form" novalidate aria-label="Contact form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="contact-name">
+                        Your Name
+                        <span class="required" aria-label="required">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        class="form-input"
+                        placeholder="Jake Dorsey"
+                        autocomplete="name"
+                        required
+                      />
+                      <span class="form-error-msg" role="alert"
+                        >Please enter your name.</span
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="contact-email">
+                        Email Address <span class="required">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="contact-email"
+                        name="email"
+                        class="form-input"
+                        placeholder="hello@example.com"
+                        autocomplete="email"
+                        required
+                      />
+                      <span class="form-error-msg" role="alert"
+                        >Please enter a valid email.</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="contact-subject">
+                      Subject <span class="required">*</span>
+                    </label>
+                    <select
+                      id="contact-subject"
+                      name="subject"
+                      class="form-select"
+                      required
+                    >
+                      <option value="" disabled selected>
+                        Choose a topic...
+                      </option>
+                      <option value="bug">🐛 Bug Report</option>
+                      <option value="game-suggestion">
+                        🎮 Game Suggestion
+                      </option>
+                      <option value="submit-game">
+                        🛠️ I Want to Submit a Game
+                      </option>
+                      <option value="blog-pitch">✍️ Blog Post Pitch</option>
+                      <option value="press">📰 Press / Media Inquiry</option>
+                      <option value="partnership">
+                        🤝 Partnership Opportunity
+                      </option>
+                      <option value="feedback">💬 General Feedback</option>
+                      <option value="other">❓ Something Else</option>
+                    </select>
+                    <span class="form-error-msg" role="alert"
+                      >Please select a subject.</span
+                    >
+                  </div>
+
+                  <div class="form-group" id="bug-extra" style="display: none">
+                    <label class="form-label" for="contact-game"
+                      >Which Game? (optional)</label
+                    >
+                    <select id="contact-game" name="game" class="form-select">
+                      <option value="">Select a game...</option>
+                      <option value="snake">Snake Classic</option>
+                      <option value="2048">2048</option>
+                      <option value="memory-match">Memory Match</option>
+                      <option value="tic-tac-toe">Tic-Tac-Toe</option>
+                      <option value="word-scramble">Word Scramble</option>
+                      <option value="space-shooter">Space Shooter</option>
+                      <option value="reaction-time">Reaction Time</option>
+                      <option value="solitaire">Klondike Solitaire</option>
+                      <option value="other">Other / Not listed</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="contact-message">
+                      Message <span class="required">*</span>
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      class="form-textarea"
+                      placeholder="Tell us what's on your mind. The more detail, the better!"
+                      required
+                      maxlength="2000"
+                    ></textarea>
+                    <div class="char-counter" id="char-counter">0 / 2000</div>
+                    <span class="form-error-msg" role="alert"
+                      >Please write a message (min. 20 characters).</span
+                    >
+                  </div>
+
+                  <!-- Honeypot (spam trap — hidden from users) -->
+                  <div style="display: none" aria-hidden="true">
+                    <input
+                      type="text"
+                      name="website"
+                      tabindex="-1"
+                      autocomplete="off"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-lg form-submit"
+                    id="submit-btn"
+                  >
+                    📨 Send Message
+                  </button>
+
+                  <p
+                    style="
+                      font-size: 0.75rem;
+                      color: var(--text-muted);
+                      margin-top: 14px;
+                      text-align: center;
+                    "
+                  >
+                    We typically reply within 24–48 hours. By submitting you
+                    agree to our <a href="#">Privacy Policy</a>.
+                  </p>
+                </form>
+
+                <!-- Success message (shown after submit) -->
+                <div
+                  class="form-success"
+                  id="form-success"
+                  role="alert"
+                  aria-live="polite"
+                >
+                  <div class="form-success-icon">✅</div>
+                  <h3>Message Sent!</h3>
+                  <p>
+                    Thanks for reaching out. We've received your message and
+                    will get back to you within 24–48 hours.<br /><br />In the
+                    meantime, why not play a quick game?
+                  </p>
+                  <div
+                    style="
+                      margin-top: 24px;
+                      display: flex;
+                      gap: 12px;
+                      justify-content: center;
+                      flex-wrap: wrap;
+                    "
+                  >
+                    <a href="games/snake.html" class="btn btn-primary"
+                      >🐍 Play Snake</a
+                    >
+                    <a href="games.html" class="btn btn-ghost"
+                      >Browse All Games</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SIDEBAR ===== -->
+            <aside aria-label="Contact information">
+              <div class="contact-info-card">
+                <div class="contact-info-header">
+                  <div class="contact-info-icon">📧</div>
+                  <div>
+                    <div class="contact-info-title">Email Us</div>
+                    <div class="contact-info-sub">
+                      Best for detailed queries
+                    </div>
+                  </div>
+                </div>
+                <p class="contact-info-body">
+                  <a href="mailto:hello@quickplay.games"
+                    >hello@quickplay.games</a
+                  ><br />
+                  For bug reports:
+                  <a href="mailto:bugs@quickplay.games">bugs@quickplay.games</a>
+                </p>
+                <div class="response-badge">
+                  <span
+                    style="
+                      width: 6px;
+                      height: 6px;
+                      border-radius: 50%;
+                      background: currentColor;
+                    "
+                  ></span>
+                  Replies within 1-2 Business days
+                </div>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="contact-info-header">
+                  <div class="contact-info-icon">💬</div>
+                  <div>
+                    <div class="contact-info-title">Discord Community</div>
+                    <div class="contact-info-sub">Not yet available</div>
+                  </div>
+                </div>
+                <p class="contact-info-body">
+                  You can use Email for now, but we're planning to launch an
+                  official Discord server soon for real-time chat, game nights,
+                  and direct access to the team. Stay tuned!
+                </p>
+                <a
+                  href="#"
+                  class="btn btn-ghost btn-sm"
+                  style="margin-top: 12px; width: 100%; justify-content: center"
+                >
+                  Join Discord →
+                </a>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="contact-info-header">
+                  <div class="contact-info-icon">🛠️</div>
+                  <div>
+                    <div class="contact-info-title">Submit a Game</div>
+                    <div class="contact-info-sub">For developers</div>
+                  </div>
+                </div>
+                <p class="contact-info-body">
+                  Built a browser game? We'd love to feature it. Use our
+                  dedicated submission form for faster review.
+                </p>
+                <a
+                  href="submit-game.html"
+                  class="btn btn-secondary btn-sm"
+                  style="margin-top: 12px; width: 100%; justify-content: center"
+                >
+                  Submit Your Game →
+                </a>
+              </div>
+
+              <div
+                class="contact-info-card"
+                style="border-color: var(--border-color)"
+              >
+                <h4 style="margin-bottom: 12px; font-size: 0.85rem">
+                  🕐 Office Hours
+                </h4>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 0.82rem;
+                    "
+                  >
+                    <span style="color: var(--text-secondary)">Mon–Fri</span>
+                    <span style="color: var(--text-primary); font-weight: 600"
+                      >9am – 6pm PKT</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 0.82rem;
+                    "
+                  >
+                    <span style="color: var(--text-secondary)">Weekends</span>
+                    <span style="color: var(--text-muted)"
+                      >Slower responses</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FAQ ===== -->
+      <section
+        class="section-pad"
+        style="
+          background: var(--bg-secondary);
+          border-top: 1px solid var(--border-color);
+        "
+        aria-labelledby="faq-heading"
+      >
+        <div class="container">
+          <div class="section-header" style="margin-bottom: 40px">
+            <div class="section-title">
+              <span class="section-tag">❓ FAQ</span>
+              <h2 id="faq-heading">Common Questions</h2>
+            </div>
+          </div>
+
+          <div class="grid-2" style="gap: 16px">
+            <div class="highlight-box">
+              <h3 style="font-size: 0.95rem; margin-bottom: 10px">
+                Are all games really free?
+              </h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.85rem;
+                  line-height: 1.7;
+                  margin: 0;
+                "
+              >
+                Yes, 100% free — no premium tiers, no paywalls, no hidden
+                charges. We keep the lights on through optional donations and
+                sponsored blog content (clearly labeled).
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h3 style="font-size: 0.95rem; margin-bottom: 10px">
+                Can I suggest a game to add?
+              </h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.85rem;
+                  line-height: 1.7;
+                  margin: 0;
+                "
+              >
+                Absolutely! Select "Game Suggestion" in the form above and tell
+                us what you'd like to play. We read every suggestion and add
+                popular requests to our roadmap.
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h3 style="font-size: 0.95rem; margin-bottom: 10px">
+                I found a bug — how do I report it?
+              </h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.85rem;
+                  line-height: 1.7;
+                  margin: 0;
+                "
+              >
+                Select "Bug Report" in the form, choose the affected game, and
+                describe what happened. Include your browser and device type if
+                possible — it helps us fix it faster.
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h3 style="font-size: 0.95rem; margin-bottom: 10px">
+                Do you accept guest blog posts?
+              </h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.85rem;
+                  line-height: 1.7;
+                  margin: 0;
+                "
+              >
+                Yes! Select "Blog Post Pitch" and share your topic idea. We look
+                for original, well-researched articles about browser gaming,
+                strategy, or game design. No AI-spun content.
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h3 style="font-size: 0.95rem; margin-bottom: 10px">
+                How do I submit my own game?
+              </h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.85rem;
+                  line-height: 1.7;
+                  margin: 0;
+                "
+              >
+                Use our dedicated
+                <a href="submit-game.html">game submission form</a> for the
+                fastest review. We accept HTML5 / JavaScript games that run in a
+                browser without plugins.
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h3 style="font-size: 0.95rem; margin-bottom: 10px">
+                How long does it take to hear back?
+              </h3>
+              <p
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.85rem;
+                  line-height: 1.7;
+                  margin: 0;
+                "
+              >
+                General inquiries: 24–48 hours. Bug reports: usually same-day
+                triage. Game submissions: up to 5 business days. Press
+                inquiries: within 24 hours.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-brand-logo"
+              ><div class="brand-icon">🎮</div>
+              QuickPlay</a
+            >
+            <p class="footer-desc">
+              Free browser games. No downloads. No logins.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+              <a href="#" class="social-link" aria-label="Discord">💬</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Games</h4>
+            <nav class="footer-links">
+              <a href="games/snake.html">Snake</a>
+              <a href="games/2048.html">2048</a>
+              <a href="games/memory-match.html">Memory Match</a>
+              <a href="games.html">All Games</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <nav class="footer-links">
+              <a href="about.html">About Us</a>
+              <a href="contact.html">Contact</a>
+              <a href="submit-game.html">Submit a Game</a>
+              <a href="blog.html">Blog</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <nav class="footer-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="sitemap.xml">Sitemap</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 QuickPlay. All rights reserved.</p>
+          <nav class="footer-legal">
+            <a href="#">Privacy</a><a href="#">Terms</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+    <script>
+      /* ============================================================
+     CONTACT FORM — Validation & Submission
+     ============================================================ */
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("contact-form");
+        const success = document.getElementById("form-success");
+        const submitBtn = document.getElementById("submit-btn");
+        const msgField = document.getElementById("contact-message");
+        const counter = document.getElementById("char-counter");
+        const subjectEl = document.getElementById("contact-subject");
+        const bugExtra = document.getElementById("bug-extra");
+
+        // Character counter
+        msgField?.addEventListener("input", () => {
+          const len = msgField.value.length;
+          const max = 2000;
+          counter.textContent = `${len} / ${max}`;
+          counter.className =
+            "char-counter" +
+            (len > 1800 ? " limit" : len > 1500 ? " warn" : "");
+        });
+
+        // Show bug-specific field
+        subjectEl?.addEventListener("change", () => {
+          bugExtra.style.display = subjectEl.value === "bug" ? "block" : "none";
+        });
+
+        // Validate a single field
+        function validateField(field) {
+          const group = field.closest(".form-group");
+          let valid = true;
+
+          if (field.type === "email") {
+            valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+          } else if (field.tagName === "SELECT") {
+            valid = field.value !== "";
+          } else if (field.id === "contact-message") {
+            valid = field.value.trim().length >= 20;
+          } else {
+            valid = field.value.trim().length > 0;
+          }
+
+          group?.classList.toggle("has-error", !valid);
+          field.classList.toggle("error", !valid);
+          return valid;
+        }
+
+        // Live validation on blur
+        form
+          ?.querySelectorAll(".form-input, .form-select, .form-textarea")
+          .forEach((field) => {
+            field.addEventListener("blur", () => {
+              if (field.required || field.value.trim()) validateField(field);
+            });
+            field.addEventListener("input", () => {
+              if (field.classList.contains("error")) validateField(field);
+            });
+          });
+
+        // Form submit
+        form?.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          // Check honeypot
+          const honeypot = form.querySelector('input[name="website"]');
+          if (honeypot?.value) return; // Silent spam block
+
+          // Validate all required fields
+          const requiredFields = form.querySelectorAll("[required]");
+          let allValid = true;
+          requiredFields.forEach((field) => {
+            if (!validateField(field)) allValid = false;
+          });
+
+          if (!allValid) {
+            // Scroll to first error
+            const firstError = form.querySelector(".error");
+            firstError?.scrollIntoView({ behavior: "smooth", block: "center" });
+            firstError?.focus();
+            return;
+          }
+
+          // Simulate sending (replace with real endpoint / EmailJS / Formspree)
+          submitBtn.disabled = true;
+          submitBtn.textContent = "⏳ Sending...";
+
+          // --- Replace this block with your actual form submission logic ---
+          // Example with Formspree:
+          // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+          //   method: 'POST',
+          //   body: new FormData(form),
+          //   headers: { 'Accept': 'application/json' }
+          // }).then(res => res.ok ? showSuccess() : showError());
+
+          // Simulated delay for demo purposes
+          setTimeout(() => {
+            showSuccess();
+          }, 1200);
+          // ----------------------------------------------------------------
+        });
+
+        function showSuccess() {
+          form.style.display = "none";
+          success.classList.add("show");
+          success.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Klondike Solitaire Online Free — QuickPlay</title>
+    <meta
+      name="description"
+      content="Play Klondike Solitaire free in your browser. Classic card game — sort all cards to foundation piles by suit. No download, no login required!"
+    />
+    <meta
+      name="keywords"
+      content="klondike solitaire online, play solitaire browser, free card game online, classic solitaire game"
+    />
+    <link rel="canonical" href="https://quickplay.games/games/solitaire.html" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Klondike Solitaire",
+        "description": "Classic Klondike Solitaire card game. Sort all 52 cards to the foundation piles by suit.",
+        "url": "https://quickplay.games/games/solitaire.html",
+        "genre": ["Card", "Puzzle", "Casual"],
+        "gamePlatform": "Web Browser",
+        "isAccessibleForFree": true,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "18400"
+        },
+        "publisher": { "@type": "Organization", "name": "QuickPlay" }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ---- Solitaire Specific ---- */
+      #sol-game {
+        width: 100%;
+        padding: 16px 12px 24px;
+        background: #0a1a0a;
+        min-height: 520px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow-x: auto;
+      }
+
+      .sol-top-row {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        min-width: 480px;
+      }
+
+      .sol-tableau {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        flex: 1;
+        min-width: 480px;
+      }
+
+      /* Card slot (empty placeholder) */
+      .sol-slot {
+        width: 64px;
+        min-height: 88px;
+        border: 2px dashed rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        flex-shrink: 0;
+        position: relative;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+
+      .sol-slot.highlight {
+        border-color: rgba(57, 255, 138, 0.6);
+        background: rgba(57, 255, 138, 0.06);
+      }
+      .sol-slot.drop-target {
+        border-color: #39ff8a;
+        box-shadow: 0 0 12px rgba(57, 255, 138, 0.3);
+      }
+
+      /* Card */
+      .sol-card {
+        width: 64px;
+        height: 88px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 4px 5px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition:
+          box-shadow 0.15s,
+          transform 0.15s;
+        user-select: none;
+        flex-shrink: 0;
+      }
+
+      .sol-card.face-up.red {
+        background: #fff;
+        color: #c82020;
+        border-color: #ddd;
+      }
+      .sol-card.face-up.black {
+        background: #fff;
+        color: #1a1a2e;
+        border-color: #ddd;
+      }
+      .sol-card.face-down {
+        background: repeating-linear-gradient(
+          135deg,
+          #1a3a1a 0px,
+          #1a3a1a 6px,
+          #0f2a0f 6px,
+          #0f2a0f 12px
+        );
+        border-color: #2a4a2a;
+        cursor: default;
+      }
+      .sol-card.selected {
+        box-shadow:
+          0 0 0 3px #39ff8a,
+          0 4px 16px rgba(57, 255, 138, 0.4);
+        transform: translateY(-4px);
+        z-index: 50;
+      }
+      .sol-card.face-up:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .sol-card .top-left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1;
+      }
+      .sol-card .bottom-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        line-height: 1;
+        transform: rotate(180deg);
+      }
+      .sol-card .suit-center {
+        font-size: 1.6rem;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sol-card .rank {
+        font-size: 0.8rem;
+        font-weight: 900;
+      }
+      .sol-card .suit-small {
+        font-size: 0.65rem;
+      }
+
+      /* Pile column */
+      .sol-pile-col {
+        position: relative;
+        flex: 1;
+        min-width: 64px;
+        max-width: 80px;
+      }
+
+      /* Stock / waste piles */
+      .sol-stock-area {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .sol-foundations {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+      }
+
+      /* Score bar */
+      .sol-scorebar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4px 8px;
+        font-family: var(--font-display);
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        min-width: 480px;
+      }
+
+      .sol-scorebar strong {
+        color: var(--accent-yellow);
+        font-size: 1rem;
+      }
+
+      /* Win overlay */
+      .sol-win {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        z-index: 200;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="../index.html" class="nav-brand"
+            ><div class="brand-icon">🎮</div>
+            Quick<span>Play</span></a
+          >
+          <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../games.html" class="active">Games</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="game-page">
+        <div class="container">
+          <nav class="breadcrumb">
+            <a href="../index.html">Home</a><span>›</span>
+            <a href="../games.html">Games</a><span>›</span>
+            <span>Klondike Solitaire</span>
+          </nav>
+
+          <div class="game-page-header">
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 16px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span
+                    class="game-badge badge-trending"
+                    style="position: static"
+                    >🔥 Trending</span
+                  >
+                  <span
+                    style="
+                      font-family: var(--font-display);
+                      font-size: 0.7rem;
+                      color: var(--text-muted);
+                      text-transform: uppercase;
+                    "
+                    >Card · Puzzle</span
+                  >
+                </div>
+                <h1 style="margin-bottom: 8px">Klondike Solitaire</h1>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <span style="color: var(--accent-yellow)">★★★★★ 4.8</span>
+                  <span style="color: var(--text-muted); font-size: 0.82rem"
+                    >🎮 390,000 plays</span
+                  >
+                  <span style="color: var(--text-muted); font-size: 0.82rem"
+                    >⏱ 5–20 min session</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-container" style="position: relative">
+            <div class="game-toolbar">
+              <span class="game-toolbar-title">🃏 Klondike Solitaire</span>
+              <div class="game-toolbar-actions">
+                <button class="btn btn-ghost btn-sm" id="sol-new-btn">
+                  ↺ New Game
+                </button>
+                <button class="btn btn-ghost btn-sm" id="sol-hint-btn">
+                  💡 Hint
+                </button>
+              </div>
+            </div>
+
+            <div id="sol-game" role="main" aria-label="Solitaire game board">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 300px;
+                  color: var(--text-muted);
+                  font-family: var(--font-display);
+                "
+              >
+                Loading game...
+              </div>
+            </div>
+
+            <div class="game-actions-bar">
+              <button class="btn btn-primary" id="sol-new-bar">
+                ↺ New Game
+              </button>
+              <a href="memory-match.html" class="btn btn-secondary"
+                >Next: Memory Match →</a
+              >
+              <a href="../games.html" class="btn btn-ghost">All Games</a>
+            </div>
+          </div>
+
+          <section style="margin-top: 48px">
+            <h2>How to Play Klondike Solitaire</h2>
+            <div class="grid-3" style="margin-top: 24px">
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🃏</div>
+                <h3>The Setup</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  7 tableau columns, 4 foundation piles (top right), and a stock
+                  pile (top left). Click the stock to draw a card.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">⬆️</div>
+                <h3>Build Foundations</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Move cards to foundations by suit, starting with Ace up to
+                  King. Fill all 4 piles to win!
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🔴🖤</div>
+                <h3>Tableau Rules</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Stack cards in descending order, alternating red and black
+                  suits. Click a card to select, then click a valid destination.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section style="margin-top: 48px">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-tag">🎯 Up Next</span>
+                <h2>More Games</h2>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🃏</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Brain</span
+                    ><span class="game-rating">★ 4.7</span>
+                  </div>
+                  <h3 class="game-title-text">Memory Match</h3>
+                  <div class="game-footer">
+                    <a href="memory-match.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🔢</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Puzzle</span
+                    ><span class="game-rating">★ 4.9</span>
+                  </div>
+                  <h3 class="game-title-text">2048</h3>
+                  <div class="game-footer">
+                    <a href="2048.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">✖️</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Puzzle</span
+                    ><span class="game-rating">★ 4.6</span>
+                  </div>
+                  <h3 class="game-title-text">Tic-Tac-Toe</h3>
+                  <div class="game-footer">
+                    <a href="tic-tac-toe.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0">
+          <p>
+            © 2026 QuickPlay. <a href="../index.html">Home</a> ·
+            <a href="../games.html">Games</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js" defer></script>
+    <script>
+      /* ============================================================
+     KLONDIKE SOLITAIRE
+     ============================================================ */
+      const Solitaire = {
+        SUITS: ["♠", "♥", "♦", "♣"],
+        RANKS: [
+          "A",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "J",
+          "Q",
+          "K",
+        ],
+        RED_SUITS: ["♥", "♦"],
+
+        stock: [],
+        waste: [],
+        foundations: [[], [], [], []],
+        tableau: [[], [], [], [], [], [], []],
+        selected: null, // { source, idx, cards }
+        score: 0,
+        moves: 0,
+        startTime: null,
+        timerInterval: null,
+
+        init() {
+          this.el = document.getElementById("sol-game");
+          if (!this.el) return;
+          this.newGame();
+          document
+            .getElementById("sol-new-btn")
+            ?.addEventListener("click", () => this.newGame());
+          document
+            .getElementById("sol-new-bar")
+            ?.addEventListener("click", () => this.newGame());
+          document
+            .getElementById("sol-hint-btn")
+            ?.addEventListener("click", () => this.hint());
+          window.resetGame = () => this.newGame();
+        },
+
+        newGame() {
+          clearInterval(this.timerInterval);
+          this.score = 0;
+          this.moves = 0;
+          this.selected = null;
+          this.stock = [];
+          this.waste = [];
+          this.foundations = [[], [], [], []];
+          this.tableau = [[], [], [], [], [], [], []];
+
+          // Build and shuffle deck
+          const deck = [];
+          for (const suit of this.SUITS) {
+            for (const rank of this.RANKS) {
+              deck.push({
+                suit,
+                rank,
+                faceUp: false,
+                isRed: this.RED_SUITS.includes(suit),
+                value: this.RANKS.indexOf(rank) + 1,
+              });
+            }
+          }
+          for (let i = deck.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+          }
+
+          // Deal to tableau
+          let di = 0;
+          for (let col = 0; col < 7; col++) {
+            for (let row = 0; row <= col; row++) {
+              const card = deck[di++];
+              card.faceUp = row === col;
+              this.tableau[col].push(card);
+            }
+          }
+          // Rest to stock
+          this.stock = deck.slice(di).reverse();
+
+          // Timer
+          this.startTime = Date.now();
+          this.timerInterval = setInterval(() => this.updateTimer(), 1000);
+          this.render();
+        },
+
+        updateTimer() {
+          const el = document.getElementById("sol-timer");
+          if (!el) return;
+          const sec = Math.floor((Date.now() - this.startTime) / 1000);
+          const m = Math.floor(sec / 60)
+            .toString()
+            .padStart(2, "0");
+          const s = (sec % 60).toString().padStart(2, "0");
+          el.textContent = `${m}:${s}`;
+        },
+
+        render() {
+          const g = this.el;
+          g.innerHTML = `
+        <!-- Score bar -->
+        <div class="sol-scorebar">
+          <span>Score: <strong id="sol-score">${this.score}</strong></span>
+          <span>Moves: <strong style="color:var(--accent-secondary);">${this.moves}</strong></span>
+          <span>Time: <strong id="sol-timer">00:00</strong></span>
+        </div>
+
+        <!-- Top row: stock/waste + foundations -->
+        <div class="sol-top-row">
+          <div class="sol-stock-area">
+            <!-- Stock pile -->
+            <div class="sol-slot" id="stock-pile" style="cursor:pointer;">
+              ${
+                this.stock.length
+                  ? `<div class="sol-card face-down" id="stock-card" style="position:relative;">
+                     <div style="font-size:1.8rem;display:flex;align-items:center;justify-content:center;height:100%;opacity:.5;">🃏</div>
+                   </div>`
+                  : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:1.5rem;opacity:.3;color:#fff;">↺</div>`
+              }
+            </div>
+            <!-- Waste pile -->
+            <div class="sol-slot" id="waste-pile">
+              ${this.waste.length ? this.renderCard(this.waste[this.waste.length - 1], "waste", 0, true) : ""}
+            </div>
+          </div>
+
+          <!-- Foundations -->
+          <div class="sol-foundations">
+            ${this.SUITS.map(
+              (suit, i) => `
+              <div class="sol-slot${this.selected ? " drop-target" : ""}" data-found="${i}" id="found-${i}">
+                ${
+                  this.foundations[i].length
+                    ? this.renderCard(
+                        this.foundations[i][this.foundations[i].length - 1],
+                        "foundation",
+                        i,
+                        true,
+                      )
+                    : `<div style="text-align:center;padding-top:28px;font-size:1.4rem;opacity:.35;color:#fff;">${suit}</div>`
+                }
+              </div>
+            `,
+            ).join("")}
+          </div>
+        </div>
+
+        <!-- Tableau -->
+        <div class="sol-tableau">
+          ${this.tableau
+            .map(
+              (pile, col) => `
+            <div class="sol-pile-col" data-col="${col}" style="height:${Math.max(90, pile.length * 22 + 88)}px;">
+              <div class="sol-slot${this.selected ? " drop-target" : ""}" data-col="${col}" style="height:100%;">
+                ${pile
+                  .map(
+                    (card, idx) => `
+                  <div class="sol-card ${card.faceUp ? "face-up" : "face-down"} ${card.faceUp ? (card.isRed ? "red" : "black") : ""}
+                    ${this.isSelected(col, idx) ? "selected" : ""}"
+                    style="top:${idx * 22}px;z-index:${idx + 1};"
+                    data-col="${col}" data-idx="${idx}">
+                    ${
+                      card.faceUp
+                        ? `
+                      <div class="top-left"><span class="rank">${card.rank}</span><span class="suit-small">${card.suit}</span></div>
+                      <div class="suit-center">${card.suit}</div>
+                      <div class="bottom-right"><span class="rank">${card.rank}</span><span class="suit-small">${card.suit}</span></div>
+                    `
+                        : ""
+                    }
+                  </div>
+                `,
+                  )
+                  .join("")}
+              </div>
+            </div>
+          `,
+            )
+            .join("")}
+        </div>
+      `;
+
+          this.bindEvents();
+          this.checkWin();
+        },
+
+        renderCard(card, source, idx, topOnly = false) {
+          const sel = source === "waste" && this.selected?.source === "waste";
+          return `
+        <div class="sol-card face-up ${card.isRed ? "red" : "black"} ${sel ? "selected" : ""}"
+          style="position:relative;" data-source="${source}" data-idx="${idx}">
+          <div class="top-left"><span class="rank">${card.rank}</span><span class="suit-small">${card.suit}</span></div>
+          <div class="suit-center">${card.suit}</div>
+          <div class="bottom-right"><span class="rank">${card.rank}</span><span class="suit-small">${card.suit}</span></div>
+        </div>
+      `;
+        },
+
+        isSelected(col, idx) {
+          if (
+            !this.selected ||
+            this.selected.source !== "tableau" ||
+            this.selected.col !== col
+          )
+            return false;
+          return idx >= this.selected.idx;
+        },
+
+        bindEvents() {
+          // Stock click
+          const stockSlot = this.el.querySelector("#stock-pile");
+          stockSlot?.addEventListener("click", () => this.drawFromStock());
+
+          // Waste click
+          const wasteSlot = this.el.querySelector("#waste-pile");
+          wasteSlot?.addEventListener("click", () => {
+            if (!this.waste.length) return;
+            const card = this.waste[this.waste.length - 1];
+            if (this.selected?.source === "waste") {
+              this.selected = null;
+            } else {
+              this.selected = { source: "waste", cards: [card] };
+            }
+            this.render();
+          });
+
+          // Foundation clicks
+          this.el.querySelectorAll("[data-found]").forEach((slot) => {
+            slot.addEventListener("click", () => {
+              const fi = parseInt(slot.dataset.found);
+              this.tryMoveToFoundation(fi);
+            });
+          });
+
+          // Tableau card clicks
+          this.el.querySelectorAll(".sol-card[data-col]").forEach((cardEl) => {
+            cardEl.addEventListener("click", (e) => {
+              e.stopPropagation();
+              const col = parseInt(cardEl.dataset.col);
+              const idx = parseInt(cardEl.dataset.idx);
+              const card = this.tableau[col][idx];
+              if (!card.faceUp) return;
+
+              if (this.selected) {
+                this.tryMoveToTableau(col, idx);
+              } else {
+                this.selected = {
+                  source: "tableau",
+                  col,
+                  idx,
+                  cards: this.tableau[col].slice(idx),
+                };
+                this.render();
+              }
+            });
+          });
+
+          // Tableau slot (empty column) clicks
+          this.el.querySelectorAll(".sol-slot[data-col]").forEach((slot) => {
+            slot.addEventListener("click", () => {
+              const col = parseInt(slot.dataset.col);
+              if (this.tableau[col].length === 0 && this.selected) {
+                this.tryMoveToTableau(col, -1);
+              }
+            });
+          });
+        },
+
+        drawFromStock() {
+          if (this.stock.length === 0) {
+            // Reset waste to stock
+            this.stock = [...this.waste].reverse();
+            this.waste = [];
+            this.score = Math.max(0, this.score - 100);
+          } else {
+            const card = this.stock.pop();
+            card.faceUp = true;
+            this.waste.push(card);
+            this.score += 5;
+            this.moves++;
+          }
+          this.selected = null;
+          this.render();
+        },
+
+        tryMoveToFoundation(fi) {
+          if (!this.selected || this.selected.cards.length !== 1) return;
+          const card = this.selected.cards[0];
+          const found = this.foundations[fi];
+
+          const expectedSuit = this.SUITS[fi];
+          if (card.suit !== expectedSuit) return;
+          if (found.length === 0 && card.value !== 1) return;
+          if (
+            found.length > 0 &&
+            card.value !== found[found.length - 1].value + 1
+          )
+            return;
+
+          // Valid move
+          this.removeFromSource();
+          this.foundations[fi].push(card);
+          this.score += 15;
+          this.moves++;
+          this.selected = null;
+          this.render();
+        },
+
+        tryMoveToTableau(col, idx) {
+          if (!this.selected) return;
+          const targetPile = this.tableau[col];
+          const movingCards = this.selected.cards;
+          const topCard = movingCards[0];
+
+          if (targetPile.length === 0) {
+            // Only King can go to empty column
+            if (topCard.value !== 13) {
+              this.selected = null;
+              this.render();
+              return;
+            }
+          } else {
+            const target = targetPile[targetPile.length - 1];
+            if (!target.faceUp) {
+              this.selected = null;
+              this.render();
+              return;
+            }
+            // Must be descending and alternating color
+            if (topCard.value !== target.value - 1) {
+              this.selected = null;
+              this.render();
+              return;
+            }
+            if (topCard.isRed === target.isRed) {
+              this.selected = null;
+              this.render();
+              return;
+            }
+          }
+
+          // Valid
+          this.removeFromSource();
+          this.tableau[col].push(...movingCards);
+          this.score += 5;
+          this.moves++;
+          this.selected = null;
+
+          // Flip top of source tableau
+          if (this.selected?.source === "tableau") {
+          } // already removed
+          // Flip exposed card
+          const srcPile = this.tableau[this._lastSourceCol];
+          if (
+            srcPile &&
+            srcPile.length > 0 &&
+            !srcPile[srcPile.length - 1].faceUp
+          ) {
+            srcPile[srcPile.length - 1].faceUp = true;
+            this.score += 5;
+          }
+
+          this.render();
+        },
+
+        removeFromSource() {
+          const sel = this.selected;
+          if (sel.source === "waste") {
+            this.waste.pop();
+          } else if (sel.source === "tableau") {
+            this._lastSourceCol = sel.col;
+            this.tableau[sel.col] = this.tableau[sel.col].slice(0, sel.idx);
+            // Flip top card
+            const pile = this.tableau[sel.col];
+            if (pile.length > 0 && !pile[pile.length - 1].faceUp) {
+              pile[pile.length - 1].faceUp = true;
+              this.score += 5;
+            }
+          }
+        },
+
+        hint() {
+          // Auto-move any card to foundation if possible
+          let moved = false;
+          for (let col = 0; col < 7 && !moved; col++) {
+            const pile = this.tableau[col];
+            if (!pile.length) continue;
+            const card = pile[pile.length - 1];
+            if (!card.faceUp) continue;
+            for (let fi = 0; fi < 4; fi++) {
+              const found = this.foundations[fi];
+              if (card.suit !== this.SUITS[fi]) continue;
+              if (found.length === 0 && card.value === 1) {
+                this.selected = {
+                  source: "tableau",
+                  col,
+                  idx: pile.length - 1,
+                  cards: [card],
+                };
+                this.tryMoveToFoundation(fi);
+                moved = true;
+                break;
+              }
+              if (
+                found.length > 0 &&
+                card.value === found[found.length - 1].value + 1
+              ) {
+                this.selected = {
+                  source: "tableau",
+                  col,
+                  idx: pile.length - 1,
+                  cards: [card],
+                };
+                this.tryMoveToFoundation(fi);
+                moved = true;
+                break;
+              }
+            }
+          }
+          // Try waste to foundation
+          if (!moved && this.waste.length) {
+            const card = this.waste[this.waste.length - 1];
+            for (let fi = 0; fi < 4; fi++) {
+              const found = this.foundations[fi];
+              if (card.suit !== this.SUITS[fi]) continue;
+              if (
+                (found.length === 0 && card.value === 1) ||
+                (found.length > 0 &&
+                  card.value === found[found.length - 1].value + 1)
+              ) {
+                this.selected = { source: "waste", cards: [card] };
+                this.tryMoveToFoundation(fi);
+                moved = true;
+                break;
+              }
+            }
+          }
+          if (!moved && typeof Toast !== "undefined")
+            Toast.show("💡 No obvious moves — try drawing from the stock!");
+        },
+
+        checkWin() {
+          const won = this.foundations.every((f) => f.length === 13);
+          if (!won) return;
+          clearInterval(this.timerInterval);
+          const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
+          const bonus = Math.max(0, 700 - elapsed);
+          this.score += bonus;
+
+          const win = document.createElement("div");
+          win.className = "sol-win";
+          win.innerHTML = `
+        <div style="font-size:3rem;">🏆</div>
+        <h2 style="color:var(--accent-yellow);font-family:var(--font-display);">You Win!</h2>
+        <p style="color:var(--text-secondary);">Score: <strong style="color:var(--accent-yellow);">${this.score}</strong> | Moves: ${this.moves}</p>
+        <p style="color:var(--text-muted);font-size:.8rem;">Time bonus: +${bonus} pts</p>
+        <button class="btn btn-primary" id="sol-win-new">▶ New Game</button>
+      `;
+          this.el.style.position = "relative";
+          this.el.appendChild(win);
+          win
+            .querySelector("#sol-win-new")
+            ?.addEventListener("click", () => this.newGame());
+          if (typeof Toast !== "undefined")
+            Toast.show("🎉 Congratulations! You completed Solitaire!");
+        },
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        Solitaire.init();
+      });
+    </script>
+  </body>
+</html>

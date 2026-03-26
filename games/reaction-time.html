@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Reaction Time Test Online Free — QuickPlay</title>
+    <meta
+      name="description"
+      content="Test your reaction speed online for free. Click when the screen turns green and find out how fast your reflexes really are. No download needed!"
+    />
+    <meta
+      name="keywords"
+      content="reaction time test online, reflex speed test browser, free reaction game, how fast are my reflexes"
+    />
+    <link
+      rel="canonical"
+      href="https://quickplay.games/games/reaction-time.html"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Reaction Time Test",
+        "description": "Click when the screen turns green and measure your reaction speed in milliseconds.",
+        "url": "https://quickplay.games/games/reaction-time.html",
+        "genre": ["Arcade", "Reflex", "Casual"],
+        "gamePlatform": "Web Browser",
+        "isAccessibleForFree": true,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.4",
+          "reviewCount": "9120"
+        },
+        "publisher": { "@type": "Organization", "name": "QuickPlay" }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ---- Reaction Time Specific ---- */
+      #rt-arena {
+        width: 100%;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+        border-radius: 0;
+        user-select: none;
+        -webkit-user-select: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #rt-arena.state-wait {
+        background: #1a0a0a;
+      }
+      #rt-arena.state-ready {
+        background: #0a1a0a;
+      }
+      #rt-arena.state-early {
+        background: #2a0a0a;
+      }
+      #rt-arena.state-result {
+        background: var(--bg-secondary);
+      }
+      #rt-arena.state-idle {
+        background: var(--bg-primary);
+      }
+
+      .rt-big-text {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-weight: 900;
+        text-align: center;
+        line-height: 1.2;
+        pointer-events: none;
+      }
+
+      .rt-sub-text {
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-align: center;
+        pointer-events: none;
+      }
+
+      .rt-time-display {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 10vw, 6rem);
+        font-weight: 900;
+        color: var(--accent-green);
+        text-align: center;
+        pointer-events: none;
+        line-height: 1;
+      }
+
+      .rt-time-display .ms-label {
+        font-size: 0.35em;
+        color: var(--text-muted);
+        letter-spacing: 0.08em;
+        vertical-align: middle;
+      }
+
+      .rt-rating {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: center;
+        pointer-events: none;
+      }
+
+      .rt-stats {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .rt-stat {
+        text-align: center;
+        pointer-events: none;
+      }
+
+      .rt-stat-val {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: var(--accent-secondary);
+        display: block;
+      }
+
+      .rt-stat-label {
+        font-size: 0.68rem;
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+      }
+
+      /* Pulse animation when waiting */
+      @keyframes rt-pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.7;
+        }
+      }
+      .rt-pulse {
+        animation: rt-pulse 1.5s ease-in-out infinite;
+      }
+
+      /* Flash animation on GO */
+      @keyframes rt-flash {
+        0% {
+          opacity: 0.3;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .rt-flash {
+        animation: rt-flash 0.1s ease;
+      }
+
+      /* History dots */
+      .rt-history {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .rt-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      /* Rating colors */
+      .rating-ninja {
+        color: #39ff8a;
+      }
+      .rating-pro {
+        color: #00e5ff;
+      }
+      .rating-average {
+        color: #ffe23c;
+      }
+      .rating-slow {
+        color: #ff8c3c;
+      }
+      .rating-miss {
+        color: #ff3c6e;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="../index.html" class="nav-brand"
+            ><div class="brand-icon">🎮</div>
+            Quick<span>Play</span></a
+          >
+          <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../games.html" class="active">Games</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="game-page">
+        <div class="container">
+          <nav class="breadcrumb">
+            <a href="../index.html">Home</a><span>›</span>
+            <a href="../games.html">Games</a><span>›</span>
+            <span>Reaction Time</span>
+          </nav>
+
+          <div class="game-page-header">
+            <div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  margin-bottom: 8px;
+                "
+              >
+                <span
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 0.7rem;
+                    color: var(--text-muted);
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                  "
+                  >Arcade · Reflex</span
+                >
+              </div>
+              <h1 style="margin-bottom: 8px">Reaction Time Test</h1>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 16px;
+                  flex-wrap: wrap;
+                "
+              >
+                <span style="color: var(--accent-yellow)">★★★★☆ 4.4</span>
+                <span style="color: var(--text-muted); font-size: 0.82rem"
+                  >🎮 174,000 plays</span
+                >
+                <span style="color: var(--text-muted); font-size: 0.82rem"
+                  >⏱ Under 1 min</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="game-container">
+            <div class="game-toolbar">
+              <span class="game-toolbar-title">⚡ Reaction Time</span>
+              <div class="game-toolbar-actions">
+                <button class="btn btn-ghost btn-sm" id="rt-reset-btn">
+                  ↺ Reset
+                </button>
+              </div>
+            </div>
+
+            <!-- THE ARENA — click/tap anywhere inside -->
+            <div
+              id="rt-arena"
+              class="state-idle"
+              role="button"
+              tabindex="0"
+              aria-label="Click to start reaction time test"
+            >
+              <div
+                class="rt-big-text"
+                id="rt-main-text"
+                style="color: var(--text-muted)"
+              >
+                ⚡
+              </div>
+              <div class="rt-sub-text" id="rt-sub-text">
+                Click anywhere to start
+              </div>
+            </div>
+
+            <div class="game-actions-bar">
+              <button class="btn btn-primary" id="rt-restart-bar">
+                ↺ Try Again
+              </button>
+              <a href="space-shooter.html" class="btn btn-secondary"
+                >Next: Space Shooter →</a
+              >
+              <a href="../games.html" class="btn btn-ghost">All Games</a>
+            </div>
+          </div>
+
+          <!-- RATING SCALE -->
+          <section style="margin-top: 48px">
+            <h2>Reaction Time Rating Scale</h2>
+            <div class="grid-3" style="margin-top: 24px">
+              <div class="highlight-box">
+                <div style="display: flex; flex-direction: column; gap: 8px">
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                    "
+                  >
+                    <span
+                      class="rating-ninja"
+                      style="font-family: var(--font-display); font-weight: 700"
+                      >🟢 Ninja</span
+                    >
+                    <span style="color: var(--text-muted); font-size: 0.8rem"
+                      >&lt; 180ms</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                    "
+                  >
+                    <span
+                      class="rating-pro"
+                      style="font-family: var(--font-display); font-weight: 700"
+                      >🔵 Pro</span
+                    >
+                    <span style="color: var(--text-muted); font-size: 0.8rem"
+                      >180–220ms</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                    "
+                  >
+                    <span
+                      class="rating-average"
+                      style="font-family: var(--font-display); font-weight: 700"
+                      >🟡 Average</span
+                    >
+                    <span style="color: var(--text-muted); font-size: 0.8rem"
+                      >220–280ms</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                    "
+                  >
+                    <span
+                      class="rating-slow"
+                      style="font-family: var(--font-display); font-weight: 700"
+                      >🟠 Slow</span
+                    >
+                    <span style="color: var(--text-muted); font-size: 0.8rem"
+                      >280–400ms</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                    "
+                  >
+                    <span
+                      class="rating-miss"
+                      style="font-family: var(--font-display); font-weight: 700"
+                      >🔴 Too Fast</span
+                    >
+                    <span style="color: var(--text-muted); font-size: 0.8rem"
+                      >Clicked too early</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🧠</div>
+                <h3>The Science</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  The average human visual reaction time is around 250ms. Elite
+                  athletes and gamers typically test between 150–220ms through
+                  training.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">💡</div>
+                <h3>Tips</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Take 5 rounds for an accurate average. Results vary with
+                  fatigue and caffeine. Try to stay relaxed — tension actually
+                  slows reactions.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section style="margin-top: 48px">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-tag">🎯 Up Next</span>
+                <h2>More Games</h2>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">👾</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Arcade</span
+                    ><span class="game-rating">★ 4.7</span>
+                  </div>
+                  <h3 class="game-title-text">Space Shooter</h3>
+                  <div class="game-footer">
+                    <a href="space-shooter.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🐍</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Arcade</span
+                    ><span class="game-rating">★ 4.8</span>
+                  </div>
+                  <h3 class="game-title-text">Snake Classic</h3>
+                  <div class="game-footer">
+                    <a href="snake.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🔤</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Brain</span
+                    ><span class="game-rating">★ 4.5</span>
+                  </div>
+                  <h3 class="game-title-text">Word Scramble</h3>
+                  <div class="game-footer">
+                    <a href="word-scramble.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0">
+          <p>
+            © 2026 QuickPlay. <a href="../index.html">Home</a> ·
+            <a href="../games.html">Games</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js" defer></script>
+    <script>
+      /* ============================================================
+     REACTION TIME GAME
+     States: idle → wait → ready → result | early
+     ============================================================ */
+      const ReactionTime = {
+        state: "idle", // idle | wait | ready | result | early
+        startTime: null,
+        timeout: null,
+        results: [], // array of ms times (null = early click)
+        totalRounds: 5,
+        round: 0,
+        best: parseInt(localStorage.getItem("rt-best") || "9999"),
+
+        ratings: [
+          {
+            max: 180,
+            label: "🟢 Ninja!",
+            cls: "rating-ninja",
+            color: "#39ff8a",
+          },
+          { max: 220, label: "🔵 Pro!", cls: "rating-pro", color: "#00e5ff" },
+          {
+            max: 280,
+            label: "🟡 Average",
+            cls: "rating-average",
+            color: "#ffe23c",
+          },
+          { max: 400, label: "🟠 Slow", cls: "rating-slow", color: "#ff8c3c" },
+          {
+            max: 9999,
+            label: "🔴 Sluggish",
+            cls: "rating-slow",
+            color: "#ff8c3c",
+          },
+        ],
+
+        init() {
+          this.arena = document.getElementById("rt-arena");
+          if (!this.arena) return;
+
+          this.arena.addEventListener("click", () => this.handleClick());
+          this.arena.addEventListener("keydown", (e) => {
+            if (e.code === "Space" || e.code === "Enter") this.handleClick();
+          });
+          document
+            .getElementById("rt-reset-btn")
+            ?.addEventListener("click", () => this.reset());
+          document
+            .getElementById("rt-restart-bar")
+            ?.addEventListener("click", () => this.reset());
+          window.resetGame = () => this.reset();
+
+          this.showIdle();
+        },
+
+        handleClick() {
+          switch (this.state) {
+            case "idle":
+              this.beginRound();
+              break;
+            case "wait":
+              this.tooEarly();
+              break;
+            case "ready":
+              this.record();
+              break;
+            case "result":
+              this.beginRound();
+              break;
+            case "early":
+              this.beginRound();
+              break;
+          }
+        },
+
+        reset() {
+          clearTimeout(this.timeout);
+          this.results = [];
+          this.round = 0;
+          this.state = "idle";
+          this.showIdle();
+        },
+
+        showIdle() {
+          this.setArenaClass("state-idle");
+          this.arena.innerHTML = `
+        <div class="rt-big-text rt-pulse" style="color:var(--accent-secondary);font-size:3rem;">⚡</div>
+        <div class="rt-sub-text">Click anywhere to start</div>
+        ${this.best < 9999 ? `<div style="font-family:var(--font-display);font-size:0.75rem;color:var(--text-muted);margin-top:8px;">Your Best: <strong style="color:var(--accent-yellow);">${this.best}ms</strong></div>` : ""}
+      `;
+        },
+
+        beginRound() {
+          if (this.round >= this.totalRounds) {
+            this.showFinalResults();
+            return;
+          }
+          this.round++;
+          this.state = "wait";
+          this.setArenaClass("state-wait");
+          this.arena.innerHTML = `
+        <div class="rt-big-text" style="color:#ff3c6e;">🔴</div>
+        <div class="rt-sub-text">Wait for green...</div>
+        <div style="font-family:var(--font-display);font-size:0.7rem;color:var(--text-muted);">Round ${this.round} of ${this.totalRounds}</div>
+      `;
+
+          // Random delay 1–4 seconds
+          const delay = 1000 + Math.random() * 3000;
+          this.timeout = setTimeout(() => this.goGreen(), delay);
+        },
+
+        goGreen() {
+          this.state = "ready";
+          this.startTime = performance.now();
+          this.setArenaClass("state-ready");
+          this.arena.innerHTML = `
+        <div class="rt-big-text rt-flash" style="color:#39ff8a;font-size:clamp(2.5rem,8vw,5rem);">GO!</div>
+        <div class="rt-sub-text">Click NOW!</div>
+      `;
+        },
+
+        record() {
+          const elapsed = Math.round(performance.now() - this.startTime);
+          this.results.push(elapsed);
+          if (elapsed < this.best) {
+            this.best = elapsed;
+            localStorage.setItem("rt-best", this.best);
+          }
+
+          const rating =
+            this.ratings.find((r) => elapsed <= r.max) ||
+            this.ratings[this.ratings.length - 1];
+          this.state = "result";
+          this.setArenaClass("state-result");
+
+          this.arena.innerHTML = `
+        <div class="rt-time-display">${elapsed}<span class="ms-label"> ms</span></div>
+        <div class="rt-rating ${rating.cls}">${rating.label}</div>
+        ${this.renderHistory()}
+        <div class="rt-sub-text">
+          ${
+            this.round < this.totalRounds
+              ? `Round ${this.round}/${this.totalRounds} — Click to continue`
+              : "Click to see final results"
+          }
+        </div>
+      `;
+        },
+
+        tooEarly() {
+          clearTimeout(this.timeout);
+          this.results.push(null); // null = early click
+          this.state = "early";
+          this.setArenaClass("state-early");
+          this.arena.innerHTML = `
+        <div class="rt-big-text" style="color:#ff3c6e;">Too Early! 😬</div>
+        <div class="rt-sub-text">Wait for GREEN before clicking!</div>
+        ${this.renderHistory()}
+        <div class="rt-sub-text" style="margin-top:8px;">Click to try again</div>
+      `;
+        },
+
+        showFinalResults() {
+          const valid = this.results.filter((r) => r !== null);
+          const avg = valid.length
+            ? Math.round(valid.reduce((a, b) => a + b, 0) / valid.length)
+            : null;
+          const best = valid.length ? Math.min(...valid) : null;
+          const misses = this.results.filter((r) => r === null).length;
+
+          const rating = avg
+            ? this.ratings.find((r) => avg <= r.max) ||
+              this.ratings[this.ratings.length - 1]
+            : { label: "❌ All misses", cls: "rating-miss", color: "#ff3c6e" };
+
+          this.state = "idle";
+          this.setArenaClass("state-result");
+          this.arena.innerHTML = `
+        <div style="text-align:center;pointer-events:none;">
+          <div style="font-family:var(--font-display);font-size:0.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:8px;">Final Results</div>
+          ${avg ? `<div class="rt-time-display" style="font-size:clamp(2.5rem,8vw,4rem);">${avg}<span class="ms-label"> ms avg</span></div>` : ""}
+          <div class="rt-rating ${rating.cls}" style="margin:8px 0;">${rating.label}</div>
+        </div>
+        <div class="rt-stats">
+          <div class="rt-stat"><span class="rt-stat-val" style="color:var(--accent-green);">${best ?? "—"}ms</span><span class="rt-stat-label">Best</span></div>
+          <div class="rt-stat"><span class="rt-stat-val" style="color:var(--accent-yellow);">${avg ?? "—"}ms</span><span class="rt-stat-label">Average</span></div>
+          <div class="rt-stat"><span class="rt-stat-val" style="color:var(--accent-primary);">${misses}</span><span class="rt-stat-label">Too Early</span></div>
+          <div class="rt-stat"><span class="rt-stat-val" style="color:var(--accent-secondary);">${this.best}ms</span><span class="rt-stat-label">All-Time Best</span></div>
+        </div>
+        ${this.renderHistory()}
+        <div class="rt-sub-text">Click to play again</div>
+      `;
+
+          this.round = 0;
+          this.results = [];
+        },
+
+        renderHistory() {
+          if (!this.results.length) return "";
+          const dots = this.results
+            .map((r) => {
+              if (r === null)
+                return `<span class="rt-dot" style="background:#ff3c6e;" title="Too early"></span>`;
+              const rating =
+                this.ratings.find((rt) => r <= rt.max) ||
+                this.ratings[this.ratings.length - 1];
+              return `<span class="rt-dot" style="background:${rating.color};" title="${r}ms"></span>`;
+            })
+            .join("");
+          return `<div class="rt-history">${dots}</div>`;
+        },
+
+        setArenaClass(cls) {
+          this.arena.className = "";
+          this.arena.classList.add(cls);
+        },
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        ReactionTime.init();
+      });
+    </script>
+  </body>
+</html>

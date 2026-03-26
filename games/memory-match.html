@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Memory Match Online Free — QuickPlay</title>
+    <meta
+      name="description"
+      content="Play Memory Match free in your browser. Flip cards, find matching emoji pairs, and beat your best score. A fun brain training game for all ages."
+    />
+    <meta
+      name="keywords"
+      content="memory match game online, card matching game browser, free memory game, concentration game"
+    />
+    <link
+      rel="canonical"
+      href="https://quickplay.games/games/memory-match.html"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Memory Match",
+        "description": "Flip cards and find matching pairs. Train your brain with this classic concentration game.",
+        "url": "https://quickplay.games/games/memory-match.html",
+        "genre": ["Brain", "Puzzle", "Casual"],
+        "gamePlatform": "Web Browser",
+        "isAccessibleForFree": true,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "reviewCount": "7210"
+        },
+        "publisher": { "@type": "Organization", "name": "QuickPlay" }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container">
+          <a href="../index.html" class="nav-brand"
+            ><div class="brand-icon">🎮</div>
+            Quick<span>Play</span></a
+          >
+          <ul class="nav-links" role="list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../games.html" class="active">Games</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="game-page">
+        <div class="container">
+          <nav class="breadcrumb">
+            <a href="../index.html">Home</a><span>›</span
+            ><a href="../games.html">Games</a><span>›</span
+            ><span>Memory Match</span>
+          </nav>
+          <div class="game-page-header">
+            <h1 style="margin-bottom: 8px">Memory Match</h1>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                flex-wrap: wrap;
+              "
+            >
+              <span style="color: var(--accent-yellow)">★★★★★ 4.7</span>
+              <span style="color: var(--text-muted); font-size: 0.82rem"
+                >🎮 302,000 plays</span
+              >
+              <span style="color: var(--text-muted); font-size: 0.82rem"
+                >🧠 Brain Game</span
+              >
+            </div>
+          </div>
+          <div class="game-container">
+            <div class="game-toolbar">
+              <span class="game-toolbar-title">🃏 Memory Match</span>
+              <div class="game-toolbar-actions">
+                <button class="btn btn-ghost btn-sm play-again-btn">
+                  ↺ Restart
+                </button>
+              </div>
+            </div>
+            <div
+              class="game-area"
+              style="background: var(--bg-primary); min-height: auto"
+            >
+              <div id="memory-container" style="width: 100%"></div>
+            </div>
+            <div class="game-actions-bar">
+              <button class="btn btn-primary play-again-btn">
+                ↺ Play Again
+              </button>
+              <a href="snake.html" class="btn btn-secondary">Next: Snake →</a>
+              <a href="../games.html" class="btn btn-ghost">All Games</a>
+            </div>
+          </div>
+          <section style="margin-top: 48px">
+            <h2>How to Play Memory Match</h2>
+            <div class="grid-3" style="margin-top: 24px">
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">👆</div>
+                <h3>Click to Flip</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Click any face-down card to reveal its emoji. Then click a
+                  second card.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🔄</div>
+                <h3>Match Pairs</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  If both cards show the same emoji, they stay face-up! If not,
+                  they flip back over.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🏆</div>
+                <h3>Clear the Board</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Match all 8 pairs in as few moves as possible. Challenge
+                  yourself to beat your best!
+                </p>
+              </div>
+            </div>
+          </section>
+          <section style="margin-top: 48px">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-tag">🎯 Up Next</span>
+                <h2>More Games</h2>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🐍</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Arcade</span
+                    ><span class="game-rating">★ 4.8</span>
+                  </div>
+                  <h3 class="game-title-text">Snake Classic</h3>
+                  <div class="game-footer">
+                    <a href="snake.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🔢</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Puzzle</span
+                    ><span class="game-rating">★ 4.9</span>
+                  </div>
+                  <h3 class="game-title-text">2048</h3>
+                  <div class="game-footer">
+                    <a href="2048.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">✖️</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Puzzle</span
+                    ><span class="game-rating">★ 4.6</span>
+                  </div>
+                  <h3 class="game-title-text">Tic-Tac-Toe</h3>
+                  <div class="game-footer">
+                    <a href="tic-tac-toe.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0">
+          <p>
+            © 2026 QuickPlay. <a href="../index.html">Home</a> ·
+            <a href="../games.html">Games</a>
+          </p>
+          <nav class="footer-legal">
+            <a href="#">Privacy</a><a href="#">Terms</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/main.js" defer></script>
+  </body>
+</html>

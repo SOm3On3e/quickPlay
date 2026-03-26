@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Word Scramble Online Free — QuickPlay</title>
+    <meta
+      name="description"
+      content="Play Word Scramble free in your browser. Unscramble jumbled letters to form real words before the timer runs out. A fun vocabulary brain game — no download needed!"
+    />
+    <meta
+      name="keywords"
+      content="word scramble game online, unscramble words browser, free word game, vocabulary game online"
+    />
+    <link
+      rel="canonical"
+      href="https://quickplay.games/games/word-scramble.html"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Play Word Scramble Online Free — QuickPlay"
+    />
+    <meta
+      property="og:description"
+      content="Unscramble words against the clock. Free browser word game, no download."
+    />
+    <meta
+      property="og:url"
+      content="https://quickplay.games/games/word-scramble.html"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Word Scramble",
+        "description": "Unscramble jumbled letters to form real words before the timer runs out.",
+        "url": "https://quickplay.games/games/word-scramble.html",
+        "genre": ["Brain", "Word", "Casual"],
+        "gamePlatform": "Web Browser",
+        "isAccessibleForFree": true,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.5",
+          "reviewCount": "6340"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "QuickPlay",
+          "url": "https://quickplay.games/"
+        }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ---- Word Scramble Specific Styles ---- */
+      .ws-wrap {
+        width: 100%;
+        max-width: 540px;
+        margin: 0 auto;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .ws-scorebar {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-family: var(--font-display);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .ws-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+      }
+      .ws-stat-val {
+        font-size: 1.6rem;
+        font-weight: 900;
+        line-height: 1;
+      }
+      .ws-stat-label {
+        font-size: 0.65rem;
+        color: var(--text-muted);
+      }
+
+      /* Timer ring */
+      .ws-timer-ring {
+        position: relative;
+        width: 72px;
+        height: 72px;
+      }
+      .ws-timer-ring svg {
+        transform: rotate(-90deg);
+      }
+      .ws-timer-ring .ring-bg {
+        fill: none;
+        stroke: var(--border-color);
+        stroke-width: 5;
+      }
+      .ws-timer-ring .ring-progress {
+        fill: none;
+        stroke: var(--accent-primary);
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-dasharray: 188;
+        stroke-dashoffset: 0;
+        transition:
+          stroke-dashoffset 1s linear,
+          stroke 0.3s;
+      }
+      .ws-timer-val {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 900;
+        color: var(--text-primary);
+      }
+
+      /* Scrambled letters */
+      .ws-letters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .ws-letter-tile {
+        width: 52px;
+        height: 60px;
+        background: var(--bg-card);
+        border: 2px solid var(--border-color);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--accent-secondary);
+        cursor: pointer;
+        transition: all 0.2s;
+        user-select: none;
+      }
+
+      .ws-letter-tile:hover:not(.used) {
+        border-color: var(--accent-secondary);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 229, 255, 0.25);
+      }
+
+      .ws-letter-tile.used {
+        opacity: 0.3;
+        cursor: default;
+        transform: none;
+      }
+
+      .ws-letter-tile.selected {
+        border-color: var(--accent-primary);
+        background: rgba(255, 60, 110, 0.15);
+        color: var(--accent-primary);
+        transform: translateY(-4px);
+        box-shadow: 0 6px 16px rgba(255, 60, 110, 0.3);
+      }
+
+      /* Answer slots */
+      .ws-answer {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        min-height: 68px;
+        align-items: center;
+      }
+
+      .ws-slot {
+        width: 52px;
+        height: 60px;
+        border-bottom: 3px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+
+      .ws-slot.filled {
+        border-color: var(--accent-primary);
+      }
+      .ws-slot.correct {
+        border-color: var(--accent-green);
+        color: var(--accent-green);
+      }
+      .ws-slot.wrong {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+      }
+
+      /* Category badge */
+      .ws-category {
+        font-family: var(--font-display);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent-yellow);
+        background: rgba(255, 226, 60, 0.1);
+        border: 1px solid rgba(255, 226, 60, 0.2);
+        padding: 4px 12px;
+        border-radius: 100px;
+      }
+
+      /* Hint area */
+      .ws-hint {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        text-align: center;
+        min-height: 24px;
+        font-style: italic;
+      }
+
+      /* Controls */
+      .ws-controls {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      /* Feedback flash */
+      @keyframes ws-correct {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes ws-wrong {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        20%,
+        60% {
+          transform: translateX(-6px);
+        }
+        40%,
+        80% {
+          transform: translateX(6px);
+        }
+      }
+
+      .ws-correct-anim {
+        animation: ws-correct 0.4s ease;
+      }
+      .ws-wrong-anim {
+        animation: ws-wrong 0.4s ease;
+      }
+
+      /* Result overlay */
+      .ws-result {
+        text-align: center;
+        padding: 16px;
+      }
+      .ws-result-icon {
+        font-size: 3rem;
+        margin-bottom: 8px;
+      }
+      .ws-result h3 {
+        margin-bottom: 4px;
+      }
+      .ws-result p {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="../index.html" class="nav-brand"
+            ><div class="brand-icon">🎮</div>
+            Quick<span>Play</span></a
+          >
+          <ul class="nav-links" role="list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../games.html" class="active">Games</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="game-page">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a><span>›</span>
+            <a href="../games.html">Games</a><span>›</span>
+            <span aria-current="page">Word Scramble</span>
+          </nav>
+
+          <div class="game-page-header">
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 16px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span
+                    style="
+                      font-family: var(--font-display);
+                      font-size: 0.7rem;
+                      color: var(--text-muted);
+                      text-transform: uppercase;
+                      letter-spacing: 0.08em;
+                    "
+                    >Brain · Word</span
+                  >
+                </div>
+                <h1 style="margin-bottom: 8px">Word Scramble</h1>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <span
+                    style="color: var(--accent-yellow)"
+                    aria-label="4.5 stars"
+                    >★★★★☆ 4.5</span
+                  >
+                  <span style="color: var(--text-muted); font-size: 0.82rem"
+                    >🎮 156,000 plays</span
+                  >
+                  <span style="color: var(--text-muted); font-size: 0.82rem"
+                    >⏱ 2–5 min session</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME CONTAINER -->
+          <div class="game-container">
+            <div class="game-toolbar">
+              <span class="game-toolbar-title">🔤 Word Scramble</span>
+              <div class="game-toolbar-actions">
+                <button class="btn btn-ghost btn-sm" id="ws-restart-btn">
+                  ↺ Restart
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="game-area"
+              style="background: var(--bg-primary); min-height: auto"
+            >
+              <div id="ws-container"></div>
+            </div>
+
+            <div class="game-actions-bar">
+              <button class="btn btn-primary" id="ws-restart-bar">
+                ↺ Play Again
+              </button>
+              <a href="reaction-time.html" class="btn btn-secondary"
+                >Next: Reaction Time →</a
+              >
+              <a href="../games.html" class="btn btn-ghost">All Games</a>
+            </div>
+          </div>
+
+          <!-- HOW TO PLAY -->
+          <section style="margin-top: 48px">
+            <h2>How to Play Word Scramble</h2>
+            <div class="grid-3" style="margin-top: 24px">
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🔤</div>
+                <h3>Click Letters</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Click the scrambled letter tiles in the correct order to spell
+                  the hidden word.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">⏱</div>
+                <h3>Beat the Clock</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  You have 30 seconds per word. Run out of time and the round
+                  ends — keep your streak going!
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">💡</div>
+                <h3>Use Hints</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Stuck? Click "Hint" to reveal the category, or "Shuffle" to
+                  re-scramble the letters for a fresh look.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- NEXT GAMES -->
+          <section style="margin-top: 48px">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-tag">🎯 Up Next</span>
+                <h2>More Games</h2>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">⚡</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Arcade</span
+                    ><span class="game-rating">★ 4.4</span>
+                  </div>
+                  <h3 class="game-title-text">Reaction Time</h3>
+                  <p class="game-desc">Test your reflex speed.</p>
+                  <div class="game-footer">
+                    <a href="reaction-time.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🧩</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Brain</span
+                    ><span class="game-rating">★ 4.7</span>
+                  </div>
+                  <h3 class="game-title-text">Memory Match</h3>
+                  <p class="game-desc">Flip cards and match pairs.</p>
+                  <div class="game-footer">
+                    <a href="memory-match.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🐍</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Arcade</span
+                    ><span class="game-rating">★ 4.8</span>
+                  </div>
+                  <h3 class="game-title-text">Snake Classic</h3>
+                  <p class="game-desc">Eat, grow, survive.</p>
+                  <div class="game-footer">
+                    <a href="snake.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0">
+          <p>
+            © 2026 QuickPlay. <a href="../index.html">Home</a> ·
+            <a href="../games.html">Games</a> · <a href="../blog.html">Blog</a>
+          </p>
+          <nav class="footer-legal">
+            <a href="#">Privacy</a><a href="#">Terms</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js" defer></script>
+    <script>
+      /* ============================================================
+     WORD SCRAMBLE GAME
+     ============================================================ */
+      const WordScramble = {
+        words: [
+          { word: "PLANET", hint: "Astronomy", clue: "Orbits a star" },
+          { word: "BRIDGE", hint: "Structure", clue: "Crosses a river" },
+          { word: "JUNGLE", hint: "Nature", clue: "Dense tropical forest" },
+          { word: "ROCKET", hint: "Space", clue: "Goes to the moon" },
+          { word: "CANDLE", hint: "Object", clue: "Gives light when lit" },
+          { word: "FROZEN", hint: "State", clue: "Water turned to ice" },
+          { word: "BRANCH", hint: "Nature", clue: "Part of a tree" },
+          { word: "MIRROR", hint: "Object", clue: "Shows your reflection" },
+          { word: "CASTLE", hint: "Building", clue: "Where kings lived" },
+          { word: "LEMON", hint: "Fruit", clue: "Sour yellow citrus" },
+          { word: "STORM", hint: "Weather", clue: "Thunder and lightning" },
+          { word: "GLOVE", hint: "Clothing", clue: "Worn on your hand" },
+          { word: "SPIDER", hint: "Animal", clue: "Has eight legs" },
+          { word: "TRUMPET", hint: "Music", clue: "Brass instrument" },
+          { word: "CACTUS", hint: "Plant", clue: "Desert plant with spines" },
+          { word: "FLUTE", hint: "Music", clue: "Wind instrument you blow" },
+          { word: "HELMET", hint: "Safety", clue: "Protects your head" },
+          { word: "OCEAN", hint: "Geography", clue: "Large body of saltwater" },
+          { word: "PUZZLE", hint: "Game", clue: "Pieces fit together" },
+          { word: "WIZARD", hint: "Fantasy", clue: "Casts magic spells" },
+        ],
+
+        current: null,
+        scrambled: [],
+        selected: [], // indices into scrambled[]
+        answer: [], // letters placed so far
+        score: 0,
+        streak: 0,
+        timeLeft: 30,
+        totalTime: 30,
+        timer: null,
+        showHint: false,
+        wordIndex: 0,
+
+        init(containerId) {
+          this.container = document.getElementById(containerId);
+          if (!this.container) return;
+          // Shuffle word list
+          this.wordList = [...this.words].sort(() => Math.random() - 0.5);
+          this.wordIndex = 0;
+          this.score = 0;
+          this.streak = 0;
+          this.nextWord();
+
+          // Restart buttons
+          document
+            .getElementById("ws-restart-btn")
+            ?.addEventListener("click", () => this.restart());
+          document
+            .getElementById("ws-restart-bar")
+            ?.addEventListener("click", () => this.restart());
+
+          window.resetGame = () => this.restart();
+        },
+
+        restart() {
+          clearInterval(this.timer);
+          this.wordList = [...this.words].sort(() => Math.random() - 0.5);
+          this.wordIndex = 0;
+          this.score = 0;
+          this.streak = 0;
+          this.nextWord();
+        },
+
+        nextWord() {
+          clearInterval(this.timer);
+          if (this.wordIndex >= this.wordList.length) {
+            this.wordList = [...this.words].sort(() => Math.random() - 0.5);
+            this.wordIndex = 0;
+          }
+          this.current = this.wordList[this.wordIndex++];
+          this.scrambled = this.scramble(this.current.word);
+          this.selected = [];
+          this.answer = [];
+          this.showHint = false;
+          this.timeLeft = this.totalTime;
+          this.render();
+          this.startTimer();
+        },
+
+        scramble(word) {
+          const arr = word.split("");
+          // Ensure it's different from original
+          let attempts = 0;
+          do {
+            for (let i = arr.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            attempts++;
+          } while (arr.join("") === word && attempts < 20);
+          return arr;
+        },
+
+        startTimer() {
+          this.timer = setInterval(() => {
+            this.timeLeft--;
+            this.updateTimer();
+            if (this.timeLeft <= 0) {
+              clearInterval(this.timer);
+              this.streak = 0;
+              this.showFail();
+            }
+          }, 1000);
+        },
+
+        updateTimer() {
+          const ring = this.container.querySelector(".ring-progress");
+          const val = this.container.querySelector(".ws-timer-val");
+          if (!ring || !val) return;
+          const circumference = 188;
+          const offset = circumference * (1 - this.timeLeft / this.totalTime);
+          ring.style.strokeDashoffset = offset;
+          ring.style.stroke =
+            this.timeLeft <= 8
+              ? "var(--accent-primary)"
+              : this.timeLeft <= 15
+                ? "var(--accent-yellow)"
+                : "var(--accent-green)";
+          val.textContent = this.timeLeft;
+        },
+
+        render() {
+          this.container.innerHTML = `
+        <div class="ws-wrap">
+          <!-- Score bar -->
+          <div class="ws-scorebar">
+            <div class="ws-stat">
+              <span class="ws-stat-val" style="color:var(--accent-yellow);" id="ws-score">${this.score}</span>
+              <span class="ws-stat-label">Score</span>
+            </div>
+            <div class="ws-timer-ring">
+              <svg viewBox="0 0 72 72" width="72" height="72">
+                <circle class="ring-bg" cx="36" cy="36" r="30"/>
+                <circle class="ring-progress" cx="36" cy="36" r="30"/>
+              </svg>
+              <div class="ws-timer-val">${this.timeLeft}</div>
+            </div>
+            <div class="ws-stat">
+              <span class="ws-stat-val" style="color:var(--accent-green);" id="ws-streak">${this.streak}</span>
+              <span class="ws-stat-label">Streak 🔥</span>
+            </div>
+          </div>
+
+          <!-- Category / hint -->
+          <div class="ws-category" id="ws-hint-badge">
+            ${this.showHint ? "💡 " + this.current.clue : "📂 " + this.current.hint}
+          </div>
+
+          <!-- Answer slots -->
+          <div class="ws-answer" id="ws-answer">
+            ${Array(this.current.word.length)
+              .fill(0)
+              .map(
+                (_, i) => `
+              <div class="ws-slot${this.answer[i] ? " filled" : ""}" data-slot="${i}">
+                ${this.answer[i] || ""}
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+
+          <!-- Scrambled letters -->
+          <div class="ws-letters" id="ws-letters">
+            ${this.scrambled
+              .map(
+                (letter, i) => `
+              <div class="ws-letter-tile${this.selected.includes(i) ? " used" : ""}" data-idx="${i}">
+                ${letter}
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+
+          <!-- Controls -->
+          <div class="ws-controls">
+            <button class="btn btn-ghost btn-sm" id="ws-clear-btn">✕ Clear</button>
+            <button class="btn btn-ghost btn-sm" id="ws-shuffle-btn">🔀 Shuffle</button>
+            <button class="btn btn-ghost btn-sm" id="ws-hint-btn">💡 Hint</button>
+            <button class="btn btn-primary btn-sm" id="ws-submit-btn">✓ Submit</button>
+          </div>
+        </div>
+      `;
+
+          // Bind letter clicks
+          this.container.querySelectorAll(".ws-letter-tile").forEach((tile) => {
+            tile.addEventListener("click", () => {
+              const idx = parseInt(tile.dataset.idx);
+              if (this.selected.includes(idx)) return;
+              this.selectLetter(idx);
+            });
+          });
+
+          // Bind slot clicks (remove letter)
+          this.container.querySelectorAll(".ws-slot").forEach((slot) => {
+            slot.addEventListener("click", () => {
+              const si = parseInt(slot.dataset.slot);
+              if (this.answer[si] !== undefined) this.removeLetter(si);
+            });
+          });
+
+          this.container
+            .querySelector("#ws-clear-btn")
+            ?.addEventListener("click", () => this.clearAnswer());
+          this.container
+            .querySelector("#ws-shuffle-btn")
+            ?.addEventListener("click", () => {
+              this.scrambled = this.scramble(this.current.word);
+              this.clearAnswer();
+            });
+          this.container
+            .querySelector("#ws-hint-btn")
+            ?.addEventListener("click", () => {
+              this.showHint = true;
+              this.render();
+              this.updateTimer();
+            });
+          this.container
+            .querySelector("#ws-submit-btn")
+            ?.addEventListener("click", () => this.checkAnswer());
+
+          // Keyboard support
+          if (!this._keyBound) {
+            this._keyBound = true;
+            document.addEventListener("keydown", (e) => {
+              if (e.key === "Enter") this.checkAnswer();
+              if (e.key === "Backspace") this.removeLastLetter();
+              if (e.key === "Escape") this.clearAnswer();
+            });
+          }
+        },
+
+        selectLetter(idx) {
+          const slotIdx = this.answer.findIndex(
+            (l) => l === undefined || l === null,
+          );
+          const nextEmpty =
+            this.answer.length < this.current.word.length
+              ? this.answer.length
+              : -1;
+
+          if (
+            nextEmpty === -1 &&
+            this.answer.filter(Boolean).length >= this.current.word.length
+          )
+            return;
+
+          this.selected.push(idx);
+          this.answer.push(this.scrambled[idx]);
+          this.render();
+          this.updateTimer();
+
+          // Auto-submit when all filled
+          if (this.answer.length === this.current.word.length) {
+            setTimeout(() => this.checkAnswer(), 300);
+          }
+        },
+
+        removeLetter(slotIdx) {
+          // Find which scrambled tile it came from
+          const letter = this.answer[slotIdx];
+          const tileIdx = this.selected[slotIdx];
+          this.selected.splice(slotIdx, 1);
+          this.answer.splice(slotIdx, 1);
+          this.render();
+          this.updateTimer();
+        },
+
+        removeLastLetter() {
+          if (!this.answer.length) return;
+          this.selected.pop();
+          this.answer.pop();
+          this.render();
+          this.updateTimer();
+        },
+
+        clearAnswer() {
+          this.selected = [];
+          this.answer = [];
+          this.render();
+          this.updateTimer();
+        },
+
+        checkAnswer() {
+          if (this.answer.length < this.current.word.length) return;
+          const guess = this.answer.join("").toUpperCase();
+          const answerEl = this.container.querySelector("#ws-answer");
+
+          if (guess === this.current.word) {
+            // Correct!
+            clearInterval(this.timer);
+            const bonus = Math.ceil(this.timeLeft / 5);
+            this.score += 10 + bonus;
+            this.streak++;
+
+            answerEl?.querySelectorAll(".ws-slot").forEach((s) => {
+              s.classList.add("correct");
+            });
+            answerEl?.classList.add("ws-correct-anim");
+
+            // Update score display
+            const scoreEl = this.container.querySelector("#ws-score");
+            const streakEl = this.container.querySelector("#ws-streak");
+            if (scoreEl) scoreEl.textContent = this.score;
+            if (streakEl) streakEl.textContent = this.streak;
+
+            if (typeof Toast !== "undefined") {
+              const msgs = [
+                "🎉 Correct!",
+                "🔥 Nice one!",
+                "⚡ Blazing!",
+                "🏆 Brilliant!",
+              ];
+              Toast.show(
+                msgs[Math.min(this.streak - 1, msgs.length - 1)] ||
+                  "✅ Correct!",
+              );
+            }
+
+            setTimeout(() => this.nextWord(), 1200);
+          } else {
+            // Wrong
+            this.streak = 0;
+            answerEl
+              ?.querySelectorAll(".ws-slot")
+              .forEach((s) => s.classList.add("wrong"));
+            answerEl?.classList.add("ws-wrong-anim");
+            setTimeout(() => {
+              this.clearAnswer();
+              const streakEl = this.container.querySelector("#ws-streak");
+              if (streakEl) streakEl.textContent = 0;
+            }, 600);
+          }
+        },
+
+        showFail() {
+          const answerEl = this.container.querySelector("#ws-answer");
+          if (answerEl) {
+            answerEl.innerHTML = this.current.word
+              .split("")
+              .map(
+                (l) => `
+          <div class="ws-slot correct">${l}</div>
+        `,
+              )
+              .join("");
+          }
+          if (typeof Toast !== "undefined")
+            Toast.show(
+              `⏰ Time's up! The word was "${this.current.word}"`,
+              "error",
+              3000,
+            );
+          setTimeout(() => this.nextWord(), 2000);
+        },
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        WordScramble.init("ws-container");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play 2048 Online Free — QuickPlay</title>
+    <meta
+      name="description"
+      content="Play 2048 free in your browser. Slide and merge numbered tiles on a 4x4 grid to reach the 2048 tile. Addictive puzzle game with no download required."
+    />
+    <meta
+      name="keywords"
+      content="2048 game online, play 2048 browser, free 2048 puzzle game, tile merging game"
+    />
+    <link rel="canonical" href="https://quickplay.games/games/2048.html" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "2048",
+        "description": "Slide numbered tiles on a 4x4 grid and merge them to reach the 2048 tile.",
+        "url": "https://quickplay.games/games/2048.html",
+        "genre": ["Puzzle", "Casual"],
+        "gamePlatform": "Web Browser",
+        "isAccessibleForFree": true,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "15600"
+        },
+        "publisher": { "@type": "Organization", "name": "QuickPlay" }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container">
+          <a href="../index.html" class="nav-brand"
+            ><div class="brand-icon">🎮</div>
+            Quick<span>Play</span></a
+          >
+          <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../games.html" class="active">Games</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="game-page">
+        <div class="container">
+          <nav class="breadcrumb">
+            <a href="../index.html">Home</a><span>›</span
+            ><a href="../games.html">Games</a><span>›</span><span>2048</span>
+          </nav>
+          <div class="game-page-header">
+            <div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  margin-bottom: 8px;
+                "
+              >
+                <span class="game-badge badge-hot" style="position: static"
+                  >⚡ Hot</span
+                >
+                <span
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 0.7rem;
+                    color: var(--text-muted);
+                    text-transform: uppercase;
+                  "
+                  >Puzzle</span
+                >
+              </div>
+              <h1 style="margin-bottom: 8px">2048</h1>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 16px;
+                  flex-wrap: wrap;
+                "
+              >
+                <span style="color: var(--accent-yellow)">★★★★★ 4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.82rem"
+                  >🎮 621,000 plays</span
+                >
+                <span style="color: var(--text-muted); font-size: 0.82rem"
+                  >⌨️ Arrow Keys / Swipe</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="game-container">
+            <div class="game-toolbar">
+              <span class="game-toolbar-title">🔢 2048</span>
+              <div class="game-toolbar-actions">
+                <button class="btn btn-ghost btn-sm play-again-btn">
+                  ↺ Restart
+                </button>
+              </div>
+            </div>
+            <div
+              class="game-area"
+              style="background: var(--bg-primary); min-height: auto"
+            >
+              <div id="game2048-container" style="width: 100%"></div>
+            </div>
+            <div class="game-actions-bar">
+              <button class="btn btn-primary play-again-btn">↺ New Game</button>
+              <a href="snake.html" class="btn btn-secondary">Next: Snake →</a>
+              <a href="../games.html" class="btn btn-ghost">All Games</a>
+            </div>
+          </div>
+          <section style="margin-top: 48px">
+            <h2>How to Play 2048</h2>
+            <div class="grid-3" style="margin-top: 24px">
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">⬆⬇⬅➡</div>
+                <h3>Slide Tiles</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Use arrow keys or swipe to slide all tiles in one direction at
+                  once.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">➕</div>
+                <h3>Merge Numbers</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  When two tiles with the same number collide, they merge into
+                  one — doubling the value!
+                </p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size: 1.8rem; margin-bottom: 12px">🎯</div>
+                <h3>Reach 2048</h3>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    margin-top: 8px;
+                  "
+                >
+                  Keep merging to reach the 2048 tile. The board fills up
+                  quickly — plan your moves wisely.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section style="margin-top: 48px">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-tag">🎯 Up Next</span>
+                <h2>More Games</h2>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🐍</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Arcade</span
+                    ><span class="game-rating">★ 4.8</span>
+                  </div>
+                  <h3 class="game-title-text">Snake Classic</h3>
+                  <div class="game-footer">
+                    <a href="snake.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">🃏</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Brain</span
+                    ><span class="game-rating">★ 4.7</span>
+                  </div>
+                  <h3 class="game-title-text">Memory Match</h3>
+                  <div class="game-footer">
+                    <a href="memory-match.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+              <article class="game-card">
+                <div class="game-thumb">
+                  <div class="game-thumb-placeholder">✖️</div>
+                  <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                  </div>
+                </div>
+                <div class="game-info">
+                  <div class="game-meta">
+                    <span class="game-category">Puzzle</span
+                    ><span class="game-rating">★ 4.6</span>
+                  </div>
+                  <h3 class="game-title-text">Tic-Tac-Toe</h3>
+                  <div class="game-footer">
+                    <a href="tic-tac-toe.html" class="btn btn-primary btn-sm"
+                      >Play Now</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0">
+          <p>
+            © 2026 QuickPlay. <a href="../index.html">Home</a> ·
+            <a href="../games.html">Games</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/main.js" defer></script>
+  </body>
+</html>

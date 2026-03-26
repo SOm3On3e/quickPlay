@@ -1,0 +1,1972 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Your Game — QuickPlay | Get Your Game Featured</title>
+    <meta
+      name="description"
+      content="Submit your HTML5 or JavaScript browser game to QuickPlay for free. We review all submissions and feature the best games to our 2M+ monthly players."
+    />
+    <meta
+      name="keywords"
+      content="submit browser game, publish game online, html5 game submission, indie game showcase, get game featured"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://quickplay.games/submit-game.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Submit Your Game — QuickPlay" />
+    <meta
+      property="og:description"
+      content="Get your HTML5 browser game featured on QuickPlay — 2M+ monthly players, free submission."
+    />
+    <meta
+      property="og:url"
+      content="https://quickplay.games/submit-game.html"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Submit a Game — QuickPlay",
+        "url": "https://quickplay.games/submit-game.html",
+        "description": "Submit your HTML5 browser game to QuickPlay for a chance to be featured.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://quickplay.games/",
+          "name": "QuickPlay"
+        }
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/
+      /favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/favicon-180x180.png"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ---- Submit Game Page Specific ---- */
+
+      /* Hero */
+      .submit-hero {
+        padding: 80px 0 56px;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .submit-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--border-color) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+        background-size: 48px 48px;
+        opacity: 0.2;
+      }
+
+      .submit-hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 700px;
+        height: 450px;
+        background: radial-gradient(
+          ellipse,
+          rgba(57, 255, 138, 0.08) 0%,
+          rgba(0, 229, 255, 0.05) 40%,
+          transparent 70%
+        );
+      }
+
+      .submit-hero-content {
+        position: relative;
+        z-index: 1;
+      }
+      .submit-hero-content h1 {
+        background: linear-gradient(
+          135deg,
+          var(--text-primary),
+          var(--accent-green)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 16px;
+      }
+
+      /* Perks strip */
+      .perks-strip {
+        display: flex;
+        gap: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 24px 0;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        background: var(--bg-secondary);
+      }
+
+      .perk {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 24px;
+        font-family: var(--font-display);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        border-right: 1px solid var(--border-color);
+      }
+
+      .perk:last-child {
+        border-right: none;
+      }
+      .perk-icon {
+        font-size: 1rem;
+      }
+
+      /* Layout */
+      .submit-layout {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 40px;
+        align-items: start;
+      }
+
+      /* Multi-step progress */
+      .step-progress {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin-bottom: 36px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+      }
+
+      .step-item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 12px;
+        font-family: var(--font-display);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        border-right: 1px solid var(--border-color);
+        transition: all var(--transition);
+        cursor: default;
+      }
+
+      .step-item:last-child {
+        border-right: none;
+      }
+
+      .step-num {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        flex-shrink: 0;
+        transition: all var(--transition);
+      }
+
+      .step-item.active {
+        color: var(--text-primary);
+        background: rgba(0, 229, 255, 0.05);
+      }
+      .step-item.active .step-num {
+        border-color: var(--accent-secondary);
+        color: var(--accent-secondary);
+      }
+      .step-item.done {
+        color: var(--accent-green);
+      }
+      .step-item.done .step-num {
+        border-color: var(--accent-green);
+        background: var(--accent-green);
+        color: #000;
+      }
+
+      /* Form wrap */
+      .submit-form-wrap {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 40px;
+      }
+
+      /* Step panels */
+      .step-panel {
+        display: none;
+      }
+      .step-panel.active {
+        display: block;
+      }
+
+      /* Reused form styles (same as contact.html) */
+      .form-group {
+        margin-bottom: 22px;
+      }
+
+      .form-label {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+      }
+
+      .form-label .required {
+        color: var(--accent-primary);
+        margin-left: 3px;
+      }
+      .form-label .hint {
+        font-weight: 400;
+        color: var(--text-muted);
+        font-family: var(--font-body);
+        text-transform: none;
+        letter-spacing: 0;
+        font-size: 0.8rem;
+        margin-left: 8px;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        background: var(--bg-secondary);
+        border: 1.5px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        color: var(--text-primary);
+        font-family: var(--font-body);
+        font-size: 0.93rem;
+        padding: 12px 16px;
+        transition: all var(--transition);
+        outline: none;
+        appearance: none;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        border-color: var(--accent-secondary);
+        box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.12);
+        background: var(--bg-card);
+      }
+
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: var(--text-muted);
+      }
+      .form-input.error,
+      .form-select.error,
+      .form-textarea.error {
+        border-color: var(--accent-primary);
+      }
+      .form-error-msg {
+        display: none;
+        font-size: 0.75rem;
+        color: var(--accent-primary);
+        margin-top: 5px;
+      }
+      .form-group.has-error .form-error-msg {
+        display: block;
+      }
+
+      .form-select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239090b8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 40px;
+        cursor: pointer;
+      }
+
+      .form-select option {
+        background: var(--bg-card);
+      }
+      .form-textarea {
+        resize: vertical;
+        min-height: 110px;
+        line-height: 1.6;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      /* Category checkbox grid */
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .category-check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg-secondary);
+        border: 1.5px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        padding: 10px 12px;
+        cursor: pointer;
+        transition: all var(--transition);
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        user-select: none;
+      }
+
+      .category-check input {
+        display: none;
+      }
+
+      .category-check.checked,
+      .category-check:has(input:checked) {
+        border-color: var(--accent-secondary);
+        background: rgba(0, 229, 255, 0.08);
+        color: var(--accent-secondary);
+      }
+
+      .category-check:hover {
+        border-color: var(--accent-secondary);
+      }
+
+      /* Rating input */
+      .age-rating-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .age-option {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--bg-secondary);
+        border: 1.5px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        padding: 8px 14px;
+        cursor: pointer;
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        transition: all var(--transition);
+        user-select: none;
+      }
+
+      .age-option input {
+        display: none;
+      }
+      .age-option.selected {
+        border-color: var(--accent-primary);
+        background: rgba(255, 60, 110, 0.08);
+        color: var(--accent-primary);
+      }
+
+      /* Upload zone */
+      .upload-zone {
+        border: 2px dashed var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 32px;
+        text-align: center;
+        cursor: pointer;
+        transition: all var(--transition);
+        background: var(--bg-secondary);
+        position: relative;
+      }
+
+      .upload-zone:hover,
+      .upload-zone.drag-over {
+        border-color: var(--accent-secondary);
+        background: rgba(0, 229, 255, 0.04);
+      }
+
+      .upload-zone input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+
+      .upload-icon {
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+      }
+      .upload-text {
+        font-size: 0.88rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+      .upload-text strong {
+        color: var(--accent-secondary);
+      }
+      .upload-accepted {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin-top: 8px;
+      }
+
+      .upload-preview {
+        display: none;
+        align-items: center;
+        gap: 12px;
+        background: var(--bg-card);
+        border: 1px solid var(--accent-green);
+        border-radius: var(--radius-sm);
+        padding: 12px 16px;
+        margin-top: 10px;
+        font-size: 0.85rem;
+        color: var(--text-primary);
+      }
+
+      .upload-preview.show {
+        display: flex;
+      }
+
+      /* Checkbox toggle */
+      .toggle-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .toggle-label input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent-primary);
+        flex-shrink: 0;
+        margin-top: 1px;
+        cursor: pointer;
+      }
+
+      /* Step navigation */
+      .step-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border-color);
+        gap: 12px;
+      }
+
+      /* Review summary */
+      .review-section {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .review-section h4 {
+        font-size: 0.72rem;
+        font-family: var(--font-display);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
+
+      .review-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.85rem;
+      }
+
+      .review-row:last-child {
+        border-bottom: none;
+      }
+      .review-key {
+        color: var(--text-muted);
+        flex-shrink: 0;
+      }
+      .review-val {
+        color: var(--text-primary);
+        font-weight: 600;
+        text-align: right;
+      }
+
+      /* Success */
+      .submit-success {
+        display: none;
+        text-align: center;
+        padding: 48px 20px;
+      }
+
+      .submit-success.show {
+        display: block;
+      }
+      .submit-success-icon {
+        font-size: 4rem;
+        margin-bottom: 16px;
+      }
+
+      /* Sidebar */
+      .submit-sidebar-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 24px;
+        margin-bottom: 16px;
+      }
+
+      .submit-sidebar-card h4 {
+        font-family: var(--font-display);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-primary);
+        margin-bottom: 14px;
+      }
+
+      .requirements-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .req-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.83rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .req-icon {
+        flex-shrink: 0;
+        font-size: 1rem;
+        margin-top: 1px;
+      }
+      .req-item.must {
+        color: var(--text-primary);
+      }
+      .req-item.reject {
+        color: var(--accent-primary);
+        opacity: 0.8;
+      }
+
+      .process-step {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.83rem;
+      }
+
+      .process-step:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .process-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--accent-primary);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 0.7rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .process-text strong {
+        display: block;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+      .process-text span {
+        color: var(--text-muted);
+        font-size: 0.78rem;
+      }
+
+      @media (max-width: 900px) {
+        .submit-layout {
+          grid-template-columns: 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .category-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .submit-form-wrap {
+          padding: 20px 16px;
+        }
+        .step-item .step-label {
+          display: none;
+        }
+        .category-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <a href="index.html" class="nav-brand"
+            ><div class="brand-icon">🎮</div>
+            Quick<span>Play</span></a
+          >
+          <ul class="nav-links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+            <button class="menu-toggle" aria-label="Toggle menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ===== HERO ===== -->
+      <section class="submit-hero" aria-labelledby="submit-heading">
+        <div class="container">
+          <div class="submit-hero-content">
+            <div class="hero-eyebrow fade-up" style="justify-content: center">
+              <span class="dot"></span>
+              Open to All Developers
+            </div>
+            <h1 id="submit-heading" class="fade-up fade-up-1">
+              Get Your Game<br />in Front of Millions
+            </h1>
+            <p
+              class="fade-up fade-up-2"
+              style="
+                color: var(--text-secondary);
+                max-width: 520px;
+                margin: 0 auto;
+                font-size: 1.05rem;
+                line-height: 1.7;
+              "
+            >
+              QuickPlay reaches over
+              <strong style="color: var(--text-primary)"
+                >2K players monthly</strong
+              >. Submit your HTML5 or JavaScript browser game — it's free, takes
+              5 minutes, and we review every submission personally.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PERKS ===== -->
+      <div class="perks-strip" aria-label="Platform benefits">
+        <div class="perk">
+          <span class="perk-icon">🆓</span><span>Free to Submit</span>
+        </div>
+        <div class="perk">
+          <span class="perk-icon">👀</span><span>2M+ Monthly Players</span>
+        </div>
+        <div class="perk">
+          <span class="perk-icon">⚡</span><span>5-Day Review</span>
+        </div>
+        <div class="perk">
+          <span class="perk-icon">🏆</span><span>Homepage Features</span>
+        </div>
+        <div class="perk">
+          <span class="perk-icon">📊</span><span>Play Stats Included</span>
+        </div>
+      </div>
+
+      <!-- ===== MAIN CONTENT ===== -->
+      <section class="section-pad">
+        <div class="container">
+          <div class="submit-layout">
+            <!-- ===== MULTI-STEP FORM ===== -->
+            <div>
+              <!-- Step Progress -->
+              <div class="step-progress" role="tablist" aria-label="Form steps">
+                <div
+                  class="step-item active"
+                  id="step-tab-1"
+                  role="tab"
+                  aria-selected="true"
+                >
+                  <div class="step-num">1</div>
+                  <span class="step-label">Game Info</span>
+                </div>
+                <div
+                  class="step-item"
+                  id="step-tab-2"
+                  role="tab"
+                  aria-selected="false"
+                >
+                  <div class="step-num">2</div>
+                  <span class="step-label">Details</span>
+                </div>
+                <div
+                  class="step-item"
+                  id="step-tab-3"
+                  role="tab"
+                  aria-selected="false"
+                >
+                  <div class="step-num">3</div>
+                  <span class="step-label">Developer</span>
+                </div>
+                <div
+                  class="step-item"
+                  id="step-tab-4"
+                  role="tab"
+                  aria-selected="false"
+                >
+                  <div class="step-num">4</div>
+                  <span class="step-label">Review</span>
+                </div>
+              </div>
+
+              <div class="submit-form-wrap">
+                <!-- ===================== -->
+                <!-- STEP 1 — GAME INFO    -->
+                <!-- ===================== -->
+                <div class="step-panel active" id="step-1" role="tabpanel">
+                  <h2 style="margin-bottom: 6px; font-size: 1.3rem">
+                    Tell Us About Your Game
+                  </h2>
+                  <p
+                    style="
+                      color: var(--text-secondary);
+                      font-size: 0.88rem;
+                      margin-bottom: 28px;
+                    "
+                  >
+                    Basic information that will appear on your game's page.
+                  </p>
+
+                  <div class="form-group">
+                    <label class="form-label" for="game-title">
+                      Game Title <span class="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="game-title"
+                      class="form-input sg-field"
+                      data-step="1"
+                      placeholder="e.g. Bubble Pop Deluxe"
+                      maxlength="80"
+                      required
+                    />
+                    <span class="form-error-msg"
+                      >Please enter your game's title.</span
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="game-url">
+                      Game URL <span class="required">*</span>
+                      <span class="hint">Direct link where the game runs</span>
+                    </label>
+                    <input
+                      type="url"
+                      id="game-url"
+                      class="form-input sg-field"
+                      data-step="1"
+                      placeholder="https://yourdomain.com/game or itch.io link"
+                      required
+                    />
+                    <span class="form-error-msg"
+                      >Please enter a valid URL starting with https://</span
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="game-description">
+                      Short Description <span class="required">*</span>
+                      <span class="hint"
+                        >Shown on game cards (max 160 chars)</span
+                      >
+                    </label>
+                    <textarea
+                      id="game-description"
+                      class="form-textarea sg-field"
+                      data-step="1"
+                      placeholder="Describe your game in one or two sentences. What do players do? What makes it fun?"
+                      maxlength="160"
+                      rows="3"
+                      required
+                      style="min-height: 80px"
+                    ></textarea>
+                    <div class="char-counter" id="desc-counter">0 / 160</div>
+                    <span class="form-error-msg"
+                      >Please write a description (min 30 characters).</span
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">
+                      Category <span class="required">*</span>
+                      <span class="hint">Select all that apply</span>
+                    </label>
+                    <div class="category-grid">
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="puzzle"
+                        /><span>🧩 Puzzle</span></label
+                      >
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="arcade"
+                        /><span>🕹️ Arcade</span></label
+                      >
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="brain"
+                        /><span>🧠 Brain</span></label
+                      >
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="card"
+                        /><span>🃏 Card</span></label
+                      >
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="action"
+                        /><span>⚔️ Action</span></label
+                      >
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="word"
+                        /><span>🔤 Word</span></label
+                      >
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="idle"
+                        /><span>💤 Idle</span></label
+                      >
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="sport"
+                        /><span>⚽ Sports</span></label
+                      >
+                      <label class="category-check"
+                        ><input
+                          type="checkbox"
+                          name="category"
+                          value="other"
+                        /><span>❓ Other</span></label
+                      >
+                    </div>
+                    <span
+                      class="form-error-msg"
+                      id="cat-error"
+                      style="display: none"
+                      >Please select at least one category.</span
+                    >
+                  </div>
+
+                  <div class="step-nav">
+                    <span style="font-size: 0.8rem; color: var(--text-muted)"
+                      >Step 1 of 4</span
+                    >
+                    <button class="btn btn-primary" onclick="goToStep(2)">
+                      Next: Game Details →
+                    </button>
+                  </div>
+                </div>
+
+                <!-- ======================== -->
+                <!-- STEP 2 — GAME DETAILS   -->
+                <!-- ======================== -->
+                <div class="step-panel" id="step-2" role="tabpanel">
+                  <h2 style="margin-bottom: 6px; font-size: 1.3rem">
+                    Game Details
+                  </h2>
+                  <p
+                    style="
+                      color: var(--text-secondary);
+                      font-size: 0.88rem;
+                      margin-bottom: 28px;
+                    "
+                  >
+                    Technical info and content details help us categorize and
+                    review your game correctly.
+                  </p>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="game-tech"
+                        >Built With <span class="required">*</span></label
+                      >
+                      <select
+                        id="game-tech"
+                        class="form-select sg-field"
+                        data-step="2"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Select technology...
+                        </option>
+                        <option value="vanilla">
+                          Vanilla JS / HTML5 Canvas
+                        </option>
+                        <option value="phaser">Phaser.js</option>
+                        <option value="pixi">PixiJS</option>
+                        <option value="three">Three.js / WebGL</option>
+                        <option value="godot">Godot (HTML5 Export)</option>
+                        <option value="unity">Unity (WebGL Build)</option>
+                        <option value="construct">Construct 3</option>
+                        <option value="gdevelop">GDevelop</option>
+                        <option value="other">Other</option>
+                      </select>
+                      <span class="form-error-msg"
+                        >Please select the technology.</span
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="game-players"
+                        >Players</label
+                      >
+                      <select id="game-players" class="form-select">
+                        <option value="1">Single Player</option>
+                        <option value="2">2 Players (local)</option>
+                        <option value="multi">Multiplayer (online)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="game-session"
+                        >Avg Session Length</label
+                      >
+                      <select id="game-session" class="form-select">
+                        <option value="under2">Under 2 minutes</option>
+                        <option value="2-5">2–5 minutes</option>
+                        <option value="5-15" selected>5–15 minutes</option>
+                        <option value="15-30">15–30 minutes</option>
+                        <option value="30plus">30+ minutes</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="game-controls"
+                        >Controls</label
+                      >
+                      <select id="game-controls" class="form-select">
+                        <option value="mouse">Mouse / Click only</option>
+                        <option value="keyboard">Keyboard only</option>
+                        <option value="both" selected>Mouse + Keyboard</option>
+                        <option value="touch">Touch / Mobile optimized</option>
+                        <option value="all">All of the above</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label"
+                      >Age Rating <span class="required">*</span></label
+                    >
+                    <div class="age-rating-group" id="age-rating-group">
+                      <label
+                        class="age-option selected"
+                        onclick="selectAge(this, 'E')"
+                      >
+                        <input type="radio" name="age" value="E" checked />
+                        <span>🟢 Everyone</span>
+                      </label>
+                      <label
+                        class="age-option"
+                        onclick="selectAge(this, 'E10')"
+                      >
+                        <input type="radio" name="age" value="E10" />
+                        <span>🔵 10+</span>
+                      </label>
+                      <label class="age-option" onclick="selectAge(this, 'T')">
+                        <input type="radio" name="age" value="T" />
+                        <span>🟡 Teen (13+)</span>
+                      </label>
+                      <label class="age-option" onclick="selectAge(this, 'M')">
+                        <input type="radio" name="age" value="M" />
+                        <span>🔴 Mature (17+)</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="game-thumb">
+                      Thumbnail Screenshot
+                      <span class="hint"
+                        >Recommended: 480×270px (16:9), PNG or JPG</span
+                      >
+                    </label>
+                    <div class="upload-zone" id="thumb-zone">
+                      <input
+                        type="file"
+                        id="game-thumb"
+                        accept="image/png,image/jpeg,image/webp"
+                        aria-label="Upload thumbnail"
+                      />
+                      <div class="upload-icon">🖼️</div>
+                      <div class="upload-text">
+                        <strong>Click to upload</strong> or drag & drop your
+                        thumbnail<br />
+                      </div>
+                      <div class="upload-accepted">
+                        PNG, JPG, WebP · Max 2MB · 480×270px recommended
+                      </div>
+                    </div>
+                    <div class="upload-preview" id="thumb-preview">
+                      <span>✅</span>
+                      <span id="thumb-filename">filename.png</span>
+                      <button
+                        type="button"
+                        onclick="
+                          clearUpload(
+                            'game-thumb',
+                            'thumb-preview',
+                            'thumb-zone',
+                          )
+                        "
+                        style="
+                          margin-left: auto;
+                          background: none;
+                          border: none;
+                          color: var(--accent-primary);
+                          cursor: pointer;
+                          font-size: 1rem;
+                        "
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="game-video">
+                      Gameplay Video URL
+                      <span class="hint">Optional — YouTube or Vimeo link</span>
+                    </label>
+                    <input
+                      type="url"
+                      id="game-video"
+                      class="form-input"
+                      placeholder="https://youtube.com/watch?v=..."
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="game-instructions">
+                      How to Play <span class="required">*</span>
+                      <span class="hint"
+                        >Instructions shown below the game</span
+                      >
+                    </label>
+                    <textarea
+                      id="game-instructions"
+                      class="form-textarea sg-field"
+                      data-step="2"
+                      placeholder="Explain the controls, objective, and any key rules. Be concise — 3-5 sentences works best."
+                      rows="4"
+                      required
+                    ></textarea>
+                    <span class="form-error-msg"
+                      >Please provide gameplay instructions.</span
+                    >
+                  </div>
+
+                  <div class="step-nav">
+                    <button class="btn btn-ghost" onclick="goToStep(1)">
+                      ← Back
+                    </button>
+                    <button class="btn btn-primary" onclick="goToStep(3)">
+                      Next: Developer Info →
+                    </button>
+                  </div>
+                </div>
+
+                <!-- =========================== -->
+                <!-- STEP 3 — DEVELOPER INFO     -->
+                <!-- =========================== -->
+                <div class="step-panel" id="step-3" role="tabpanel">
+                  <h2 style="margin-bottom: 6px; font-size: 1.3rem">
+                    Developer Information
+                  </h2>
+                  <p
+                    style="
+                      color: var(--text-secondary);
+                      font-size: 0.88rem;
+                      margin-bottom: 28px;
+                    "
+                  >
+                    Tell us about yourself. This helps us reach you and credit
+                    you properly on the game page.
+                  </p>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="dev-name"
+                        >Your Name / Studio
+                        <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        id="dev-name"
+                        class="form-input sg-field"
+                        data-step="3"
+                        placeholder="Jane Doe or Pixel Studio"
+                        required
+                      />
+                      <span class="form-error-msg"
+                        >Please enter your name or studio name.</span
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="dev-email"
+                        >Email Address <span class="required">*</span></label
+                      >
+                      <input
+                        type="email"
+                        id="dev-email"
+                        class="form-input sg-field"
+                        data-step="3"
+                        placeholder="dev@example.com"
+                        autocomplete="email"
+                        required
+                      />
+                      <span class="form-error-msg"
+                        >Please enter a valid email.</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="dev-website"
+                      >Developer Website / Portfolio</label
+                    >
+                    <input
+                      type="url"
+                      id="dev-website"
+                      class="form-input"
+                      placeholder="https://yoursite.com or itch.io/yourprofile"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="dev-twitter"
+                        >Twitter / X</label
+                      >
+                      <input
+                        type="text"
+                        id="dev-twitter"
+                        class="form-input"
+                        placeholder="@yourusername"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="dev-discord"
+                        >Discord Username</label
+                      >
+                      <input
+                        type="text"
+                        id="dev-discord"
+                        class="form-input"
+                        placeholder="username#0000"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="dev-notes">
+                      Anything Else?
+                      <span class="hint"
+                        >Optional — awards, press coverage, version notes</span
+                      >
+                    </label>
+                    <textarea
+                      id="dev-notes"
+                      class="form-textarea"
+                      placeholder="Tell us anything else that might help us feature your game — previous accolades, interesting development story, planned updates..."
+                      rows="3"
+                      style="min-height: 80px"
+                    ></textarea>
+                  </div>
+
+                  <div
+                    style="
+                      background: var(--bg-secondary);
+                      border: 1px solid var(--border-color);
+                      border-radius: var(--radius-sm);
+                      padding: 20px;
+                      margin-bottom: 22px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-family: var(--font-display);
+                        font-size: 0.7rem;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
+                        color: var(--text-muted);
+                        margin-bottom: 14px;
+                      "
+                    >
+                      Agreements
+                      <span style="color: var(--accent-primary)">*</span>
+                    </p>
+                    <div
+                      style="display: flex; flex-direction: column; gap: 12px"
+                    >
+                      <label class="toggle-label">
+                        <input type="checkbox" id="agree-owner" required />
+                        I confirm I own or have rights to distribute this game
+                        and its assets.
+                      </label>
+                      <label class="toggle-label">
+                        <input type="checkbox" id="agree-terms" required />
+                        I agree to QuickPlay's
+                        <a href="#">Terms of Service</a> and
+                        <a href="#">Developer Guidelines</a>.
+                      </label>
+                      <label class="toggle-label">
+                        <input type="checkbox" id="agree-content" required />
+                        The game contains no illegal content, malware, or
+                        material that violates our content policy.
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="step-nav">
+                    <button class="btn btn-ghost" onclick="goToStep(2)">
+                      ← Back
+                    </button>
+                    <button class="btn btn-primary" onclick="goToStep(4)">
+                      Next: Review →
+                    </button>
+                  </div>
+                </div>
+
+                <!-- ========================= -->
+                <!-- STEP 4 — REVIEW & SUBMIT  -->
+                <!-- ========================= -->
+                <div class="step-panel" id="step-4" role="tabpanel">
+                  <h2 style="margin-bottom: 6px; font-size: 1.3rem">
+                    Review & Submit
+                  </h2>
+                  <p
+                    style="
+                      color: var(--text-secondary);
+                      font-size: 0.88rem;
+                      margin-bottom: 28px;
+                    "
+                  >
+                    Check your details before submitting. You can go back to
+                    make changes.
+                  </p>
+
+                  <div class="review-section">
+                    <h4>🎮 Game Information</h4>
+                    <div class="review-row">
+                      <span class="review-key">Title</span
+                      ><span class="review-val" id="rv-title">—</span>
+                    </div>
+                    <div class="review-row">
+                      <span class="review-key">Game URL</span
+                      ><span
+                        class="review-val"
+                        id="rv-url"
+                        style="word-break: break-all; font-size: 0.8rem"
+                        >—</span
+                      >
+                    </div>
+                    <div class="review-row">
+                      <span class="review-key">Category</span
+                      ><span class="review-val" id="rv-category">—</span>
+                    </div>
+                    <div class="review-row">
+                      <span class="review-key">Description</span
+                      ><span
+                        class="review-val"
+                        id="rv-desc"
+                        style="
+                          font-weight: 400;
+                          font-size: 0.82rem;
+                          color: var(--text-secondary);
+                        "
+                        >—</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="review-section">
+                    <h4>⚙️ Technical Details</h4>
+                    <div class="review-row">
+                      <span class="review-key">Technology</span
+                      ><span class="review-val" id="rv-tech">—</span>
+                    </div>
+                    <div class="review-row">
+                      <span class="review-key">Players</span
+                      ><span class="review-val" id="rv-players">—</span>
+                    </div>
+                    <div class="review-row">
+                      <span class="review-key">Controls</span
+                      ><span class="review-val" id="rv-controls">—</span>
+                    </div>
+                    <div class="review-row">
+                      <span class="review-key">Age Rating</span
+                      ><span class="review-val" id="rv-age">—</span>
+                    </div>
+                  </div>
+
+                  <div class="review-section">
+                    <h4>👤 Developer</h4>
+                    <div class="review-row">
+                      <span class="review-key">Name / Studio</span
+                      ><span class="review-val" id="rv-devname">—</span>
+                    </div>
+                    <div class="review-row">
+                      <span class="review-key">Email</span
+                      ><span class="review-val" id="rv-email">—</span>
+                    </div>
+                    <div class="review-row">
+                      <span class="review-key">Website</span
+                      ><span class="review-val" id="rv-website">—</span>
+                    </div>
+                  </div>
+
+                  <div
+                    style="
+                      background: rgba(57, 255, 138, 0.07);
+                      border: 1px solid rgba(57, 255, 138, 0.2);
+                      border-radius: var(--radius-sm);
+                      padding: 16px;
+                      margin-bottom: 24px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: 0.83rem;
+                        color: var(--text-secondary);
+                        line-height: 1.6;
+                        margin: 0;
+                      "
+                    >
+                      📬 After submission, our team will review your game within
+                      <strong style="color: var(--text-primary)"
+                        >5 business days</strong
+                      >. We'll email you at
+                      <strong
+                        id="rv-email-confirm"
+                        style="color: var(--accent-secondary)"
+                        >your address</strong
+                      >
+                      with our decision and next steps.
+                    </p>
+                  </div>
+
+                  <div class="step-nav">
+                    <button class="btn btn-ghost" onclick="goToStep(3)">
+                      ← Back
+                    </button>
+                    <button
+                      class="btn btn-primary btn-lg"
+                      id="final-submit-btn"
+                      onclick="submitForm()"
+                    >
+                      🚀 Submit My Game
+                    </button>
+                  </div>
+                </div>
+
+                <!-- ========== SUCCESS ========== -->
+                <div
+                  class="submit-success"
+                  id="submit-success"
+                  role="alert"
+                  aria-live="polite"
+                >
+                  <div class="submit-success-icon">🎉</div>
+                  <h2 style="color: var(--accent-green); margin-bottom: 12px">
+                    Submission Received!
+                  </h2>
+                  <p
+                    style="
+                      color: var(--text-secondary);
+                      max-width: 420px;
+                      margin: 0 auto 24px;
+                      line-height: 1.7;
+                    "
+                  >
+                    We've received your game submission and will review it
+                    within
+                    <strong style="color: var(--text-primary)"
+                      >5 business days</strong
+                    >. Keep an eye on your inbox!
+                  </p>
+                  <div
+                    style="
+                      background: var(--bg-secondary);
+                      border: 1px solid var(--border-color);
+                      border-radius: var(--radius-md);
+                      padding: 20px;
+                      max-width: 360px;
+                      margin: 0 auto 32px;
+                      font-size: 0.85rem;
+                      color: var(--text-secondary);
+                      line-height: 1.6;
+                    "
+                  >
+                    <strong
+                      style="
+                        color: var(--text-primary);
+                        display: block;
+                        margin-bottom: 8px;
+                      "
+                      >What happens next:</strong
+                    >
+                    1. Our team plays and reviews your game<br />
+                    2. We check technical requirements<br />
+                    3. You receive an email with our decision<br />
+                    4. Approved games go live within 48 hours
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      gap: 12px;
+                      justify-content: center;
+                      flex-wrap: wrap;
+                    "
+                  >
+                    <a href="games.html" class="btn btn-primary"
+                      >Browse Current Games</a
+                    >
+                    <a href="contact.html" class="btn btn-ghost">Contact Us</a>
+                  </div>
+                </div>
+              </div>
+              <!-- /.submit-form-wrap -->
+            </div>
+
+            <!-- ===== SIDEBAR ===== -->
+            <aside aria-label="Submission guidelines">
+              <div class="submit-sidebar-card">
+                <h4>✅ Requirements</h4>
+                <div class="requirements-list">
+                  <div class="req-item must">
+                    <span class="req-icon">✅</span
+                    ><span>Runs in a browser without plugins</span>
+                  </div>
+                  <div class="req-item must">
+                    <span class="req-icon">✅</span
+                    ><span>HTML5, JavaScript, or WebGL</span>
+                  </div>
+                  <div class="req-item must">
+                    <span class="req-icon">✅</span
+                    ><span>Loads in under 10 seconds</span>
+                  </div>
+                  <div class="req-item must">
+                    <span class="req-icon">✅</span
+                    ><span>Mobile-friendly (or noted)</span>
+                  </div>
+                  <div class="req-item must">
+                    <span class="req-icon">✅</span
+                    ><span>You own or have rights to it</span>
+                  </div>
+                  <div class="req-item must">
+                    <span class="req-icon">✅</span
+                    ><span>Appropriate for general audiences</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="submit-sidebar-card">
+                <h4>🚫 We Don't Accept</h4>
+                <div class="requirements-list">
+                  <div class="req-item reject">
+                    <span class="req-icon">❌</span
+                    ><span>Games requiring Flash or plugins</span>
+                  </div>
+                  <div class="req-item reject">
+                    <span class="req-icon">❌</span
+                    ><span>Games with intrusive ads or paywalls</span>
+                  </div>
+                  <div class="req-item reject">
+                    <span class="req-icon">❌</span
+                    ><span>Mature or adult content (18+)</span>
+                  </div>
+                  <div class="req-item reject">
+                    <span class="req-icon">❌</span
+                    ><span>Games containing malware or trackers</span>
+                  </div>
+                  <div class="req-item reject">
+                    <span class="req-icon">❌</span
+                    ><span>Games requiring account creation</span>
+                  </div>
+                  <div class="req-item reject">
+                    <span class="req-icon">❌</span
+                    ><span>Clones of copyrighted games</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="submit-sidebar-card">
+                <h4>📋 Review Process</h4>
+                <div class="process-step">
+                  <div class="process-num">1</div>
+                  <div class="process-text">
+                    <strong>We Play It</strong
+                    ><span
+                      >Every game is played by a real human on our team</span
+                    >
+                  </div>
+                </div>
+                <div class="process-step">
+                  <div class="process-num">2</div>
+                  <div class="process-text">
+                    <strong>Technical Check</strong
+                    ><span>Load time, mobile compat, security scan</span>
+                  </div>
+                </div>
+                <div class="process-step">
+                  <div class="process-num">3</div>
+                  <div class="process-text">
+                    <strong>Content Review</strong
+                    ><span>Age rating, guidelines compliance</span>
+                  </div>
+                </div>
+                <div class="process-step">
+                  <div class="process-num">4</div>
+                  <div class="process-text">
+                    <strong>Decision Email</strong
+                    ><span>Accept, revise request, or decline with reason</span>
+                  </div>
+                </div>
+                <div class="process-step">
+                  <div class="process-num">5</div>
+                  <div class="process-text">
+                    <strong>Goes Live</strong
+                    ><span>Approved games publish within 48 hours</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="submit-sidebar-card" style="text-align: center">
+                <div style="font-size: 2rem; margin-bottom: 10px">❓</div>
+                <h4 style="margin-bottom: 8px">Questions?</h4>
+                <p
+                  style="
+                    font-size: 0.82rem;
+                    color: var(--text-secondary);
+                    margin-bottom: 14px;
+                    line-height: 1.6;
+                  "
+                >
+                  Check our developer FAQ or get in touch with the team.
+                </p>
+                <a
+                  href="contact.html"
+                  class="btn btn-ghost btn-sm"
+                  style="width: 100%; justify-content: center"
+                  >Contact Us →</a
+                >
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-brand-logo"
+              ><div class="brand-icon">🎮</div>
+              QuickPlay</a
+            >
+            <p class="footer-desc">
+              Free browser games. Open to all developers.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Games</h4>
+            <nav class="footer-links">
+              <a href="games.html">All Games</a>
+              <a href="games/snake.html">Snake</a>
+              <a href="games/2048.html">2048</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Developers</h4>
+            <nav class="footer-links">
+              <a href="submit-game.html">Submit a Game</a>
+              <a href="contact.html">Contact</a>
+              <a href="about.html">About Us</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <nav class="footer-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="sitemap.xml">Sitemap</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 QuickPlay. All rights reserved.</p>
+          <nav class="footer-legal">
+            <a href="#">Privacy</a><a href="#">Terms</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+    <script>
+      /* ============================================================
+     SUBMIT GAME — Multi-step Form Logic
+     ============================================================ */
+      let currentStep = 1;
+      const TOTAL_STEPS = 4;
+
+      function goToStep(step) {
+        // Validate current step before advancing
+        if (step > currentStep && !validateStep(currentStep)) return;
+
+        // Hide all panels
+        document
+          .querySelectorAll(".step-panel")
+          .forEach((p) => p.classList.remove("active"));
+        document.querySelectorAll(".step-item").forEach((tab, i) => {
+          tab.classList.remove("active");
+          if (i + 1 < step) tab.classList.add("done");
+          else tab.classList.remove("done");
+        });
+
+        // If advancing to review step, populate summary
+        if (step === 4) populateReview();
+
+        // Show target panel
+        document.getElementById(`step-${step}`).classList.add("active");
+        document.getElementById(`step-tab-${step}`).classList.add("active");
+        currentStep = step;
+
+        // Scroll to form top
+        document
+          .querySelector(".submit-form-wrap")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function validateStep(step) {
+        let valid = true;
+
+        // Validate required fields in this step
+        document
+          .querySelectorAll(`#step-${step} .sg-field[required]`)
+          .forEach((field) => {
+            const group = field.closest(".form-group");
+            let fieldValid = true;
+
+            if (field.type === "email") {
+              fieldValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                field.value.trim(),
+              );
+            } else if (field.type === "url") {
+              try {
+                new URL(field.value.trim());
+                fieldValid = field.value.trim().length > 0;
+              } catch {
+                fieldValid = false;
+              }
+            } else if (field.tagName === "SELECT") {
+              fieldValid = field.value !== "";
+            } else if (field.tagName === "TEXTAREA") {
+              fieldValid = field.value.trim().length >= 30;
+            } else {
+              fieldValid = field.value.trim().length > 0;
+            }
+
+            group?.classList.toggle("has-error", !fieldValid);
+            field.classList.toggle("error", !fieldValid);
+            if (!fieldValid) valid = false;
+          });
+
+        // Step 1: check category
+        if (step === 1) {
+          const anyChecked =
+            document.querySelectorAll('input[name="category"]:checked').length >
+            0;
+          document.getElementById("cat-error").style.display = anyChecked
+            ? "none"
+            : "block";
+          if (!anyChecked) valid = false;
+        }
+
+        // Step 3: check agreements
+        if (step === 3) {
+          const agreeOwner = document.getElementById("agree-owner")?.checked;
+          const agreeTerms = document.getElementById("agree-terms")?.checked;
+          const agreeContent =
+            document.getElementById("agree-content")?.checked;
+          if (!agreeOwner || !agreeTerms || !agreeContent) {
+            if (typeof Toast !== "undefined")
+              Toast.show(
+                "⚠️ Please check all agreement boxes to continue.",
+                "error",
+              );
+            valid = false;
+          }
+        }
+
+        if (!valid) {
+          const firstErr = document.querySelector(
+            `#step-${step} .error, #step-${step} .has-error input`,
+          );
+          firstErr?.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        return valid;
+      }
+
+      function populateReview() {
+        const setText = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = val || "—";
+        };
+
+        setText("rv-title", document.getElementById("game-title")?.value);
+        setText("rv-url", document.getElementById("game-url")?.value);
+        setText("rv-desc", document.getElementById("game-description")?.value);
+        setText("rv-devname", document.getElementById("dev-name")?.value);
+        setText("rv-email", document.getElementById("dev-email")?.value);
+        setText(
+          "rv-email-confirm",
+          document.getElementById("dev-email")?.value || "your address",
+        );
+        setText(
+          "rv-website",
+          document.getElementById("dev-website")?.value || "Not provided",
+        );
+
+        // Categories
+        const cats = [
+          ...document.querySelectorAll('input[name="category"]:checked'),
+        ].map((c) => c.value);
+        setText("rv-category", cats.length ? cats.join(", ") : "—");
+
+        // Select display values
+        const techEl = document.getElementById("game-tech");
+        setText("rv-tech", techEl?.options[techEl?.selectedIndex]?.text);
+
+        const playersEl = document.getElementById("game-players");
+        setText(
+          "rv-players",
+          playersEl?.options[playersEl?.selectedIndex]?.text,
+        );
+
+        const controlsEl = document.getElementById("game-controls");
+        setText(
+          "rv-controls",
+          controlsEl?.options[controlsEl?.selectedIndex]?.text,
+        );
+
+        const ageEl = document.querySelector('input[name="age"]:checked');
+        setText(
+          "rv-age",
+          ageEl?.value === "E"
+            ? "Everyone"
+            : ageEl?.value === "E10"
+              ? "10+"
+              : ageEl?.value === "T"
+                ? "Teen (13+)"
+                : "Mature (17+)",
+        );
+      }
+
+      function submitForm() {
+        const btn = document.getElementById("final-submit-btn");
+        btn.disabled = true;
+        btn.textContent = "⏳ Submitting...";
+
+        // --- Replace with your real API endpoint, Formspree, or EmailJS ---
+        setTimeout(() => {
+          document.querySelector(".step-progress").style.display = "none";
+          document
+            .querySelectorAll(".step-panel")
+            .forEach((p) => p.classList.remove("active"));
+          document.getElementById("submit-success").classList.add("show");
+          document
+            .getElementById("submit-success")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 1400);
+      }
+
+      function selectAge(label, val) {
+        document
+          .querySelectorAll(".age-option")
+          .forEach((l) => l.classList.remove("selected"));
+        label.classList.add("selected");
+      }
+
+      function clearUpload(inputId, previewId, zoneId) {
+        document.getElementById(inputId).value = "";
+        document.getElementById(previewId).classList.remove("show");
+        document.getElementById(zoneId).style.display = "";
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Character counter for description
+        const descField = document.getElementById("game-description");
+        const descCounter = document.getElementById("desc-counter");
+        descField?.addEventListener("input", () => {
+          const len = descField.value.length;
+          descCounter.textContent = `${len} / 160`;
+          descCounter.className =
+            "char-counter" + (len > 140 ? " limit" : len > 110 ? " warn" : "");
+        });
+
+        // Category checkbox visual toggle
+        document.querySelectorAll(".category-check").forEach((label) => {
+          const cb = label.querySelector("input");
+          cb?.addEventListener("change", () =>
+            label.classList.toggle("checked", cb.checked),
+          );
+        });
+
+        // Thumbnail upload preview
+        const thumbInput = document.getElementById("game-thumb");
+        thumbInput?.addEventListener("change", () => {
+          const file = thumbInput.files[0];
+          if (!file) return;
+          document.getElementById("thumb-filename").textContent = file.name;
+          document.getElementById("thumb-preview").classList.add("show");
+          document.getElementById("thumb-zone").style.display = "none";
+        });
+
+        // Drag and drop styling
+        const zone = document.getElementById("thumb-zone");
+        zone?.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          zone.classList.add("drag-over");
+        });
+        zone?.addEventListener("dragleave", () =>
+          zone.classList.remove("drag-over"),
+        );
+        zone?.addEventListener("drop", (e) => {
+          e.preventDefault();
+          zone.classList.remove("drag-over");
+          const file = e.dataTransfer.files[0];
+          if (file && file.type.startsWith("image/")) {
+            thumbInput.files = e.dataTransfer.files;
+            thumbInput.dispatchEvent(new Event("change"));
+          }
+        });
+
+        // Live field validation
+        document.querySelectorAll(".sg-field").forEach((field) => {
+          field.addEventListener("blur", () => {
+            if (field.required || field.value.trim()) {
+              const group = field.closest(".form-group");
+              let valid =
+                field.value.trim().length >
+                (field.tagName === "TEXTAREA" ? 29 : 0);
+              if (field.type === "email")
+                valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+              if (field.type === "url" && field.value) {
+                try {
+                  new URL(field.value);
+                  valid = true;
+                } catch {
+                  valid = false;
+                }
+              }
+              group?.classList.toggle("has-error", !valid);
+              field.classList.toggle("error", !valid);
+            }
+          });
+          field.addEventListener("input", () => {
+            if (field.classList.contains("error"))
+              field.classList.remove("error");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
